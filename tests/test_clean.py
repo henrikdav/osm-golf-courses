@@ -8,7 +8,7 @@ import json
 import os
 import unittest
 
-from golf.clean import clean, combos, length
+from golf.clean import clean, combos, length, loop_name
 
 HERE = os.path.dirname(__file__)
 
@@ -58,6 +58,42 @@ class ByCourseName(unittest.TestCase):
         c = next(x for x in clubs if x["name"] == "Örestads golfklubb")
         self.assertEqual({x["name"] for x in c["courses"]}, {"Blå", "Gul", "Röd", "Pay & Play"})
         self.assertEqual(len(c["combos"]), 6)
+
+
+class AnyLength(unittest.TestCase):
+    def test_a_course_numbered_from_1_without_gaps_is_complete_however_many_holes(self):
+        with open(os.path.join(HERE, "fixtures", "vellinge.json")) as f:
+            data = json.load(f)
+        data["holes"] = [h for h in data["holes"] if int(h["tags"].get("ref", "0")) <= 12]
+        clubs, _ = clean(data["outlines"], data["holes"], data["greens"])
+        course = clubs[0]["courses"][0]
+        self.assertEqual((course["holeCount"], course["complete"]), (12, True))
+
+    def test_a_gap_is_not_complete(self):
+        with open(os.path.join(HERE, "fixtures", "vellinge.json")) as f:
+            data = json.load(f)
+        data["holes"] = [h for h in data["holes"] if h["tags"].get("ref") != "4"]
+        clubs, _ = clean(data["outlines"], data["holes"], data["greens"])
+        course = clubs[0]["courses"][0]
+        self.assertFalse(course["complete"])
+        self.assertIn("Holes missing: 4", course["notes"])
+
+
+class HoleNames(unittest.TestCase):
+    def test_the_word_for_hole_is_not_part_of_the_course_name(self):
+        self.assertEqual(loop_name({"name": "Gamla banan hål 1", "ref": "1"}), "Gamla banan")
+        self.assertEqual(loop_name({"name": "Ringenäs gul hål 2", "ref": "2"}), "Ringenäs gul")
+        self.assertEqual(loop_name({"name": "Blå 1", "ref": "1"}), "Blå")
+        self.assertEqual(loop_name({"name": "Hole 3", "ref": "3"}), "")
+        self.assertEqual(loop_name({"name": "Hål 3", "ref": "3"}), "")
+
+    def test_a_course_name_in_another_case_is_the_same_course(self):
+        line = lambda name, ref: {"tags": {"golf": "hole", "name": "%s %d" % (name, ref), "ref": str(ref)},
+                                  "geometry": [{"lat": 59 + ref / 100, "lon": 18}, {"lat": 59.003 + ref / 100, "lon": 18}]}
+        outline = {"type": "way", "id": 1, "tags": {"name": "Club"},
+                   "geometry": [{"lat": 58.9, "lon": 17.9}, {"lat": 59.3, "lon": 17.9}, {"lat": 59.3, "lon": 18.1}, {"lat": 58.9, "lon": 18.1}]}
+        clubs, _ = clean([outline], [line("Gul", 1), line("gul", 2), line("Gul", 3)], [])
+        self.assertEqual([(x["name"], x["holeCount"]) for x in clubs[0]["courses"]], [("Gul", 3)])
 
 
 class ByHoleName(unittest.TestCase):
@@ -115,7 +151,7 @@ class Counts(unittest.TestCase):
         self.assertEqual(counts["completeCourses"], 2)
 
     def test_combos_need_complete_named_nine_hole_loops(self):
-        loop = {"name": "A", "complete": True, "holes": [{}] * 9}
+        loop = {"name": "A", "complete": True, "holeCount": 9, "holes": [{}] * 9}
         self.assertEqual(combos([loop, dict(loop, name="B")])[0]["name"], "A + B")
         self.assertEqual(combos([loop, dict(loop, name="B", complete=False)]), [])
         self.assertEqual(combos([loop, dict(loop, name=None)]), [])
