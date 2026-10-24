@@ -87,9 +87,9 @@ def loop_name(tags):
     own = (tags.get("name") or "").strip()
     ref = (tags.get("ref") or "").strip()
     if ref and own.endswith(" " + ref):
-        loop = own[: -len(ref)].strip(" -–:#")
-        if loop and loop.lower() not in ("hole", "hål", "hull"):
-            return loop
+        # "Gamla banan hål 1" → "Gamla banan"; "Hole 1" → nothing.
+        loop = re.sub(r"(^|\s+)(hole|hål|hull)$", "", own[: -len(ref)].strip(" -–:#"), flags=re.IGNORECASE)
+        return loop.strip(" -–:#")
     return ""
 
 
@@ -168,7 +168,9 @@ def course(name, lines_by_number, unnumbered=0, offset=0):
     ordered = [holes[n] for n in sorted(holes)]
     last = max(holes) if holes else 0
     missing = [n for n in range(1, last + 1) if n not in holes]
-    complete = last in (9, 18) and not missing and not repeated
+    # Every hole there once, numbered from 1 without gaps, however many: a 12-hole course is complete. Whether
+    # that is the whole course (or the first 12 holes mapped of 18) is for the app to judge.
+    complete = bool(holes) and not missing and not repeated
 
     notes = []
     if missing:
@@ -191,16 +193,18 @@ def course(name, lines_by_number, unnumbered=0, offset=0):
     indexes = [h["index"] for h in ordered if h["index"]]
     if len(set(indexes)) != len(indexes):
         notes.append("The same index on more than one hole")
-    return {"name": name or None, "complete": complete, "holes": ordered, "notes": notes}
+    return {"name": name or None, "complete": complete, "holeCount": len(ordered), "holes": ordered, "notes": notes}
 
 
 def courses_of(lines, club):
     """A club's courses from its hole lines, grouped by course name, then by the rules for unnamed twins and runs
     of 27 holes."""
     groups = {}
+    spelled = {}   # by lower case: "Ringenäs gul" and "Ringenäs Gul" are one course, named as first seen
     for line in lines:
         key = loop_name(line.get("tags", {}))
-        groups.setdefault("" if key == club else key, []).append(line)
+        key = "" if key.lower() == club.lower() else key
+        groups.setdefault(spelled.setdefault(key.lower(), key), []).append(line)
     courses = []
     for name, group in groups.items():
         by_number, unnumbered = hole_lines(group)
@@ -292,6 +296,7 @@ def clean(outlines, holes, greens):
         "clubsWithHoles": sum(1 for c in result if c["courses"]),
         "clubsWithCompleteCourse": sum(1 for c in result if any(x["complete"] for x in c["courses"])),
         "completeCourses": sum(1 for c in result for x in c["courses"] if x["complete"]),
+        "complete9or18": sum(1 for c in result for x in c["courses"] if x["complete"] and x["holeCount"] in (9, 18)),
         "clubsWithGreensOnly": sum(1 for c in result if "greens" in c),
         "holeLinesOutsideClubs": outside,
     }
