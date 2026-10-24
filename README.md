@@ -14,14 +14,15 @@ one JSON file per country, for golf apps that want course data at once instead o
   "country": "SE", "name": "Sweden",
   "made": "2026-10-24T20:00:00Z",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0 (https://www.openstreetmap.org/copyright)",
-  "counts": { "clubs": 542, "clubsWithCompleteCourse": 107, … },
+  "counts": { "clubs": 542, "clubsWithCompleteCourse": 107, "complete9or18": 125, … },
   "clubs": [{
     "id": "way/23727737",            // the OpenStreetMap outline
     "name": "Bokskogens Golfklubb",
     "lat": 55.55, "lng": 13.24, "bbox": [south, west, north, east],
     "courses": [{
       "name": "Gamla Banan",         // null for a club's only course
-      "complete": true,              // holes 1–9 or 1–18, each once
+      "complete": true,              // every hole once, numbered from 1 without gaps
+      "holeCount": 18,               // a complete 12-hole course is complete too: the app judges if that's all
       "notes": [],                   // what looks wrong, e.g. "Holes missing: 4", "Hole 2 is 309 m for par 5"
       "holes": [{ "n": 1, "par": 4, "index": 7, "path": [[lat, lng], …] }]   // back tee → pin
     }],
@@ -48,7 +49,10 @@ when outlines nest). Clubs map several courses in different ways, and each is ha
 | One number twice at one spot | Landeryd | one hole (the longer line, from the back tee) |
 
 Named 9-hole loops are offered two by two for 18 holes (`combos`). Each course is checked: numbering, par 3–6,
-length against par, and a unique index.
+length against par, and a unique index. A course is complete when every hole is there once, numbered from 1 without
+gaps, however many holes: 12 holes in a row may be a 12-hole course or the first 12 of 18 mapped, which only the
+app (knowing the course) can tell. The word for hole is dropped from a course name taken from the hole's name
+("Gamla banan hål 1" → Gamla banan).
 
 ## Running it
 
