@@ -32,6 +32,19 @@ def published(url):
 
 
 def main(site, base):
+    changed = False
+    ok = True
+    # Format 1 and format 2 (v2/) are checked alike; either changing publishes both.
+    for folder in ("", "v2"):
+        part_changed, part_ok = compare(os.path.join(site, folder), base.rstrip("/") + ("/" + folder if folder else ""))
+        changed, ok = changed or part_changed, ok and part_ok
+    if "GITHUB_OUTPUT" in os.environ:
+        with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+            f.write("changed=%s\n" % ("true" if changed and ok else "false"))
+    return 0 if ok else 1
+
+
+def compare(site, base):
     with open(os.path.join(site, "countries.json")) as f:
         countries = json.load(f)["countries"]
     changed = False
@@ -39,9 +52,9 @@ def main(site, base):
     for c in countries:
         with open(os.path.join(site, c["file"])) as f:
             new = json.load(f)
-        old = published(base.rstrip("/") + "/" + c["file"])
+        old = published(base + "/" + c["file"])
         if old is None:
-            print("%s: nothing published yet" % c["code"])
+            print("%s (format %s): nothing published yet" % (c["code"], new.get("format")))
             changed = True
             continue
         for key in ("clubs", "completeCourses"):
@@ -50,12 +63,9 @@ def main(site, base):
                 print("%s: %s fell from %d to %d; not publishing" % (c["code"], key, before, now))
                 ok = False
         same = old.get("format") == new.get("format") and old["clubs"] == new["clubs"]
-        print("%s: %s" % (c["code"], "unchanged" if same else "changed"))
+        print("%s%s: %s" % (c["code"], " (format %s)" % new.get("format"), "unchanged" if same else "changed"))
         changed = changed or not same
-    if "GITHUB_OUTPUT" in os.environ:
-        with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-            f.write("changed=%s\n" % ("true" if changed and ok else "false"))
-    return 0 if ok else 1
+    return changed, ok
 
 
 if __name__ == "__main__":

@@ -34,6 +34,39 @@ one JSON file per country, for golf apps that want course data at once instead o
 
 Every club outline is kept, also without holes, so an app can tell "not mapped yet" from "not there".
 
+## Format 2: stable ids and keys
+
+The same clubs in format 2, beside format 1 until the apps have moved over:
+
+- **Countries:** <https://henrikdav.github.io/osm-golf-courses/v2/countries.json>
+- **Sweden:** <https://henrikdav.github.io/osm-golf-courses/v2/sweden.json>
+
+```jsonc
+{
+  "format": 2, …,
+  "clubs": [{
+    "id": "se-0338",                 // our own, stable: kept when OpenStreetMap's id changes
+    "osm": "way/73898411",           // the OpenStreetMap outline it is now
+    "name": "Malmö Burlöv Golfklubb", …,
+    "courses": [{ "key": "1-9", "name": "Holes 1–9", … }],   // key: stable within the club ("main" for an only course)
+    "combos": [{ "key": "1-9+10-18", "name": "Holes 1–9 + Holes 10–18", "loops": ["1-9", "10-18"] }]
+  }]
+}
+```
+
+An app that keeps a player's tees, lengths and corrections per club and course points at `id` and `key`, never at
+OpenStreetMap's id or a place in a list. OpenStreetMap ids change, most often when an outline is redrawn from a
+`way` into a `relation`. The ids and keys are kept in `registry/<country>.json` (committed back by the weekly run):
+
+- a club whose OpenStreetMap id is in the register keeps its id;
+- a club with a new OpenStreetMap id takes the id of a club gone that week if exactly one has the same name or lies
+  within 500 m; when two could be meant (a club split or merged) it gets a new id and the run says so for a person to
+  look at;
+- a club gone keeps its id in the register, so it is the same club if it comes back;
+- a course's key comes from its name (`gamla-banan`, `bla`, `pay-play`, `1-9`) and stays with it.
+
+Every pair of loops is offered as a combination until a club's own data says which are played.
+
 ## How it is cleaned
 
 `golf/clean.py`. A club's holes are the `golf=hole` lines inside its `leisure=golf_course` outline (the smallest one
