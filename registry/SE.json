@@ -1115,7 +1115,7 @@
    "keys": {},
    "lat": 59.49717,
    "lng": 18.154909,
-   "name": "Golf course",
+   "name": "Ullna Golf Academy",
    "osm": "way/118195812"
   },
   "se-0146": {
@@ -1415,8 +1415,8 @@
    "keys": {
     "": "main"
    },
-   "lat": 59.48861,
-   "lng": 14.182291,
+   "lat": 59.489194,
+   "lng": 14.182286,
    "name": "Golf course",
    "osm": "way/536454750"
   },
@@ -2505,8 +2505,8 @@
    "keys": {
     "": "main"
    },
-   "lat": 59.489108,
-   "lng": 14.182291,
+   "lat": 59.489194,
+   "lng": 14.182286,
    "name": "Lundsbergs Golfklubb",
    "osm": "relation/21745969"
   },
