@@ -83,6 +83,13 @@ class Ids(unittest.TestCase):
         self.ids(clubs)
         self.assertEqual([c["key"] for c in clubs[0]["courses"]], ["korthalsbana", "1-9", "10-18"])
 
+    def test_a_course_renamed_to_the_same_key_keeps_it(self):
+        clubs = copy.deepcopy(self.week1)
+        clubs[0]["courses"] = [{"name": "1–9", "holes": [], "complete": True}, {"name": "10–18", "holes": [], "complete": True}]
+        _, register, _ = self.ids(clubs)
+        self.assertEqual([c["key"] for c in clubs[0]["courses"]], ["1-9", "10-18"])
+        self.assertEqual(register["clubs"]["se-0001"]["keys"], {"1–9": "1-9", "10–18": "10-18"})
+
     def test_two_courses_with_one_key_get_a_number(self):
         clubs = [club("way/5", "Two", courses=("Gul", "gul!"))]
         assign("SE", clubs, {"next": 1, "clubs": {}})

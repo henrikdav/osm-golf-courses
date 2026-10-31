@@ -116,9 +116,11 @@ class ByHoleName(unittest.TestCase):
 class RunOf27(unittest.TestCase):
     def test_malmo_burlov_1_to_27_becomes_three_loops(self):
         c = club("malmo-burlov")
-        self.assertEqual(summary(c), [("Holes 1–9", 9, True), ("Holes 10–18", 9, True), ("Holes 19–27", 9, True)])
+        self.assertEqual(summary(c), [("1–9", 9, True), ("10–18", 9, True), ("19–27", 9, True)])
         self.assertEqual([h["n"] for h in c["courses"][1]["holes"]], list(range(1, 10)), "renumbered 1–9")
         self.assertEqual(len(c["combos"]), 6)
+        self.assertEqual([x["name"] for x in c["combos"]],
+                         ["1–18", "1–9 + 19–27", "10–18 + 1–9", "10–27", "19–09", "19–27 + 10–18"])
 
     def test_a_hole_too_long_or_short_for_its_par_is_noted(self):
         notes = club("malmo-burlov")["courses"][2]["notes"]
