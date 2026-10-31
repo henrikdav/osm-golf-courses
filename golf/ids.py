@@ -12,8 +12,8 @@ week:
 - anything else gets the next free id.
 
 A course's key comes from its name (lower case, no accents, words joined by "-": "Pay & Play" → "pay-play",
-"Holes 1–9" → "1-9"); a club's only course, with no name, is "main". A key once given to a course stays with that
-name, so the register also keeps the keys. Pure: no files or network here; build.py reads and writes the register.
+"1–9" → "1-9"); a club's only course, with no name, is "main". A key once given to a course stays with that name,
+so the register also keeps the keys; a course renamed so that its key stays the same ("Holes 1–9" → "1–9") keeps it. Pure: no files or network here; build.py reads and writes the register.
 """
 import re
 import unicodedata
@@ -29,7 +29,7 @@ def fold(text):
 
 
 def course_key(name):
-    """A course's key from its name: "Gamla Banan" → "gamla-banan", "Holes 10–18" → "10-18", None → "main"."""
+    """A course's key from its name: "Gamla Banan" → "gamla-banan", "10–18" (or "Holes 10–18") → "10-18", None → "main"."""
     if not name:
         return "main"
     text = fold(name).replace("&", " ")
@@ -77,10 +77,19 @@ def assign(country, clubs, register):
         entry.update(osm=osm, name=club["name"], lat=club["lat"], lng=club["lng"])
         keys = entry["keys"]
         used = set(keys.values())
+        names_now = {c["name"] or "" for c in club["courses"]}
         for course in club["courses"]:
             name = course["name"] or ""
             if name not in keys:
-                key = base = course_key(course["name"])
+                base = course_key(course["name"])
+                # Renamed, with the same key: it is the same course ("Holes 1–9" → "1–9").
+                renamed = next((old for old, k in keys.items() if k == base and old not in names_now), None)
+                if renamed is not None:
+                    del keys[renamed]
+                    keys[name] = base
+                    course["key"] = base
+                    continue
+                key = base
                 n = 2
                 while key in used:
                     key = "%s-%d" % (base, n)

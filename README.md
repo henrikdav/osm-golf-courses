@@ -48,8 +48,8 @@ The same clubs in format 2, beside format 1 until the apps have moved over:
     "id": "se-0338",                 // our own, stable: kept when OpenStreetMap's id changes
     "osm": "way/73898411",           // the OpenStreetMap outline it is now
     "name": "Malmö Burlöv Golfklubb", …,
-    "courses": [{ "key": "1-9", "name": "Holes 1–9", … }],   // key: stable within the club ("main" for an only course)
-    "combos": [{ "key": "1-9+10-18", "name": "Holes 1–9 + Holes 10–18", "loops": ["1-9", "10-18"] }]
+    "courses": [{ "key": "1-9", "name": "1–9", … }],   // key: stable within the club ("main" for an only course)
+    "combos": [{ "key": "1-9+10-18", "name": "1–18", "loops": ["1-9", "10-18"] }]
   }]
 }
 ```
@@ -77,11 +77,12 @@ when outlines nest). Clubs map several courses in different ways, and each is ha
 | Every hole numbered once | Vellinge GK | one course |
 | A course name on each hole (`golf:course:name`, `course:name`, `course`) | Bokskogen: Gamla Banan, Kungsbanan | a course per name |
 | The loop in the hole's own name, "Blå 1" | Örestad: Blå, Gul, Röd, Pay & Play | a course per loop |
-| Holes 1–27 in one run | Malmö Burlöv | three 9-hole loops |
+| Holes 1–27 in one run | Malmö Burlöv | three 9-hole loops, 1–9, 10–18 and 19–27 |
 | No names, every number twice, far apart | Båstad | two courses, split by which tee follows which green |
 | One number twice at one spot | Landeryd | one hole (the longer line, from the back tee) |
 
-Named 9-hole loops are offered two by two for 18 holes (`combos`). Each course is checked: numbering, par 3–6,
+Named 9-hole loops are offered two by two for 18 holes (`combos`). Numbered loops that follow on are named as the
+club calls the round (1–9 then 10–18: "1–18"; 19–27 then 1–9: "19–09"), other pairs by both names ("Blå + Gul"). Each course is checked: numbering, par 3–6,
 length against par, and a unique index. A course is complete when every hole is there once, numbered from 1 without
 gaps, however many holes: 12 holes in a row may be a 12-hole course or the first 12 of 18 mapped, which only the
 app (knowing the course) can tell. The word for hole is dropped from a course name taken from the hole's name
