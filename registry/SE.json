@@ -1,0 +1,4204 @@
+{
+ "clubs": {
+  "se-0001": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.760419,
+   "lng": 14.212199,
+   "name": "A6 Golfklubb",
+   "osm": "way/95008055"
+  },
+  "se-0002": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.410157,
+   "lng": 13.60612,
+   "name": "Abbekås golfklubb",
+   "osm": "way/34148679"
+  },
+  "se-0003": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.220899,
+   "lng": 18.089422,
+   "name": "Ågesta Golfklubb",
+   "osm": "relation/1666943"
+  },
+  "se-0004": {
+   "keys": {},
+   "lat": 56.365021,
+   "lng": 12.791535,
+   "name": "Åkagårdens Golfklubb",
+   "osm": "way/343921577"
+  },
+  "se-0005": {
+   "keys": {},
+   "lat": 59.512307,
+   "lng": 18.291878,
+   "name": "Åkersberga GK",
+   "osm": "relation/4442076"
+  },
+  "se-0006": {
+   "keys": {
+    "Albatrossen": "albatrossen"
+   },
+   "lat": 57.780675,
+   "lng": 11.949527,
+   "name": "Albatross Golf Klubb: Albatrossen",
+   "osm": "way/1531425194"
+  },
+  "se-0007": {
+   "keys": {
+    "Birdiebanan": "birdiebanan"
+   },
+   "lat": 57.781956,
+   "lng": 11.953485,
+   "name": "Albatross Golfklubb",
+   "osm": "relation/10420887"
+  },
+  "se-0008": {
+   "keys": {},
+   "lat": 58.003996,
+   "lng": 12.18571,
+   "name": "Ale Golfklubb",
+   "osm": "relation/11344654"
+  },
+  "se-0009": {
+   "keys": {},
+   "lat": 57.881067,
+   "lng": 12.551813,
+   "name": "Alingsås Golfklubb",
+   "osm": "relation/4427281"
+  },
+  "se-0010": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.126371,
+   "lng": 12.712328,
+   "name": "Allerum golfklubb",
+   "osm": "relation/5340013"
+  },
+  "se-0011": {
+   "keys": {},
+   "lat": 58.206006,
+   "lng": 11.798547,
+   "name": "Allmags Golfklubb",
+   "osm": "relation/11509894"
+  },
+  "se-0012": {
+   "keys": {},
+   "lat": 56.565125,
+   "lng": 14.171795,
+   "name": "Älmhults Golfklubb",
+   "osm": "relation/5940542"
+  },
+  "se-0013": {
+   "keys": {},
+   "lat": 60.590118,
+   "lng": 17.446097,
+   "name": "Älvkarleby Golfklubb",
+   "osm": "way/226756908"
+  },
+  "se-0014": {
+   "keys": {},
+   "lat": 56.270614,
+   "lng": 13.021373,
+   "name": "Ängelholms Golfklubb",
+   "osm": "way/280699641"
+  },
+  "se-0015": {
+   "keys": {},
+   "lat": 56.42514,
+   "lng": 12.921342,
+   "name": "Äppelgårdens GK",
+   "osm": "way/1070276612"
+  },
+  "se-0016": {
+   "keys": {},
+   "lat": 56.060258,
+   "lng": 14.093494,
+   "name": "Araslövs Golfklubb",
+   "osm": "way/74601596"
+  },
+  "se-0017": {
+   "keys": {},
+   "lat": 59.369129,
+   "lng": 15.761323,
+   "name": "Arboga Golfklubb",
+   "osm": "way/363811577"
+  },
+  "se-0018": {
+   "keys": {},
+   "lat": 63.403817,
+   "lng": 12.814016,
+   "name": "Are Golfclub",
+   "osm": "way/482788880"
+  },
+  "se-0019": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.331656,
+   "lng": 12.293074,
+   "name": "Årjängs GK",
+   "osm": "way/669177980"
+  },
+  "se-0020": {
+   "keys": {},
+   "lat": 59.604548,
+   "lng": 17.882615,
+   "name": "Arlandastad Golf",
+   "osm": "way/20276372"
+  },
+  "se-0021": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.481121,
+   "lng": 18.126521,
+   "name": "Arninge Golfklubb",
+   "osm": "way/85694415"
+  },
+  "se-0022": {
+   "keys": {},
+   "lat": 59.290516,
+   "lng": 18.03964,
+   "name": "Årsta Golf",
+   "osm": "way/112466556"
+  },
+  "se-0023": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.585628,
+   "lng": 19.212437,
+   "name": "Arvidsjaurs Golfklubb",
+   "osm": "way/207869504"
+  },
+  "se-0024": {
+   "keys": {},
+   "lat": 59.652079,
+   "lng": 12.778668,
+   "name": "Arvika Golfklubb",
+   "osm": "way/366206376"
+  },
+  "se-0025": {
+   "keys": {},
+   "lat": 60.54662,
+   "lng": 15.519444,
+   "name": "Aspeboda golf",
+   "osm": "relation/5717027"
+  },
+  "se-0026": {
+   "keys": {},
+   "lat": 57.251423,
+   "lng": 12.983458,
+   "name": "Ätradalens Golfklubb",
+   "osm": "relation/15017861"
+  },
+  "se-0027": {
+   "keys": {},
+   "lat": 58.19895,
+   "lng": 15.972891,
+   "name": "Åtvidabergs Golfklubb",
+   "osm": "way/302520347"
+  },
+  "se-0028": {
+   "keys": {},
+   "lat": 60.14496,
+   "lng": 16.214514,
+   "name": "Avesta golfklubb",
+   "osm": "way/66062178"
+  },
+  "se-0029": {
+   "keys": {},
+   "lat": 57.881913,
+   "lng": 12.055314,
+   "name": "Backa Säteri Golf",
+   "osm": "way/461628693"
+  },
+  "se-0030": {
+   "keys": {
+    "Ocean Course": "ocean-course",
+    "Pine Course": "pine-course"
+   },
+   "lat": 55.794752,
+   "lng": 12.948713,
+   "name": "Barsebäcks G&CC",
+   "osm": "relation/3145703"
+  },
+  "se-0031": {
+   "keys": {},
+   "lat": 59.06906,
+   "lng": 15.916809,
+   "name": "Båsenberga golf",
+   "osm": "way/250487451"
+  },
+  "se-0032": {
+   "keys": {
+    "Course 1": "course-1",
+    "Course 2": "course-2"
+   },
+   "lat": 56.428921,
+   "lng": 12.780532,
+   "name": "Båstad Golfklubb",
+   "osm": "way/277451634"
+  },
+  "se-0033": {
+   "keys": {},
+   "lat": 55.369098,
+   "lng": 13.433027,
+   "name": "Beddinge golfklubb",
+   "osm": "way/55287417"
+  },
+  "se-0034": {
+   "keys": {},
+   "lat": 59.250686,
+   "lng": 13.008282,
+   "name": "Billeruds GK",
+   "osm": "way/42216554"
+  },
+  "se-0035": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.467028,
+   "lng": 13.690002,
+   "name": "Billingens Golfklubb",
+   "osm": "way/502708262"
+  },
+  "se-0036": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.6331,
+   "lng": 16.224418,
+   "name": "Binga golfklubb",
+   "osm": "way/69043826"
+  },
+  "se-0037": {
+   "keys": {},
+   "lat": 56.405319,
+   "lng": 12.78386,
+   "name": "Bjäre Golfklubb",
+   "osm": "way/42484493"
+  },
+  "se-0038": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.769362,
+   "lng": 13.015274,
+   "name": "Björkenäs Golfklubb",
+   "osm": "way/40772446"
+  },
+  "se-0039": {
+   "keys": {},
+   "lat": 59.286318,
+   "lng": 18.142839,
+   "name": "Björkhagens Golfklubb",
+   "osm": "relation/4451804"
+  },
+  "se-0040": {
+   "keys": {},
+   "lat": 63.965666,
+   "lng": 19.201533,
+   "name": "Bjurholms Golfklubb",
+   "osm": "way/164831547"
+  },
+  "se-0041": {
+   "keys": {},
+   "lat": 57.083576,
+   "lng": 12.315412,
+   "name": "Blixtorps golfbana",
+   "osm": "relation/20267399"
+  },
+  "se-0042": {
+   "keys": {},
+   "lat": 56.209661,
+   "lng": 14.603936,
+   "name": "Boa Golfklubb Olofström",
+   "osm": "way/975363500"
+  },
+  "se-0043": {
+   "keys": {},
+   "lat": 57.636012,
+   "lng": 15.092811,
+   "name": "Boaryd;Boaryd Golf",
+   "osm": "relation/4440570"
+  },
+  "se-0044": {
+   "keys": {},
+   "lat": 57.272683,
+   "lng": 17.044899,
+   "name": "Böda Sands golfbana",
+   "osm": "way/38445285"
+  },
+  "se-0045": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.750933,
+   "lng": 21.756008,
+   "name": "Bodens Golfklubb",
+   "osm": "way/1003284540"
+  },
+  "se-0046": {
+   "keys": {
+    "Gamla Banan": "gamla-banan",
+    "Kungsbanan": "kungsbanan"
+   },
+   "lat": 55.551778,
+   "lng": 13.238879,
+   "name": "Bokskogens Golfklubb",
+   "osm": "way/23727737"
+  },
+  "se-0047": {
+   "keys": {},
+   "lat": 64.875687,
+   "lng": 20.22899,
+   "name": "Bolidens GK",
+   "osm": "way/37103495"
+  },
+  "se-0048": {
+   "keys": {},
+   "lat": 57.888592,
+   "lng": 11.894283,
+   "name": "Bollestad Golfklubb",
+   "osm": "relation/10889624"
+  },
+  "se-0049": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.670946,
+   "lng": 12.935257,
+   "name": "Borås Golfklubb",
+   "osm": "relation/10180532"
+  },
+  "se-0050": {
+   "keys": {},
+   "lat": 55.882596,
+   "lng": 13.520865,
+   "name": "Bosjökloster Golfklubb",
+   "osm": "relation/10619924"
+  },
+  "se-0051": {
+   "keys": {},
+   "lat": 59.161245,
+   "lng": 17.832318,
+   "name": "Botkyrka GK",
+   "osm": "relation/3928677"
+  },
+  "se-0052": {
+   "keys": {},
+   "lat": 58.602473,
+   "lng": 16.32259,
+   "name": "Bråvikens Golfklubb",
+   "osm": "relation/2624162"
+  },
+  "se-0053": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.604838,
+   "lng": 16.321787,
+   "name": "Bråvikens Golfklubb",
+   "osm": "way/1519717514"
+  },
+  "se-0054": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.819401,
+   "lng": 12.905635,
+   "name": "Bredareds Golfklubb",
+   "osm": "way/289444275"
+  },
+  "se-0055": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.520316,
+   "lng": 17.585728,
+   "name": "Bro Bålsta GK",
+   "osm": "way/35935442"
+  },
+  "se-0056": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.498283,
+   "lng": 17.633775,
+   "name": "Bro Hof Slott Golf Club",
+   "osm": "relation/5509342"
+  },
+  "se-0057": {
+   "keys": {},
+   "lat": 59.577958,
+   "lng": 18.300314,
+   "name": "Brollsta Golfklubb",
+   "osm": "relation/3049183"
+  },
+  "se-0058": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.348553,
+   "lng": 17.939493,
+   "name": "Bromma Golf",
+   "osm": "relation/14801946"
+  },
+  "se-0059": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.414488,
+   "lng": 13.455013,
+   "name": "Bryngfjordens Golfklubb",
+   "osm": "way/54034862"
+  },
+  "se-0060": {
+   "keys": {},
+   "lat": 59.903536,
+   "lng": 18.38199,
+   "name": "Burviks GK",
+   "osm": "way/33197541"
+  },
+  "se-0061": {
+   "keys": {},
+   "lat": 62.024515,
+   "lng": 14.464738,
+   "name": "Byvallen golfbana",
+   "osm": "way/181275873"
+  },
+  "se-0062": {
+   "keys": {},
+   "lat": 57.310139,
+   "lng": 17.002265,
+   "name": "Byxelkroks Gk",
+   "osm": "way/987927003"
+  },
+  "se-0063": {
+   "keys": {},
+   "lat": 57.310823,
+   "lng": 16.993896,
+   "name": "Byxelkroks Golfklubb",
+   "osm": "way/327128868"
+  },
+  "se-0064": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.159095,
+   "lng": 15.450354,
+   "name": "Carlskrona Golfklubb",
+   "osm": "way/276611657"
+  },
+  "se-0065": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.695101,
+   "lng": 12.264206,
+   "name": "Chalmers Golf Club",
+   "osm": "relation/10567214"
+  },
+  "se-0066": {
+   "keys": {},
+   "lat": 56.225038,
+   "lng": 12.814921,
+   "name": "Crownwood Club - under byggnation",
+   "osm": "way/1306528183"
+  },
+  "se-0067": {
+   "keys": {},
+   "lat": 58.520372,
+   "lng": 11.97129,
+   "name": "Dagsholm Golfklubb",
+   "osm": "relation/4442090"
+  },
+  "se-0068": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 60.480207,
+   "lng": 15.523429,
+   "name": "Dalsjö Golf",
+   "osm": "way/61425447"
+  },
+  "se-0069": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.414628,
+   "lng": 18.023285,
+   "name": "Danderyds Golfklubb",
+   "osm": "way/35821578"
+  },
+  "se-0070": {
+   "keys": {},
+   "lat": 55.822862,
+   "lng": 14.125447,
+   "name": "Degeberga-Widtsköfle GK",
+   "osm": "way/74599517"
+  },
+  "se-0071": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.254317,
+   "lng": 14.450513,
+   "name": "Degerfors Golf",
+   "osm": "relation/4382373"
+  },
+  "se-0072": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.686823,
+   "lng": 12.022704,
+   "name": "Delsjö Golfklubb",
+   "osm": "relation/4425188"
+  },
+  "se-0073": {
+   "keys": {},
+   "lat": 59.724147,
+   "lng": 18.548952,
+   "name": "Dillingby Golf",
+   "osm": "relation/4427208"
+  },
+  "se-0074": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.417626,
+   "lng": 18.068941,
+   "name": "Djursholms Golfklubb",
+   "osm": "relation/3049184"
+  },
+  "se-0075": {
+   "keys": {},
+   "lat": 56.132593,
+   "lng": 12.717757,
+   "name": "Driving range",
+   "osm": "way/615235048"
+  },
+  "se-0076": {
+   "keys": {},
+   "lat": 59.003442,
+   "lng": 11.250805,
+   "name": "Dynekilens Golfklubb",
+   "osm": "way/874897793"
+  },
+  "se-0077": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.781982,
+   "lng": 11.955098,
+   "name": "Eaglekorten",
+   "osm": "way/193127775"
+  },
+  "se-0078": {
+   "keys": {},
+   "lat": 59.785079,
+   "lng": 12.294052,
+   "name": "Eda Golfbana",
+   "osm": "relation/11772817"
+  },
+  "se-0079": {
+   "keys": {},
+   "lat": 62.057154,
+   "lng": 16.846382,
+   "name": "Ede Golfbana",
+   "osm": "way/41486836"
+  },
+  "se-0080": {
+   "keys": {},
+   "lat": 59.974667,
+   "lng": 17.466101,
+   "name": "Edenhof GK",
+   "osm": "way/25016361"
+  },
+  "se-0081": {
+   "keys": {},
+   "lat": 58.332893,
+   "lng": 12.65793,
+   "name": "Ekarnas Golfklubb",
+   "osm": "relation/1719100"
+  },
+  "se-0082": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.783722,
+   "lng": 16.56583,
+   "name": "Ekerums golfbana",
+   "osm": "way/38483955"
+  },
+  "se-0083": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.361553,
+   "lng": 18.184477,
+   "name": "Ekholmnäs Golf",
+   "osm": "relation/4442084"
+  },
+  "se-0084": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.641009,
+   "lng": 14.904343,
+   "name": "Eksjö Golfklubb",
+   "osm": "way/179935770"
+  },
+  "se-0085": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.827108,
+   "lng": 13.558522,
+   "name": "Elisefarm Golf Club",
+   "osm": "relation/10110574"
+  },
+  "se-0086": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.527635,
+   "lng": 15.58942,
+   "name": "Emmaboda Golfklubb",
+   "osm": "way/101624685"
+  },
+  "se-0087": {
+   "keys": {},
+   "lat": 59.634394,
+   "lng": 17.131487,
+   "name": "Enköpings Golfklubb",
+   "osm": "relation/13593618"
+  },
+  "se-0088": {
+   "keys": {},
+   "lat": 59.364265,
+   "lng": 16.556359,
+   "name": "Eskilstuna GK",
+   "osm": "way/323724771"
+  },
+  "se-0089": {
+   "keys": {},
+   "lat": 55.813622,
+   "lng": 13.308079,
+   "name": "Eslövs GK",
+   "osm": "way/56228539"
+  },
+  "se-0090": {
+   "keys": {
+    "Fågelbro": "fagelbro"
+   },
+   "lat": 59.273397,
+   "lng": 18.559636,
+   "name": "Fågelbro Golf & Country Club",
+   "osm": "relation/4427144"
+  },
+  "se-0091": {
+   "keys": {},
+   "lat": 59.97078,
+   "lng": 15.75161,
+   "name": "Fagersta Golfklubb",
+   "osm": "relation/4829169"
+  },
+  "se-0092": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.216063,
+   "lng": 13.629465,
+   "name": "Falköpings Golfklubb",
+   "osm": "relation/4580431"
+  },
+  "se-0093": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.385518,
+   "lng": 12.818928,
+   "name": "Falsterbo golfklubb",
+   "osm": "relation/6118977"
+  },
+  "se-0094": {
+   "keys": {},
+   "lat": 57.377941,
+   "lng": 16.587729,
+   "name": "Figeholm Golf & Country Club",
+   "osm": "relation/4427660"
+  },
+  "se-0095": {
+   "keys": {},
+   "lat": 58.487172,
+   "lng": 13.239445,
+   "name": "Filsbäcks Golf & Sport",
+   "osm": "relation/9563126"
+  },
+  "se-0096": {
+   "keys": {},
+   "lat": 58.694005,
+   "lng": 15.825226,
+   "name": "Finspångs Golfklubb",
+   "osm": "way/313256523"
+  },
+  "se-0097": {
+   "keys": {},
+   "lat": 58.620986,
+   "lng": 11.298409,
+   "name": "Fjällbacka Golfklubb",
+   "osm": "relation/11382063"
+  },
+  "se-0098": {
+   "keys": {},
+   "lat": 56.994194,
+   "lng": 12.626668,
+   "name": "Flädje GK",
+   "osm": "way/419891003"
+  },
+  "se-0099": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.196113,
+   "lng": 15.031576,
+   "name": "Flemminge GK",
+   "osm": "way/202014678"
+  },
+  "se-0100": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.401555,
+   "lng": 12.829989,
+   "name": "Flommens GK",
+   "osm": "way/28524683"
+  },
+  "se-0101": {
+   "keys": {},
+   "lat": 56.675857,
+   "lng": 12.816827,
+   "name": "Flygstadens Golfklubb",
+   "osm": "way/1280571520"
+  },
+  "se-0102": {
+   "keys": {},
+   "lat": 59.413545,
+   "lng": 16.877826,
+   "name": "Fogdö golfbana",
+   "osm": "relation/4440571"
+  },
+  "se-0103": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.099939,
+   "lng": 18.125431,
+   "name": "Fors golfklubb",
+   "osm": "relation/69351"
+  },
+  "se-0104": {
+   "keys": {},
+   "lat": 59.090351,
+   "lng": 12.617128,
+   "name": "Forsbacka Golfklubb",
+   "osm": "relation/15777059"
+  },
+  "se-0105": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.498213,
+   "lng": 12.106565,
+   "name": "Forsgårdens Golfklubb",
+   "osm": "relation/4425313"
+  },
+  "se-0106": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.59776,
+   "lng": 13.417995,
+   "name": "Forshaga GK",
+   "osm": "relation/5598137"
+  },
+  "se-0107": {
+   "keys": {},
+   "lat": 59.699749,
+   "lng": 17.490942,
+   "name": "Friibergh Golfklubb",
+   "osm": "way/1545950340"
+  },
+  "se-0108": {
+   "keys": {},
+   "lat": 59.538833,
+   "lng": 16.75027,
+   "name": "Frösåker golfklubb",
+   "osm": "way/152378161"
+  },
+  "se-0109": {
+   "keys": {},
+   "lat": 59.566019,
+   "lng": 16.502215,
+   "name": "Fullerö golfklubb",
+   "osm": "way/96384014"
+  },
+  "se-0110": {
+   "keys": {},
+   "lat": 62.532432,
+   "lng": 12.624543,
+   "name": "Funäsdalsfjällens Golfklubb",
+   "osm": "relation/4425354"
+  },
+  "se-0111": {
+   "keys": {},
+   "lat": 61.191979,
+   "lng": 15.180727,
+   "name": "Furudals Bruks Golfklubb",
+   "osm": "relation/15474974"
+  },
+  "se-0112": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 60.531033,
+   "lng": 15.041394,
+   "name": "Gagnefs golfklubb",
+   "osm": "way/443961370"
+  },
+  "se-0113": {
+   "keys": {},
+   "lat": 60.699737,
+   "lng": 17.17641,
+   "name": "Gävle GolfKlubb",
+   "osm": "relation/3120662"
+  },
+  "se-0114": {
+   "keys": {},
+   "lat": 56.898275,
+   "lng": 14.866962,
+   "name": "Glasrikets Golfklubb",
+   "osm": "relation/2715292"
+  },
+  "se-0115": {
+   "keys": {},
+   "lat": 55.945658,
+   "lng": 12.82376,
+   "name": "Glumslövs Golf",
+   "osm": "relation/6003622"
+  },
+  "se-0116": {
+   "keys": {},
+   "lat": 56.673602,
+   "lng": 12.823094,
+   "name": "Golf course",
+   "osm": "relation/10461314"
+  },
+  "se-0117": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.682142,
+   "lng": 12.726797,
+   "name": "Golf course",
+   "osm": "relation/10485592"
+  },
+  "se-0118": {
+   "keys": {},
+   "lat": 56.955602,
+   "lng": 13.123576,
+   "name": "Golf course",
+   "osm": "relation/10527719"
+  },
+  "se-0119": {
+   "keys": {},
+   "lat": 57.929659,
+   "lng": 11.970794,
+   "name": "Golf course",
+   "osm": "relation/10956515"
+  },
+  "se-0120": {
+   "keys": {},
+   "lat": 58.155575,
+   "lng": 11.432248,
+   "name": "Golf course",
+   "osm": "relation/11503363"
+  },
+  "se-0121": {
+   "keys": {},
+   "lat": 58.196374,
+   "lng": 11.508242,
+   "name": "Golf course",
+   "osm": "relation/11504615"
+  },
+  "se-0122": {
+   "keys": {},
+   "lat": 58.336658,
+   "lng": 12.66283,
+   "name": "Golf course",
+   "osm": "relation/11846745"
+  },
+  "se-0123": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.851636,
+   "lng": 12.409079,
+   "name": "Golf course",
+   "osm": "relation/12554031"
+  },
+  "se-0124": {
+   "keys": {},
+   "lat": 60.197326,
+   "lng": 17.694667,
+   "name": "Golf course",
+   "osm": "relation/12715142"
+  },
+  "se-0125": {
+   "keys": {},
+   "lat": 62.477269,
+   "lng": 14.233295,
+   "name": "Golf course",
+   "osm": "relation/13237881"
+  },
+  "se-0126": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.855057,
+   "lng": 12.386503,
+   "name": "Golf course",
+   "osm": "relation/13311688"
+  },
+  "se-0127": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.856331,
+   "lng": 12.400737,
+   "name": "Golf course",
+   "osm": "relation/13311691"
+  },
+  "se-0128": {
+   "keys": {},
+   "lat": 62.479504,
+   "lng": 14.23259,
+   "name": "Golf course",
+   "osm": "relation/14676970"
+  },
+  "se-0129": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 62.483139,
+   "lng": 14.219537,
+   "name": "Golf course",
+   "osm": "relation/20677042"
+  },
+  "se-0130": {
+   "keys": {},
+   "lat": 64.234117,
+   "lng": 19.36345,
+   "name": "Golf course",
+   "osm": "relation/21063642"
+  },
+  "se-0131": {
+   "keys": {},
+   "lat": 64.232482,
+   "lng": 19.363889,
+   "name": "Golf course",
+   "osm": "relation/21063776"
+  },
+  "se-0132": {
+   "keys": {},
+   "lat": 64.233173,
+   "lng": 19.369155,
+   "name": "Golf course",
+   "osm": "relation/21063777"
+  },
+  "se-0133": {
+   "keys": {},
+   "lat": 61.293036,
+   "lng": 17.168797,
+   "name": "Golf course",
+   "osm": "relation/2378327"
+  },
+  "se-0134": {
+   "keys": {},
+   "lat": 58.852632,
+   "lng": 14.99608,
+   "name": "Golf course",
+   "osm": "relation/3498924"
+  },
+  "se-0135": {
+   "keys": {},
+   "lat": 56.095889,
+   "lng": 12.871596,
+   "name": "Golf course",
+   "osm": "relation/6191949"
+  },
+  "se-0136": {
+   "keys": {},
+   "lat": 61.291891,
+   "lng": 17.1887,
+   "name": "Golf course",
+   "osm": "relation/6618645"
+  },
+  "se-0137": {
+   "keys": {},
+   "lat": 59.830702,
+   "lng": 15.001936,
+   "name": "Golf course",
+   "osm": "relation/6721027"
+  },
+  "se-0138": {
+   "keys": {},
+   "lat": 58.554997,
+   "lng": 16.093747,
+   "name": "Golf course",
+   "osm": "relation/7622455"
+  },
+  "se-0139": {
+   "keys": {},
+   "lat": 56.962697,
+   "lng": 14.564257,
+   "name": "Golf course",
+   "osm": "relation/7909290"
+  },
+  "se-0140": {
+   "keys": {},
+   "lat": 57.356205,
+   "lng": 18.70693,
+   "name": "Golf course",
+   "osm": "way/1026915558"
+  },
+  "se-0141": {
+   "keys": {},
+   "lat": 61.704181,
+   "lng": 16.166037,
+   "name": "Golf course",
+   "osm": "way/1070062298"
+  },
+  "se-0142": {
+   "keys": {},
+   "lat": 58.184798,
+   "lng": 16.756169,
+   "name": "Golf course",
+   "osm": "way/1083250765"
+  },
+  "se-0143": {
+   "keys": {},
+   "lat": 58.184308,
+   "lng": 16.757757,
+   "name": "Golf course",
+   "osm": "way/1083250771"
+  },
+  "se-0144": {
+   "keys": {},
+   "lat": 64.606638,
+   "lng": 18.687983,
+   "name": "Golf course",
+   "osm": "way/1150381946"
+  },
+  "se-0145": {
+   "keys": {},
+   "lat": 59.49717,
+   "lng": 18.154909,
+   "name": "Golf course",
+   "osm": "way/118195812"
+  },
+  "se-0146": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.324418,
+   "lng": 17.859288,
+   "name": "Golf course",
+   "osm": "way/1189855937"
+  },
+  "se-0147": {
+   "keys": {},
+   "lat": 60.036657,
+   "lng": 18.593074,
+   "name": "Golf course",
+   "osm": "way/1257847216"
+  },
+  "se-0148": {
+   "keys": {},
+   "lat": 63.696065,
+   "lng": 20.368301,
+   "name": "Golf course",
+   "osm": "way/1315475910"
+  },
+  "se-0149": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.839112,
+   "lng": 23.157438,
+   "name": "Golf course",
+   "osm": "way/1418944650"
+  },
+  "se-0150": {
+   "keys": {},
+   "lat": 57.141633,
+   "lng": 15.153585,
+   "name": "Golf course",
+   "osm": "way/1481672064"
+  },
+  "se-0151": {
+   "keys": {},
+   "lat": 58.335448,
+   "lng": 12.333612,
+   "name": "Golf course",
+   "osm": "way/1489069475"
+  },
+  "se-0152": {
+   "keys": {},
+   "lat": 64.234117,
+   "lng": 19.36345,
+   "name": "Golf course",
+   "osm": "way/1535187070"
+  },
+  "se-0153": {
+   "keys": {},
+   "lat": 56.347402,
+   "lng": 13.70885,
+   "name": "Golf course",
+   "osm": "way/1539578516"
+  },
+  "se-0154": {
+   "keys": {},
+   "lat": 60.02828,
+   "lng": 18.593846,
+   "name": "Golf course",
+   "osm": "way/1540976580"
+  },
+  "se-0155": {
+   "keys": {},
+   "lat": 61.29006,
+   "lng": 17.178704,
+   "name": "Golf course",
+   "osm": "way/178150790"
+  },
+  "se-0156": {
+   "keys": {},
+   "lat": 61.291396,
+   "lng": 17.17965,
+   "name": "Golf course",
+   "osm": "way/178152295"
+  },
+  "se-0157": {
+   "keys": {},
+   "lat": 64.232482,
+   "lng": 19.363889,
+   "name": "Golf course",
+   "osm": "way/232179333"
+  },
+  "se-0158": {
+   "keys": {},
+   "lat": 62.454849,
+   "lng": 17.472553,
+   "name": "Golf course",
+   "osm": "way/363556716"
+  },
+  "se-0159": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.835769,
+   "lng": 23.128956,
+   "name": "Golf course",
+   "osm": "way/376390249"
+  },
+  "se-0160": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.834899,
+   "lng": 23.132143,
+   "name": "Golf course",
+   "osm": "way/376390251"
+  },
+  "se-0161": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.83793,
+   "lng": 23.147554,
+   "name": "Golf course",
+   "osm": "way/376390252"
+  },
+  "se-0162": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.836832,
+   "lng": 23.153407,
+   "name": "Golf course",
+   "osm": "way/376391517"
+  },
+  "se-0163": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.834381,
+   "lng": 23.16294,
+   "name": "Golf course",
+   "osm": "way/376391518"
+  },
+  "se-0164": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.83035,
+   "lng": 23.159217,
+   "name": "Golf course",
+   "osm": "way/376391519"
+  },
+  "se-0165": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.830253,
+   "lng": 23.155593,
+   "name": "Golf course",
+   "osm": "way/376391520"
+  },
+  "se-0166": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.834103,
+   "lng": 23.153963,
+   "name": "Golf course",
+   "osm": "way/376391521"
+  },
+  "se-0167": {
+   "keys": {},
+   "lat": 62.419082,
+   "lng": 13.522792,
+   "name": "Golf course",
+   "osm": "way/379971677"
+  },
+  "se-0168": {
+   "keys": {},
+   "lat": 58.190236,
+   "lng": 13.997791,
+   "name": "Golf course",
+   "osm": "way/381501251"
+  },
+  "se-0169": {
+   "keys": {},
+   "lat": 66.390844,
+   "lng": 23.607513,
+   "name": "Golf course",
+   "osm": "way/388360934"
+  },
+  "se-0170": {
+   "keys": {},
+   "lat": 59.004989,
+   "lng": 17.875152,
+   "name": "Golf course",
+   "osm": "way/401111234"
+  },
+  "se-0171": {
+   "keys": {},
+   "lat": 56.016738,
+   "lng": 14.050973,
+   "name": "Golf course",
+   "osm": "way/425910037"
+  },
+  "se-0172": {
+   "keys": {},
+   "lat": 58.095922,
+   "lng": 14.407154,
+   "name": "Golf course",
+   "osm": "way/431490835"
+  },
+  "se-0173": {
+   "keys": {},
+   "lat": 68.410994,
+   "lng": 18.670083,
+   "name": "Golf course",
+   "osm": "way/436615350"
+  },
+  "se-0174": {
+   "keys": {},
+   "lat": 57.148866,
+   "lng": 12.482475,
+   "name": "Golf course",
+   "osm": "way/444248436"
+  },
+  "se-0175": {
+   "keys": {},
+   "lat": 61.292286,
+   "lng": 17.158383,
+   "name": "Golf course",
+   "osm": "way/445108208"
+  },
+  "se-0176": {
+   "keys": {},
+   "lat": 57.116427,
+   "lng": 12.466979,
+   "name": "Golf course",
+   "osm": "way/448926116"
+  },
+  "se-0177": {
+   "keys": {},
+   "lat": 57.94184,
+   "lng": 12.029878,
+   "name": "Golf course",
+   "osm": "way/452302383"
+  },
+  "se-0178": {
+   "keys": {},
+   "lat": 57.463473,
+   "lng": 12.129697,
+   "name": "Golf course",
+   "osm": "way/475487674"
+  },
+  "se-0179": {
+   "keys": {},
+   "lat": 58.335203,
+   "lng": 12.334726,
+   "name": "Golf course",
+   "osm": "way/500792126"
+  },
+  "se-0180": {
+   "keys": {},
+   "lat": 60.077732,
+   "lng": 18.129725,
+   "name": "Golf course",
+   "osm": "way/505389065"
+  },
+  "se-0181": {
+   "keys": {},
+   "lat": 67.16783,
+   "lng": 20.605069,
+   "name": "Golf course",
+   "osm": "way/509489774"
+  },
+  "se-0182": {
+   "keys": {},
+   "lat": 59.569456,
+   "lng": 16.866825,
+   "name": "Golf course",
+   "osm": "way/516709526"
+  },
+  "se-0183": {
+   "keys": {},
+   "lat": 59.567915,
+   "lng": 16.87147,
+   "name": "Golf course",
+   "osm": "way/521945990"
+  },
+  "se-0184": {
+   "keys": {},
+   "lat": 57.505685,
+   "lng": 12.708399,
+   "name": "Golf course",
+   "osm": "way/529418512"
+  },
+  "se-0185": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.48861,
+   "lng": 14.182291,
+   "name": "Golf course",
+   "osm": "way/536454750"
+  },
+  "se-0186": {
+   "keys": {},
+   "lat": 63.848312,
+   "lng": 15.518092,
+   "name": "Golf course",
+   "osm": "way/541720552"
+  },
+  "se-0187": {
+   "keys": {},
+   "lat": 59.657502,
+   "lng": 16.843337,
+   "name": "Golf course",
+   "osm": "way/547235408"
+  },
+  "se-0188": {
+   "keys": {},
+   "lat": 59.658472,
+   "lng": 16.84347,
+   "name": "Golf course",
+   "osm": "way/547235409"
+  },
+  "se-0189": {
+   "keys": {},
+   "lat": 59.411721,
+   "lng": 16.43655,
+   "name": "Golf course",
+   "osm": "way/598616536"
+  },
+  "se-0190": {
+   "keys": {},
+   "lat": 57.226807,
+   "lng": 14.145456,
+   "name": "Golf course",
+   "osm": "way/636244229"
+  },
+  "se-0191": {
+   "keys": {},
+   "lat": 58.176365,
+   "lng": 13.527633,
+   "name": "Golf course",
+   "osm": "way/638537957"
+  },
+  "se-0192": {
+   "keys": {},
+   "lat": 57.493433,
+   "lng": 11.991592,
+   "name": "Golf course",
+   "osm": "way/638681472"
+  },
+  "se-0193": {
+   "keys": {},
+   "lat": 58.443722,
+   "lng": 11.367497,
+   "name": "Golf course",
+   "osm": "way/658177566"
+  },
+  "se-0194": {
+   "keys": {},
+   "lat": 58.978262,
+   "lng": 16.318867,
+   "name": "Golf course",
+   "osm": "way/666973704"
+  },
+  "se-0195": {
+   "keys": {},
+   "lat": 59.400972,
+   "lng": 17.812614,
+   "name": "Golf course",
+   "osm": "way/688494008"
+  },
+  "se-0196": {
+   "keys": {},
+   "lat": 57.911242,
+   "lng": 16.69823,
+   "name": "Golf course",
+   "osm": "way/691911660"
+  },
+  "se-0197": {
+   "keys": {},
+   "lat": 57.913631,
+   "lng": 16.6866,
+   "name": "Golf course",
+   "osm": "way/691911661"
+  },
+  "se-0198": {
+   "keys": {},
+   "lat": 58.44301,
+   "lng": 14.394103,
+   "name": "Golf course",
+   "osm": "way/702419387"
+  },
+  "se-0199": {
+   "keys": {},
+   "lat": 59.332307,
+   "lng": 15.439002,
+   "name": "Golf course",
+   "osm": "way/704285544"
+  },
+  "se-0200": {
+   "keys": {},
+   "lat": 65.843077,
+   "lng": 23.151732,
+   "name": "Golf course",
+   "osm": "way/712481606"
+  },
+  "se-0201": {
+   "keys": {},
+   "lat": 62.109416,
+   "lng": 16.675601,
+   "name": "Golf course",
+   "osm": "way/722509338"
+  },
+  "se-0202": {
+   "keys": {},
+   "lat": 58.961024,
+   "lng": 14.116755,
+   "name": "Golf course",
+   "osm": "way/779352687"
+  },
+  "se-0203": {
+   "keys": {},
+   "lat": 59.66189,
+   "lng": 16.859591,
+   "name": "Golf course",
+   "osm": "way/782216267"
+  },
+  "se-0204": {
+   "keys": {},
+   "lat": 59.662638,
+   "lng": 16.860588,
+   "name": "Golf course",
+   "osm": "way/782216268"
+  },
+  "se-0205": {
+   "keys": {},
+   "lat": 59.663397,
+   "lng": 16.858395,
+   "name": "Golf course",
+   "osm": "way/782216269"
+  },
+  "se-0206": {
+   "keys": {},
+   "lat": 59.662586,
+   "lng": 16.848008,
+   "name": "Golf course",
+   "osm": "way/782216271"
+  },
+  "se-0207": {
+   "keys": {},
+   "lat": 57.498499,
+   "lng": 12.716885,
+   "name": "Golf course",
+   "osm": "way/80303881"
+  },
+  "se-0208": {
+   "keys": {},
+   "lat": 61.706125,
+   "lng": 16.16825,
+   "name": "Golf course",
+   "osm": "way/828580622"
+  },
+  "se-0209": {
+   "keys": {},
+   "lat": 58.185227,
+   "lng": 16.772235,
+   "name": "Golf course",
+   "osm": "way/852548159"
+  },
+  "se-0210": {
+   "keys": {},
+   "lat": 56.164844,
+   "lng": 15.730245,
+   "name": "Golf course",
+   "osm": "way/892018565"
+  },
+  "se-0211": {
+   "keys": {},
+   "lat": 56.164426,
+   "lng": 15.73463,
+   "name": "Golf course",
+   "osm": "way/892018655"
+  },
+  "se-0212": {
+   "keys": {},
+   "lat": 56.165817,
+   "lng": 15.736379,
+   "name": "Golf course",
+   "osm": "way/892713082"
+  },
+  "se-0213": {
+   "keys": {
+    "Kings": "kings",
+    "Queens": "queens"
+   },
+   "lat": 59.523192,
+   "lng": 17.715553,
+   "name": "GolfStar Kungsängen",
+   "osm": "way/15394937"
+  },
+  "se-0214": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.45919,
+   "lng": 14.102655,
+   "name": "Götaströms Golfklubb",
+   "osm": "way/108715331"
+  },
+  "se-0215": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.612154,
+   "lng": 11.931283,
+   "name": "Göteborgs Golf Klubb",
+   "osm": "relation/3049596"
+  },
+  "se-0216": {
+   "keys": {},
+   "lat": 57.654105,
+   "lng": 18.328256,
+   "name": "Gotska GK",
+   "osm": "relation/6846528"
+  },
+  "se-0217": {
+   "keys": {},
+   "lat": 57.984737,
+   "lng": 14.418399,
+   "name": "Gränna Golfklubb",
+   "osm": "way/104820359"
+  },
+  "se-0218": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.438209,
+   "lng": 11.974096,
+   "name": "Gräppås Golfklubb",
+   "osm": "relation/8885543"
+  },
+  "se-0219": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.861549,
+   "lng": 24.132513,
+   "name": "Green Zone Golf / Tornio Golf (Meri-Lapin Golfklubi )",
+   "osm": "relation/4427163"
+  },
+  "se-0220": {
+   "keys": {},
+   "lat": 59.262268,
+   "lng": 17.199759,
+   "name": "Gripsholms Golfklubb",
+   "osm": "relation/14067114"
+  },
+  "se-0221": {
+   "keys": {},
+   "lat": 56.276148,
+   "lng": 16.399026,
+   "name": "Grönhögen GK",
+   "osm": "way/61231313"
+  },
+  "se-0222": {
+   "keys": {},
+   "lat": 59.857326,
+   "lng": 18.069454,
+   "name": "Grönlunds Golfklubb",
+   "osm": "way/71042911"
+  },
+  "se-0223": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.106757,
+   "lng": 16.986875,
+   "name": "Grytsberg",
+   "osm": "way/569028378"
+  },
+  "se-0224": {
+   "keys": {},
+   "lat": 57.88307,
+   "lng": 11.771567,
+   "name": "Gullbringa Golf & Country Club",
+   "osm": "relation/10541945"
+  },
+  "se-0225": {
+   "keys": {},
+   "lat": 57.889139,
+   "lng": 11.783555,
+   "name": "Gullbringa Pay & Play",
+   "osm": "relation/10541943"
+  },
+  "se-0226": {
+   "keys": {},
+   "lat": 57.795531,
+   "lng": 15.708766,
+   "name": "Gullringens Golfklubb",
+   "osm": "way/234021472"
+  },
+  "se-0227": {
+   "keys": {},
+   "lat": 57.286749,
+   "lng": 18.471996,
+   "name": "Gumbalde",
+   "osm": "way/198948330"
+  },
+  "se-0228": {
+   "keys": {},
+   "lat": 60.113011,
+   "lng": 15.25056,
+   "name": "Hagge Golfklubb",
+   "osm": "relation/4457914"
+  },
+  "se-0229": {
+   "keys": {},
+   "lat": 59.612866,
+   "lng": 16.62971,
+   "name": "Hälla Golf",
+   "osm": "way/95139057"
+  },
+  "se-0230": {
+   "keys": {},
+   "lat": 60.03438,
+   "lng": 18.593074,
+   "name": "Hallstaviks Golfklubb",
+   "osm": "relation/21121963"
+  },
+  "se-0231": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.656983,
+   "lng": 12.747049,
+   "name": "Halmstad Golfklubb Tylösands",
+   "osm": "relation/2384348"
+  },
+  "se-0232": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.617987,
+   "lng": 13.066242,
+   "name": "Halmstad Tönnersjö Golfbana",
+   "osm": "way/42682760"
+  },
+  "se-0233": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.299232,
+   "lng": 13.549625,
+   "name": "Hammarö GK",
+   "osm": "way/54033463"
+  },
+  "se-0234": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.110966,
+   "lng": 18.195649,
+   "name": "Haninge Golfklubb",
+   "osm": "relation/69362"
+  },
+  "se-0235": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.098845,
+   "lng": 18.186981,
+   "name": "HaningeStrand Golfklubb",
+   "osm": "relation/69358"
+  },
+  "se-0236": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.16814,
+   "lng": 17.74586,
+   "name": "Happy Golfer Stockholm",
+   "osm": "way/1312628473"
+  },
+  "se-0237": {
+   "keys": {},
+   "lat": 57.133311,
+   "lng": 12.398806,
+   "name": "Harabäckens golfbana",
+   "osm": "way/435173655"
+  },
+  "se-0238": {
+   "keys": {},
+   "lat": 62.67042,
+   "lng": 17.958677,
+   "name": "Härnösand GK",
+   "osm": "relation/8710962"
+  },
+  "se-0239": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.391249,
+   "lng": 17.787256,
+   "name": "Hässelby Golf",
+   "osm": "way/24253925"
+  },
+  "se-0240": {
+   "keys": {},
+   "lat": 59.588735,
+   "lng": 16.621558,
+   "name": "Hässlö Golf",
+   "osm": "way/164073356"
+  },
+  "se-0241": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.714319,
+   "lng": 12.703834,
+   "name": "Haverdals Golfklubb",
+   "osm": "relation/10483180"
+  },
+  "se-0242": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 62.423375,
+   "lng": 13.508062,
+   "name": "Hede-Vemdalens Golfklubb",
+   "osm": "relation/14660778"
+  },
+  "se-0243": {
+   "keys": {},
+   "lat": 60.243842,
+   "lng": 15.91839,
+   "name": "Hedemora Golfklubb",
+   "osm": "relation/6829944"
+  },
+  "se-0244": {
+   "keys": {},
+   "lat": 59.293506,
+   "lng": 18.15583,
+   "name": "Hellasgårdens fotbollsgolf",
+   "osm": "way/827500741"
+  },
+  "se-0245": {
+   "keys": {},
+   "lat": 56.160802,
+   "lng": 12.565746,
+   "name": "Helsingborgs Golfklubb",
+   "osm": "way/278499407"
+  },
+  "se-0246": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.04507,
+   "lng": 13.092277,
+   "name": "Herrljunga Golfklubb",
+   "osm": "relation/5374206"
+  },
+  "se-0247": {
+   "keys": {},
+   "lat": 56.14457,
+   "lng": 13.753213,
+   "name": "Hesslegårdens GK",
+   "osm": "way/74604710"
+  },
+  "se-0248": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.62362,
+   "lng": 12.00007,
+   "name": "Hills Golf & Country Club",
+   "osm": "relation/10480238"
+  },
+  "se-0249": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.618842,
+   "lng": 12.024941,
+   "name": "Hills Valley Course",
+   "osm": "relation/10480242"
+  },
+  "se-0250": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.749167,
+   "lng": 11.882841,
+   "name": "Hisingens Golf Center",
+   "osm": "way/43025671"
+  },
+  "se-0251": {
+   "keys": {},
+   "lat": 60.521932,
+   "lng": 16.370559,
+   "name": "Hofors Golfklubb",
+   "osm": "way/242148554"
+  },
+  "se-0252": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.183338,
+   "lng": 12.573014,
+   "name": "Höganäs Golfklubb",
+   "osm": "way/278495155"
+  },
+  "se-0253": {
+   "keys": {},
+   "lat": 60.658823,
+   "lng": 16.816576,
+   "name": "Högbo GK",
+   "osm": "way/131688218"
+  },
+  "se-0254": {
+   "keys": {},
+   "lat": 58.250281,
+   "lng": 14.216341,
+   "name": "Hökensås Golfklubb",
+   "osm": "way/527983032"
+  },
+  "se-0255": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.756084,
+   "lng": 12.872629,
+   "name": "Holms Golfklubb",
+   "osm": "way/42147697"
+  },
+  "se-0256": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.540463,
+   "lng": 14.279438,
+   "name": "Hooks Golfklubb",
+   "osm": "way/104815012"
+  },
+  "se-0257": {
+   "keys": {},
+   "lat": 58.247405,
+   "lng": 12.259999,
+   "name": "Hörlycke golfbana",
+   "osm": "relation/10389434"
+  },
+  "se-0258": {
+   "keys": {},
+   "lat": 58.251372,
+   "lng": 12.257995,
+   "name": "Hörlycke golfbana",
+   "osm": "relation/11560017"
+  },
+  "se-0259": {
+   "keys": {},
+   "lat": 61.703841,
+   "lng": 17.125069,
+   "name": "Hudiksvalls Golfbana",
+   "osm": "relation/1632299"
+  },
+  "se-0260": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.696404,
+   "lng": 12.57718,
+   "name": "Hulta Golfklubb",
+   "osm": "relation/10747741"
+  },
+  "se-0261": {
+   "keys": {},
+   "lat": 59.613149,
+   "lng": 18.33649,
+   "name": "Huvudstadens GK Lövsättra",
+   "osm": "relation/3049186"
+  },
+  "se-0262": {
+   "keys": {},
+   "lat": 59.557547,
+   "lng": 18.029932,
+   "name": "Huvudstadens Golfklubb - Lindö",
+   "osm": "relation/4457791"
+  },
+  "se-0263": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.592959,
+   "lng": 12.944142,
+   "name": "Hylliekrokens Golfcenter",
+   "osm": "way/29869313"
+  },
+  "se-0264": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 61.879279,
+   "lng": 12.694802,
+   "name": "Idrefjällens Golfklubb",
+   "osm": "way/38053822"
+  },
+  "se-0265": {
+   "keys": {
+    "Skogsbanan": "skogsbanan"
+   },
+   "lat": 59.283898,
+   "lng": 18.453466,
+   "name": "Ingarö golfclub",
+   "osm": "relation/4106392"
+  },
+  "se-0266": {
+   "keys": {},
+   "lat": 58.628774,
+   "lng": 16.167041,
+   "name": "Ingelsta Stadium Golf",
+   "osm": "relation/1723097"
+  },
+  "se-0267": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.931996,
+   "lng": 11.877659,
+   "name": "Ingetorps Golfklubb",
+   "osm": "way/57869146"
+  },
+  "se-0268": {
+   "keys": {},
+   "lat": 59.693792,
+   "lng": 18.021191,
+   "name": "International GC",
+   "osm": "way/233737899"
+  },
+  "se-0269": {
+   "keys": {},
+   "lat": 57.444142,
+   "lng": 13.655177,
+   "name": "Isabergs golfklubb",
+   "osm": "way/185140587"
+  },
+  "se-0270": {
+   "keys": {},
+   "lat": 59.488817,
+   "lng": 18.075914,
+   "name": "Jarlabanke Golfklubb (Prästgården)",
+   "osm": "way/23563499"
+  },
+  "se-0271": {
+   "keys": {},
+   "lat": 59.490941,
+   "lng": 18.092005,
+   "name": "Jarlabanke Golfklubb (Skogberga)",
+   "osm": "relation/3928686"
+  },
+  "se-0272": {
+   "keys": {},
+   "lat": 59.112741,
+   "lng": 17.556036,
+   "name": "Järna Golf @ Kallfors Golfklubb",
+   "osm": "relation/5455583"
+  },
+  "se-0273": {
+   "keys": {},
+   "lat": 59.727334,
+   "lng": 18.19202,
+   "name": "Johannesberg Golf & CC",
+   "osm": "way/234738960"
+  },
+  "se-0274": {
+   "keys": {},
+   "lat": 58.751911,
+   "lng": 16.711345,
+   "name": "Jönåkers golfklubb",
+   "osm": "way/911715303"
+  },
+  "se-0275": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.748476,
+   "lng": 14.135179,
+   "name": "Jönköpings Golf Klubb",
+   "osm": "relation/9685602"
+  },
+  "se-0276": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.836679,
+   "lng": 23.146289,
+   "name": "Kalix Golfklubb",
+   "osm": "relation/4427658"
+  },
+  "se-0277": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.202071,
+   "lng": 13.609756,
+   "name": "Källebackens golfbana",
+   "osm": "relation/2237399"
+  },
+  "se-0278": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.108726,
+   "lng": 17.535077,
+   "name": "Kallfors Golfklubb",
+   "osm": "relation/1987464"
+  },
+  "se-0279": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.716357,
+   "lng": 16.341666,
+   "name": "Kalmar Golfklubb",
+   "osm": "relation/10852837"
+  },
+  "se-0280": {
+   "keys": {},
+   "lat": 56.209344,
+   "lng": 14.764522,
+   "name": "Karlshamns Golfklubb",
+   "osm": "way/260131521"
+  },
+  "se-0281": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.303157,
+   "lng": 14.583717,
+   "name": "Karlskoga Golfklubb",
+   "osm": "relation/6524479"
+  },
+  "se-0282": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.434589,
+   "lng": 13.514192,
+   "name": "Karlstad GK",
+   "osm": "way/54033465"
+  },
+  "se-0283": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.350735,
+   "lng": 15.199358,
+   "name": "Kårsta golfklubb",
+   "osm": "way/232703131"
+  },
+  "se-0284": {
+   "keys": {
+    "": "main",
+    "Korthål": "korthal"
+   },
+   "lat": 55.793626,
+   "lng": 13.153258,
+   "name": "Kävlinge GK",
+   "osm": "way/60494848"
+  },
+  "se-0285": {
+   "keys": {},
+   "lat": 58.735146,
+   "lng": 16.899321,
+   "name": "Kiladalens golfbana",
+   "osm": "way/965528504"
+  },
+  "se-0286": {
+   "keys": {},
+   "lat": 59.551462,
+   "lng": 13.347584,
+   "name": "Kils GK",
+   "osm": "way/121498937"
+  },
+  "se-0287": {
+   "keys": {},
+   "lat": 57.46142,
+   "lng": 13.176417,
+   "name": "Kinds Golfklubb",
+   "osm": "way/468446210"
+  },
+  "se-0288": {
+   "keys": {},
+   "lat": 57.222679,
+   "lng": 12.22822,
+   "name": "Klosterfjordens GK",
+   "osm": "relation/13710074"
+  },
+  "se-0289": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 62.48497,
+   "lng": 14.219732,
+   "name": "Klövsjö-Vemdalens Golfklubb",
+   "osm": "relation/13248656"
+  },
+  "se-0290": {
+   "keys": {},
+   "lat": 58.421012,
+   "lng": 13.948871,
+   "name": "Knistad Golf & Country Club",
+   "osm": "relation/13937737"
+  },
+  "se-0291": {
+   "keys": {},
+   "lat": 58.16491,
+   "lng": 12.398066,
+   "name": "Koberg Golfklubb",
+   "osm": "relation/13513057"
+  },
+  "se-0292": {
+   "keys": {},
+   "lat": 59.551823,
+   "lng": 15.94883,
+   "name": "Köpings golfklubb",
+   "osm": "relation/15593281"
+  },
+  "se-0293": {
+   "keys": {},
+   "lat": 55.907467,
+   "lng": 12.811253,
+   "name": "Korthålsabanan",
+   "osm": "way/591197681"
+  },
+  "se-0294": {
+   "keys": {},
+   "lat": 61.298634,
+   "lng": 17.039912,
+   "name": "Korthålsbanan",
+   "osm": "way/117203090"
+  },
+  "se-0295": {
+   "keys": {
+    "East Course": "east-course",
+    "West Course": "west-course"
+   },
+   "lat": 55.924991,
+   "lng": 14.270197,
+   "name": "Kristianstads Golfklubb",
+   "osm": "relation/2270155"
+  },
+  "se-0296": {
+   "keys": {},
+   "lat": 59.337762,
+   "lng": 14.139418,
+   "name": "Kristinehamns golfklubb",
+   "osm": "way/1167188602"
+  },
+  "se-0297": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.117038,
+   "lng": 15.248164,
+   "name": "Kumla Golfklubb",
+   "osm": "way/487144141"
+  },
+  "se-0298": {
+   "keys": {},
+   "lat": 57.956827,
+   "lng": 11.803375,
+   "name": "Kungälv-Kode Golfklubb",
+   "osm": "way/224386312"
+  },
+  "se-0299": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.322043,
+   "lng": 17.854327,
+   "name": "Kungl. Drottningholms Golfklubb",
+   "osm": "relation/4440731"
+  },
+  "se-0300": {
+   "keys": {
+    "Gamla banan": "gamla-banan"
+   },
+   "lat": 57.491338,
+   "lng": 11.97372,
+   "name": "Kungsbacka Golfklubb",
+   "osm": "relation/8870412"
+  },
+  "se-0301": {
+   "keys": {},
+   "lat": 59.443562,
+   "lng": 16.354771,
+   "name": "Kvicksunds Golfklubb",
+   "osm": "way/338799792"
+  },
+  "se-0302": {
+   "keys": {},
+   "lat": 58.653656,
+   "lng": 13.111707,
+   "name": "Läckö Golfklubb",
+   "osm": "relation/10531195"
+  },
+  "se-0303": {
+   "keys": {
+    "": "main",
+    "Korthål": "korthal"
+   },
+   "lat": 56.925374,
+   "lng": 13.976499,
+   "name": "Lagan Golf",
+   "osm": "relation/10597026"
+  },
+  "se-0304": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.435935,
+   "lng": 13.129373,
+   "name": "Laholms Golfklubb",
+   "osm": "way/355285037"
+  },
+  "se-0305": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.357243,
+   "lng": 15.715971,
+   "name": "Landeryds Golfklubb",
+   "osm": "way/47050742"
+  },
+  "se-0306": {
+   "keys": {},
+   "lat": 58.238388,
+   "lng": 15.673234,
+   "name": "Landeryds Golfklubb - Vesterbybanan",
+   "osm": "way/361205880"
+  },
+  "se-0307": {
+   "keys": {},
+   "lat": 55.908961,
+   "lng": 12.813032,
+   "name": "Landskrona Golfklubb",
+   "osm": "way/43051024"
+  },
+  "se-0308": {
+   "keys": {},
+   "lat": 59.244619,
+   "lng": 14.899648,
+   "name": "Lanna Lodge Golf Resort",
+   "osm": "relation/4427161"
+  },
+  "se-0309": {
+   "keys": {},
+   "lat": 56.101734,
+   "lng": 12.672425,
+   "name": "Laröds drivingrange",
+   "osm": "relation/5340268"
+  },
+  "se-0310": {
+   "keys": {},
+   "lat": 60.748638,
+   "lng": 15.033157,
+   "name": "Leksands Golfklubb",
+   "osm": "way/43239438"
+  },
+  "se-0311": {
+   "keys": {},
+   "lat": 56.195436,
+   "lng": 15.361827,
+   "name": "Leråkra Golfkllubb",
+   "osm": "relation/20631158"
+  },
+  "se-0312": {
+   "keys": {
+    "18_hole": "18-hole"
+   },
+   "lat": 57.794336,
+   "lng": 12.119013,
+   "name": "Lerjedalens Golfklubb",
+   "osm": "relation/10756273"
+  },
+  "se-0313": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.378877,
+   "lng": 18.127109,
+   "name": "Lidingö Golfklubb",
+   "osm": "relation/3942404"
+  },
+  "se-0314": {
+   "keys": {},
+   "lat": 58.487218,
+   "lng": 13.266881,
+   "name": "Lidköpings Golfklubb",
+   "osm": "relation/9563148"
+  },
+  "se-0315": {
+   "keys": {},
+   "lat": 59.583362,
+   "lng": 15.253118,
+   "name": "Linde GK",
+   "osm": "relation/7423510"
+  },
+  "se-0316": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.39976,
+   "lng": 15.563966,
+   "name": "Linköpings Golfklubb",
+   "osm": "relation/3725202"
+  },
+  "se-0317": {
+   "keys": {},
+   "lat": 59.702964,
+   "lng": 18.33335,
+   "name": "Lisinge Golfklubb",
+   "osm": "way/234468593"
+  },
+  "se-0318": {
+   "keys": {},
+   "lat": 56.074474,
+   "lng": 13.215657,
+   "name": "Ljungbyheds Golfklubb",
+   "osm": "way/74607935"
+  },
+  "se-0319": {
+   "keys": {
+    "Holes 10–18": "10-18",
+    "Holes 19–27": "19-27",
+    "Holes 1–9": "1-9"
+   },
+   "lat": 55.392741,
+   "lng": 12.908957,
+   "name": "Ljunghusens GK",
+   "osm": "way/71190224"
+  },
+  "se-0320": {
+   "keys": {},
+   "lat": 61.81445,
+   "lng": 16.125298,
+   "name": "Ljusdals Golfklubb",
+   "osm": "way/597496888"
+  },
+  "se-0321": {
+   "keys": {},
+   "lat": 59.508104,
+   "lng": 18.569032,
+   "name": "Ljusterö Golf",
+   "osm": "relation/3945895"
+  },
+  "se-0322": {
+   "keys": {},
+   "lat": 57.66946,
+   "lng": 18.362367,
+   "name": "Lugnets Golfbana",
+   "osm": "relation/6846687"
+  },
+  "se-0323": {
+   "keys": {
+    "Björnen": "bjornen",
+    "Hermelinen": "hermelinen",
+    "Renen": "renen"
+   },
+   "lat": 65.68632,
+   "lng": 22.088052,
+   "name": "Luleå Golfklubb",
+   "osm": "way/49169438"
+  },
+  "se-0324": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.716488,
+   "lng": 13.272583,
+   "name": "Lunds Akademiska Golfklubb",
+   "osm": "way/34223464"
+  },
+  "se-0325": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.489108,
+   "lng": 14.182291,
+   "name": "Lundsbergs Golfklubb",
+   "osm": "relation/21745969"
+  },
+  "se-0326": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.477085,
+   "lng": 13.43197,
+   "name": "Lundsbrunn Golfklubb",
+   "osm": "way/205081443"
+  },
+  "se-0327": {
+   "keys": {},
+   "lat": 57.864604,
+   "lng": 11.708668,
+   "name": "Lycke Golf & Countryclub",
+   "osm": "relation/5448797"
+  },
+  "se-0328": {
+   "keys": {},
+   "lat": 58.19736,
+   "lng": 11.902683,
+   "name": "Lyckorna Golfklubb",
+   "osm": "relation/10017189"
+  },
+  "se-0329": {
+   "keys": {},
+   "lat": 64.605603,
+   "lng": 18.693185,
+   "name": "Lycksele Golfklubb",
+   "osm": "way/301961265"
+  },
+  "se-0330": {
+   "keys": {},
+   "lat": 57.496973,
+   "lng": 12.714175,
+   "name": "Lydde",
+   "osm": "way/1531262690"
+  },
+  "se-0331": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.941765,
+   "lng": 12.031885,
+   "name": "Lysegårdens Golfklubb",
+   "osm": "way/221636579"
+  },
+  "se-0332": {
+   "keys": {},
+   "lat": 58.370339,
+   "lng": 11.549192,
+   "name": "Lysekils Golfklubb",
+   "osm": "relation/7900793"
+  },
+  "se-0333": {
+   "keys": {},
+   "lat": 57.734924,
+   "lng": 16.665056,
+   "name": "Lysingsbadets golfklubb",
+   "osm": "way/71424383"
+  },
+  "se-0334": {
+   "keys": {},
+   "lat": 60.633413,
+   "lng": 16.966241,
+   "name": "Mackmyra Golf",
+   "osm": "relation/4427308"
+  },
+  "se-0335": {
+   "keys": {},
+   "lat": 55.397606,
+   "lng": 13.030939,
+   "name": "Maglarps golfklubb",
+   "osm": "way/253161773"
+  },
+  "se-0336": {
+   "keys": {},
+   "lat": 59.449027,
+   "lng": 16.433183,
+   "name": "Mälarbadens golfklubb",
+   "osm": "way/219145064"
+  },
+  "se-0337": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.311996,
+   "lng": 17.680754,
+   "name": "Mälarö Golfklubb Skytteholm",
+   "osm": "way/34619153"
+  },
+  "se-0338": {
+   "keys": {
+    "Holes 10–18": "10-18",
+    "Holes 19–27": "19-27",
+    "Holes 1–9": "1-9"
+   },
+   "lat": 55.618151,
+   "lng": 13.070961,
+   "name": "Malmö Burlöv Golfklubb",
+   "osm": "way/73898411"
+  },
+  "se-0339": {
+   "keys": {},
+   "lat": 55.583019,
+   "lng": 13.106415,
+   "name": "Malmö City GK, Kvarnbybanan",
+   "osm": "relation/3049188"
+  },
+  "se-0340": {
+   "keys": {},
+   "lat": 60.629115,
+   "lng": 13.75311,
+   "name": "Malungs Golfklubb",
+   "osm": "way/1167199089"
+  },
+  "se-0341": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.697143,
+   "lng": 13.759024,
+   "name": "Mariestads Golfklubb",
+   "osm": "way/37343151"
+  },
+  "se-0342": {
+   "keys": {},
+   "lat": 57.500087,
+   "lng": 12.713753,
+   "name": "Marks Golfklubb",
+   "osm": "relation/12571097"
+  },
+  "se-0343": {
+   "keys": {},
+   "lat": 62.349041,
+   "lng": 17.042569,
+   "name": "Matfors Golfklubb",
+   "osm": "way/302952527"
+  },
+  "se-0344": {
+   "keys": {},
+   "lat": 58.601064,
+   "lng": 16.666852,
+   "name": "Mauritzberg",
+   "osm": "way/297550172"
+  },
+  "se-0345": {
+   "keys": {},
+   "lat": 58.701724,
+   "lng": 12.48721,
+   "name": "Melleruds Golfklubb",
+   "osm": "relation/4440739"
+  },
+  "se-0346": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.308093,
+   "lng": 15.103926,
+   "name": "Mjölby Golfklubb",
+   "osm": "relation/18504788"
+  },
+  "se-0347": {
+   "keys": {},
+   "lat": 58.752424,
+   "lng": 11.240606,
+   "name": "Mjölkeröds Golfbana",
+   "osm": "relation/5974464"
+  },
+  "se-0348": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.2966,
+   "lng": 12.470275,
+   "name": "Mölle Golfklubb",
+   "osm": "way/278462021"
+  },
+  "se-0349": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.583612,
+   "lng": 12.134521,
+   "name": "Mölndals Golfklubb",
+   "osm": "relation/3752922"
+  },
+  "se-0350": {
+   "keys": {},
+   "lat": 57.043836,
+   "lng": 16.42257,
+   "name": "Mönsterås GK",
+   "osm": "relation/3095029"
+  },
+  "se-0351": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 61.017432,
+   "lng": 14.561307,
+   "name": "Mora golfklubb",
+   "osm": "relation/11897991"
+  },
+  "se-0352": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.449513,
+   "lng": 16.093865,
+   "name": "Möre golfklubb",
+   "osm": "way/230938202"
+  },
+  "se-0353": {
+   "keys": {},
+   "lat": 58.512805,
+   "lng": 15.045745,
+   "name": "Motala GK",
+   "osm": "way/161856980"
+  },
+  "se-0354": {
+   "keys": {},
+   "lat": 59.335261,
+   "lng": 18.36086,
+   "name": "Nacka Golfklubb",
+   "osm": "relation/3679575"
+  },
+  "se-0355": {
+   "keys": {},
+   "lat": 57.244031,
+   "lng": 18.649311,
+   "name": "När Golfklubb",
+   "osm": "way/199052764"
+  },
+  "se-0356": {
+   "keys": {},
+   "lat": 58.213819,
+   "lng": 11.445662,
+   "name": "Näreby Golfbana",
+   "osm": "relation/13185483"
+  },
+  "se-0357": {
+   "keys": {},
+   "lat": 57.674334,
+   "lng": 14.669075,
+   "name": "Nässjö Golfklubb",
+   "osm": "way/171365455"
+  },
+  "se-0358": {
+   "keys": {},
+   "lat": 55.575253,
+   "lng": 13.32631,
+   "name": "Naturligtvis golf & country",
+   "osm": "way/34145984"
+  },
+  "se-0359": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.224546,
+   "lng": 15.546387,
+   "name": "Nicklastorps Golfklubb",
+   "osm": "way/270973512"
+  },
+  "se-0360": {
+   "keys": {},
+   "lat": 59.729795,
+   "lng": 18.150113,
+   "name": "Nifsta GK",
+   "osm": "way/435971006"
+  },
+  "se-0361": {
+   "keys": {},
+   "lat": 59.497731,
+   "lng": 15.083724,
+   "name": "Nora Golfklubb",
+   "osm": "way/295268838"
+  },
+  "se-0362": {
+   "keys": {},
+   "lat": 63.155901,
+   "lng": 14.36372,
+   "name": "Norderöns Golfklubb",
+   "osm": "way/108012092"
+  },
+  "se-0363": {
+   "keys": {},
+   "lat": 58.617984,
+   "lng": 11.319608,
+   "name": "Norra Backa Golfklubb",
+   "osm": "relation/11478551"
+  },
+  "se-0364": {
+   "keys": {},
+   "lat": 59.370003,
+   "lng": 18.551781,
+   "name": "Norråva Golfklubb",
+   "osm": "relation/3398467"
+  },
+  "se-0365": {
+   "keys": {},
+   "lat": 62.982488,
+   "lng": 18.532538,
+   "name": "Norrfällsviken GK",
+   "osm": "relation/165517"
+  },
+  "se-0366": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 63.662027,
+   "lng": 20.13582,
+   "name": "Norrmjöle golfbana",
+   "osm": "way/202970413"
+  },
+  "se-0367": {
+   "keys": {},
+   "lat": 64.988678,
+   "lng": 19.491698,
+   "name": "Norsjö Golfklubb",
+   "osm": "way/179940539"
+  },
+  "se-0368": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.695686,
+   "lng": 15.983677,
+   "name": "Nybro golfklubb",
+   "osm": "relation/5323903"
+  },
+  "se-0369": {
+   "keys": {},
+   "lat": 58.72589,
+   "lng": 16.977582,
+   "name": "Nyköpings Golfklubb",
+   "osm": "relation/2365291"
+  },
+  "se-0370": {
+   "keys": {},
+   "lat": 59.009048,
+   "lng": 17.883874,
+   "name": "Nynäshamns Golfklubb",
+   "osm": "relation/4427198"
+  },
+  "se-0371": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 62.241796,
+   "lng": 17.304815,
+   "name": "Öjestrands Golf Club",
+   "osm": "way/253525225"
+  },
+  "se-0372": {
+   "keys": {},
+   "lat": 57.137579,
+   "lng": 16.966355,
+   "name": "Ölands golfklubb",
+   "osm": "way/218211399"
+  },
+  "se-0373": {
+   "keys": {},
+   "lat": 60.075222,
+   "lng": 18.117461,
+   "name": "Olandsbygdens GK",
+   "osm": "relation/13654676"
+  },
+  "se-0374": {
+   "keys": {},
+   "lat": 58.258027,
+   "lng": 14.6209,
+   "name": "Omberg Golf Resort",
+   "osm": "way/687779170"
+  },
+  "se-0375": {
+   "keys": {},
+   "lat": 58.331283,
+   "lng": 12.328627,
+   "name": "Onsjö Golfklubb",
+   "osm": "relation/7335306"
+  },
+  "se-0376": {
+   "keys": {},
+   "lat": 58.331165,
+   "lng": 12.326653,
+   "name": "Onsjö Golfklubb",
+   "osm": "way/500275632"
+  },
+  "se-0377": {
+   "keys": {},
+   "lat": 60.197326,
+   "lng": 17.694667,
+   "name": "Örbyhus golfklubb",
+   "osm": "way/254490072"
+  },
+  "se-0378": {
+   "keys": {},
+   "lat": 59.248364,
+   "lng": 15.218579,
+   "name": "Örebro City Golf & Country Club - Gustavsviks",
+   "osm": "relation/3507038"
+  },
+  "se-0379": {
+   "keys": {},
+   "lat": 59.182791,
+   "lng": 15.142598,
+   "name": "Örebro City Golf & Country Club Mosjö",
+   "osm": "way/247894241"
+  },
+  "se-0380": {
+   "keys": {},
+   "lat": 60.274987,
+   "lng": 18.411404,
+   "name": "Öregrunds Golfklubb",
+   "osm": "relation/4451823"
+  },
+  "se-0381": {
+   "keys": {
+    "Blå": "bla",
+    "Gul": "gul",
+    "Pay & Play": "pay-play",
+    "Röd": "rod"
+   },
+   "lat": 55.695952,
+   "lng": 13.069132,
+   "name": "Örestads golfklubb",
+   "osm": "way/23729516"
+  },
+  "se-0382": {
+   "keys": {},
+   "lat": 55.851512,
+   "lng": 12.902553,
+   "name": "Öresunds Golfklubb",
+   "osm": "way/45289926"
+  },
+  "se-0383": {
+   "keys": {},
+   "lat": 63.299465,
+   "lng": 18.940903,
+   "name": "Örnsköldsviks Golfklubb Puttom",
+   "osm": "way/237392514"
+  },
+  "se-0384": {
+   "keys": {},
+   "lat": 59.660452,
+   "lng": 16.839816,
+   "name": "Orresta Golf & Konferens",
+   "osm": "way/782216270"
+  },
+  "se-0385": {
+   "keys": {},
+   "lat": 57.193868,
+   "lng": 16.391577,
+   "name": "Oskarshamns Golfklubb.",
+   "osm": "way/96693235"
+  },
+  "se-0386": {
+   "keys": {
+    "East": "east",
+    "West": "west"
+   },
+   "lat": 59.487462,
+   "lng": 18.253726,
+   "name": "Österåkers Golfklubb",
+   "osm": "way/122227918"
+  },
+  "se-0387": {
+   "keys": {},
+   "lat": 59.118397,
+   "lng": 18.165797,
+   "name": "Österhaninge Golfklubb",
+   "osm": "relation/69370"
+  },
+  "se-0388": {
+   "keys": {},
+   "lat": 55.616205,
+   "lng": 14.274176,
+   "name": "Österlens golfklubb",
+   "osm": "relation/8463535"
+  },
+  "se-0389": {
+   "keys": {},
+   "lat": 63.181731,
+   "lng": 14.492667,
+   "name": "Östersund-Frösö golfklubb",
+   "osm": "way/41921019"
+  },
+  "se-0390": {
+   "keys": {},
+   "lat": 56.203212,
+   "lng": 14.08865,
+   "name": "Östra Göinge Golfklubb",
+   "osm": "relation/4427657"
+  },
+  "se-0391": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.549656,
+   "lng": 13.063742,
+   "name": "Oxie GK",
+   "osm": "way/154513069"
+  },
+  "se-0392": {
+   "keys": {},
+   "lat": 57.691868,
+   "lng": 12.108251,
+   "name": "Partille Golfklubb",
+   "osm": "relation/10523918"
+  },
+  "se-0393": {
+   "keys": {},
+   "lat": 56.122956,
+   "lng": 13.413741,
+   "name": "Perstorps Golfklubb",
+   "osm": "way/74606091"
+  },
+  "se-0394": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 65.321619,
+   "lng": 21.535026,
+   "name": "Piteå Golfklubb",
+   "osm": "way/314341050"
+  },
+  "se-0395": {
+   "keys": {},
+   "lat": 58.167078,
+   "lng": 13.552536,
+   "name": "Plantis Äventyrsgolf",
+   "osm": "way/616870869"
+  },
+  "se-0396": {
+   "keys": {},
+   "lat": 63.664929,
+   "lng": 13.484524,
+   "name": "Private Golf Course",
+   "osm": "way/308531404"
+  },
+  "se-0397": {
+   "keys": {},
+   "lat": 57.207433,
+   "lng": 14.940962,
+   "name": "Ramkvilla GK",
+   "osm": "way/1008633356"
+  },
+  "se-0398": {
+   "keys": {},
+   "lat": 62.700744,
+   "lng": 12.394295,
+   "name": "Ramundbergets golfbana",
+   "osm": "relation/11565250"
+  },
+  "se-0399": {
+   "keys": {},
+   "lat": 60.897653,
+   "lng": 15.114462,
+   "name": "Rättviks Golfklubb",
+   "osm": "way/152768270"
+  },
+  "se-0400": {
+   "keys": {},
+   "lat": 57.202073,
+   "lng": 13.609756,
+   "name": "Reftele golfklubb",
+   "osm": "way/217367858"
+  },
+  "se-0401": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.16995,
+   "lng": 17.938488,
+   "name": "Rikstens GK",
+   "osm": "relation/69682"
+  },
+  "se-0402": {
+   "keys": {
+    "": "main",
+    "Ringenäs Röd": "ringenas-rod",
+    "Ringenäs gul": "ringenas-gul"
+   },
+   "lat": 56.687224,
+   "lng": 12.720596,
+   "name": "Ringenäs Golfklubb",
+   "osm": "relation/10482830"
+  },
+  "se-0403": {
+   "keys": {},
+   "lat": 64.180967,
+   "lng": 20.869138,
+   "name": "Robertsfors Golfklubb",
+   "osm": "way/294265341"
+  },
+  "se-0404": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.592875,
+   "lng": 13.521659,
+   "name": "Romeleåsens golfklubb",
+   "osm": "way/34148163"
+  },
+  "se-0405": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.533026,
+   "lng": 13.105345,
+   "name": "Rönnebäcks golfbana",
+   "osm": "relation/5708972"
+  },
+  "se-0406": {
+   "keys": {},
+   "lat": 56.186113,
+   "lng": 15.289483,
+   "name": "Ronneby Golfklubb",
+   "osm": "relation/10271691"
+  },
+  "se-0407": {
+   "keys": {},
+   "lat": 59.501266,
+   "lng": 18.156628,
+   "name": "Rosenkälla GK",
+   "osm": "way/85695260"
+  },
+  "se-0408": {
+   "keys": {},
+   "lat": 59.802706,
+   "lng": 18.783243,
+   "name": "Roslagens Golfklubb",
+   "osm": "way/128623778"
+  },
+  "se-0409": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.480189,
+   "lng": 17.881601,
+   "name": "Rotebro Golf",
+   "osm": "relation/3942766"
+  },
+  "se-0410": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.479889,
+   "lng": 17.887169,
+   "name": "Rotebro Golf",
+   "osm": "way/320386611"
+  },
+  "se-0411": {
+   "keys": {},
+   "lat": 55.976268,
+   "lng": 12.769922,
+   "name": "Rya East Course",
+   "osm": "way/614811380"
+  },
+  "se-0412": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.975599,
+   "lng": 12.762371,
+   "name": "Rya Old Course",
+   "osm": "way/43050958"
+  },
+  "se-0413": {
+   "keys": {},
+   "lat": 57.898944,
+   "lng": 13.815666,
+   "name": "Ryfors GK",
+   "osm": "relation/8129129"
+  },
+  "se-0414": {
+   "keys": {
+    "Course 1": "course-1",
+    "Course 2": "course-2"
+   },
+   "lat": 60.59508,
+   "lng": 16.764308,
+   "name": "SAIK Golfklubb",
+   "osm": "way/130729235"
+  },
+  "se-0415": {
+   "keys": {},
+   "lat": 59.945669,
+   "lng": 16.712737,
+   "name": "Sala golfklubb",
+   "osm": "way/64890240"
+  },
+  "se-0416": {
+   "keys": {},
+   "lat": 59.259242,
+   "lng": 17.606392,
+   "name": "Salems Golfklubb",
+   "osm": "relation/3830006"
+  },
+  "se-0417": {
+   "keys": {},
+   "lat": 59.284094,
+   "lng": 18.257833,
+   "name": "Saltsjöbadens Golfklubb",
+   "osm": "way/237754763"
+  },
+  "se-0418": {
+   "keys": {},
+   "lat": 60.580452,
+   "lng": 15.618654,
+   "name": "Samuelsdals golfklubb",
+   "osm": "way/48161778"
+  },
+  "se-0419": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.851539,
+   "lng": 14.03836,
+   "name": "Sand Golf Club",
+   "osm": "way/104932777"
+  },
+  "se-0420": {
+   "keys": {},
+   "lat": 63.293084,
+   "lng": 14.499559,
+   "name": "Sandnäsets GK",
+   "osm": "relation/4440665"
+  },
+  "se-0421": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.254991,
+   "lng": 12.595063,
+   "name": "Sankt Arild Golfklubb",
+   "osm": "way/278472876"
+  },
+  "se-0422": {
+   "keys": {},
+   "lat": 55.913452,
+   "lng": 12.703552,
+   "name": "Sankt Ibbs GK",
+   "osm": "way/23548489"
+  },
+  "se-0423": {
+   "keys": {},
+   "lat": 57.505848,
+   "lng": 11.956667,
+   "name": "Särö Golf Club",
+   "osm": "relation/4425575"
+  },
+  "se-0424": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 60.337145,
+   "lng": 15.694205,
+   "name": "Säters golfbana",
+   "osm": "relation/2955734"
+  },
+  "se-0425": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.796692,
+   "lng": 14.357587,
+   "name": "Saxå Golfklubb",
+   "osm": "relation/8518195"
+  },
+  "se-0426": {
+   "keys": {},
+   "lat": 56.696679,
+   "lng": 16.487688,
+   "name": "Saxnäs Golfklubb",
+   "osm": "way/38483956"
+  },
+  "se-0427": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.645038,
+   "lng": 17.734286,
+   "name": "Sigtunabygdens Golfklubb",
+   "osm": "way/192346124"
+  },
+  "se-0428": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.643662,
+   "lng": 11.967068,
+   "name": "Sisjö Golfklubb",
+   "osm": "way/26242992"
+  },
+  "se-0429": {
+   "keys": {},
+   "lat": 55.645453,
+   "lng": 13.650286,
+   "name": "Sjöbo golfklubb",
+   "osm": "way/295792445"
+  },
+  "se-0430": {
+   "keys": {},
+   "lat": 57.352281,
+   "lng": 12.255356,
+   "name": "Sjögärde Golfklubb",
+   "osm": "relation/8975583"
+  },
+  "se-0431": {
+   "keys": {},
+   "lat": 58.234885,
+   "lng": 11.446684,
+   "name": "Skaftö Golfklubb",
+   "osm": "relation/5448753"
+  },
+  "se-0432": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 64.704516,
+   "lng": 20.975185,
+   "name": "Skellefteå GK",
+   "osm": "way/37103671"
+  },
+  "se-0433": {
+   "keys": {},
+   "lat": 59.683461,
+   "lng": 18.111677,
+   "name": "Skepptuna Golfklubb",
+   "osm": "relation/3905958"
+  },
+  "se-0434": {
+   "keys": {},
+   "lat": 59.649428,
+   "lng": 16.47896,
+   "name": "Skerikes golfbana",
+   "osm": "way/153248017"
+  },
+  "se-0435": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.540549,
+   "lng": 13.173666,
+   "name": "Skogaby Golfklubb",
+   "osm": "way/359487104"
+  },
+  "se-0436": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 62.442397,
+   "lng": 17.267279,
+   "name": "Skön Golf",
+   "osm": "relation/4425253"
+  },
+  "se-0437": {
+   "keys": {},
+   "lat": 62.400091,
+   "lng": 17.338587,
+   "name": "Skönsberg Bangolf",
+   "osm": "way/106155620"
+  },
+  "se-0438": {
+   "keys": {},
+   "lat": 58.364576,
+   "lng": 13.81017,
+   "name": "Skövde Golfklubb",
+   "osm": "relation/4544346"
+  },
+  "se-0439": {
+   "keys": {},
+   "lat": 56.132717,
+   "lng": 13.671576,
+   "name": "Skyrups golfklubb",
+   "osm": "way/36835326"
+  },
+  "se-0440": {
+   "keys": {},
+   "lat": 57.71766,
+   "lng": 18.743242,
+   "name": "Slite Golfklubb",
+   "osm": "relation/13081689"
+  },
+  "se-0441": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.163363,
+   "lng": 18.44556,
+   "name": "Smådalarö Gård Golf",
+   "osm": "way/224894693"
+  },
+  "se-0442": {
+   "keys": {},
+   "lat": 60.53661,
+   "lng": 14.439277,
+   "name": "Snöå Golfklubb",
+   "osm": "relation/77215"
+  },
+  "se-0443": {
+   "keys": {},
+   "lat": 56.048401,
+   "lng": 12.946385,
+   "name": "Söderåsens golfklubb",
+   "osm": "relation/6359909"
+  },
+  "se-0444": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.813227,
+   "lng": 17.487994,
+   "name": "Söderby Golf Uppsala",
+   "osm": "relation/4425350"
+  },
+  "se-0445": {
+   "keys": {},
+   "lat": 58.493796,
+   "lng": 16.176483,
+   "name": "Söderköpings Golfklubb",
+   "osm": "relation/4440686"
+  },
+  "se-0446": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.466486,
+   "lng": 13.072824,
+   "name": "Söderslätts GK",
+   "osm": "way/113309689"
+  },
+  "se-0447": {
+   "keys": {},
+   "lat": 59.148485,
+   "lng": 18.130364,
+   "name": "Södertörns Golfklubb",
+   "osm": "way/29250713"
+  },
+  "se-0448": {
+   "keys": {},
+   "lat": 55.538291,
+   "lng": 13.061629,
+   "name": "Sofiedals golfbana",
+   "osm": "relation/5708973"
+  },
+  "se-0449": {
+   "keys": {},
+   "lat": 63.166075,
+   "lng": 17.009756,
+   "name": "Sollefteå Golfklubb",
+   "osm": "relation/18131948"
+  },
+  "se-0450": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.470251,
+   "lng": 17.898776,
+   "name": "Sollentuna GK",
+   "osm": "relation/4425551"
+  },
+  "se-0451": {
+   "keys": {},
+   "lat": 60.907483,
+   "lng": 14.580689,
+   "name": "Sollerö Golfklubb",
+   "osm": "relation/12941835"
+  },
+  "se-0452": {
+   "keys": {},
+   "lat": 60.907328,
+   "lng": 14.578661,
+   "name": "Solön Golfklubb",
+   "osm": "relation/12941836"
+  },
+  "se-0453": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.042381,
+   "lng": 14.604921,
+   "name": "Sölvesborgs Golfklubb",
+   "osm": "relation/4445809"
+  },
+  "se-0454": {
+   "keys": {},
+   "lat": 59.355795,
+   "lng": 13.470083,
+   "name": "Sommarro GK",
+   "osm": "way/54035159"
+  },
+  "se-0455": {
+   "keys": {},
+   "lat": 62.019941,
+   "lng": 17.399188,
+   "name": "Sörfjärdens golfklubb",
+   "osm": "relation/12160346"
+  },
+  "se-0456": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 63.853182,
+   "lng": 20.02045,
+   "name": "Sörfors golfbana",
+   "osm": "way/157547450"
+  },
+  "se-0457": {
+   "keys": {},
+   "lat": 58.435539,
+   "lng": 11.378868,
+   "name": "Sotenäs Golfklubb",
+   "osm": "way/658177570"
+  },
+  "se-0458": {
+   "keys": {},
+   "lat": 59.341229,
+   "lng": 17.245961,
+   "name": "Stallarholmens Golfklubb",
+   "osm": "way/249165499"
+  },
+  "se-0459": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.022727,
+   "lng": 11.867809,
+   "name": "Stenungsund Golfklubb",
+   "osm": "relation/10751119"
+  },
+  "se-0460": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.39659,
+   "lng": 18.025222,
+   "name": "Stockholms Golfklubb",
+   "osm": "relation/3928713"
+  },
+  "se-0461": {
+   "keys": {},
+   "lat": 57.832388,
+   "lng": 12.250623,
+   "name": "Stora Lundby Golfklubb",
+   "osm": "way/157976683"
+  },
+  "se-0462": {
+   "keys": {},
+   "lat": 63.042996,
+   "lng": 14.802778,
+   "name": "Storsjöbygdens golfklubb",
+   "osm": "way/43556997"
+  },
+  "se-0463": {
+   "keys": {},
+   "lat": 59.398246,
+   "lng": 16.791325,
+   "name": "Strands Golfklubb",
+   "osm": "relation/4381805"
+  },
+  "se-0464": {
+   "keys": {},
+   "lat": 56.642271,
+   "lng": 12.899501,
+   "name": "Strandtorps Golfklubb",
+   "osm": "relation/10467387"
+  },
+  "se-0465": {
+   "keys": {
+    "Holes 10–18": "10-18",
+    "Holes 19–27": "19-27",
+    "Holes 1–9": "1-9"
+   },
+   "lat": 59.346023,
+   "lng": 17.021119,
+   "name": "Strängnäs Golfklubb",
+   "osm": "relation/4425285"
+  },
+  "se-0466": {
+   "keys": {},
+   "lat": 59.548592,
+   "lng": 16.243659,
+   "name": "Strömsholms Golfklubb",
+   "osm": "way/48816357"
+  },
+  "se-0467": {
+   "keys": {},
+   "lat": 58.949888,
+   "lng": 11.162506,
+   "name": "Strömstads Golfklubb",
+   "osm": "relation/10868050"
+  },
+  "se-0468": {
+   "keys": {},
+   "lat": 57.579139,
+   "lng": 18.216354,
+   "name": "Suderbys",
+   "osm": "way/363022418"
+  },
+  "se-0469": {
+   "keys": {},
+   "lat": 59.756478,
+   "lng": 18.573467,
+   "name": "Sundsta Säteri Golf",
+   "osm": "relation/5183567"
+  },
+  "se-0470": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 62.283703,
+   "lng": 17.387682,
+   "name": "Sundsvalls Golfklubb",
+   "osm": "way/35045772"
+  },
+  "se-0471": {
+   "keys": {},
+   "lat": 59.809749,
+   "lng": 13.127706,
+   "name": "Sunne GK",
+   "osm": "relation/4442645"
+  },
+  "se-0472": {
+   "keys": {},
+   "lat": 59.723751,
+   "lng": 16.237217,
+   "name": "Surahammars Golfklubb",
+   "osm": "relation/4431166"
+  },
+  "se-0473": {
+   "keys": {},
+   "lat": 60.092068,
+   "lng": 14.975109,
+   "name": "Svanskogen",
+   "osm": "way/73197598"
+  },
+  "se-0474": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.489998,
+   "lng": 17.875802,
+   "name": "Svartinge Golfklubb",
+   "osm": "relation/4457725"
+  },
+  "se-0475": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.503251,
+   "lng": 18.018785,
+   "name": "Täby GK",
+   "osm": "way/23600637"
+  },
+  "se-0476": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 60.814423,
+   "lng": 15.019722,
+   "name": "Tällbergsbyarnas GK",
+   "osm": "way/705396582"
+  },
+  "se-0477": {
+   "keys": {},
+   "lat": 57.782597,
+   "lng": 11.949787,
+   "name": "Tee Box",
+   "osm": "way/1531411407"
+  },
+  "se-0478": {
+   "keys": {},
+   "lat": 57.777671,
+   "lng": 11.946496,
+   "name": "Tee Box",
+   "osm": "way/1531411412"
+  },
+  "se-0479": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.457937,
+   "lng": 13.230014,
+   "name": "Tegelberga Golfklubb",
+   "osm": "way/30123008"
+  },
+  "se-0480": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.569086,
+   "lng": 13.188737,
+   "name": "The National",
+   "osm": "way/34563422"
+  },
+  "se-0481": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 62.506321,
+   "lng": 17.422742,
+   "name": "Timrå Golfklubb",
+   "osm": "way/303609475"
+  },
+  "se-0482": {
+   "keys": {},
+   "lat": 58.005629,
+   "lng": 11.644783,
+   "name": "Tjörns Golfklubb",
+   "osm": "relation/8695416"
+  },
+  "se-0483": {
+   "keys": {},
+   "lat": 59.599227,
+   "lng": 17.99987,
+   "name": "Tjulsta Golfklubb",
+   "osm": "way/171945030"
+  },
+  "se-0484": {
+   "keys": {},
+   "lat": 57.576763,
+   "lng": 15.814015,
+   "name": "Tobo Golfklubb",
+   "osm": "way/492316277"
+  },
+  "se-0485": {
+   "keys": {},
+   "lat": 56.861563,
+   "lng": 13.911583,
+   "name": "Tofta Golf",
+   "osm": "relation/10844707"
+  },
+  "se-0486": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.53213,
+   "lng": 13.972587,
+   "name": "Tomelilla GK",
+   "osm": "way/38483100"
+  },
+  "se-0487": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.43901,
+   "lng": 12.644914,
+   "name": "Torekov Golfklubb",
+   "osm": "way/494506959"
+  },
+  "se-0488": {
+   "keys": {},
+   "lat": 58.439457,
+   "lng": 11.597255,
+   "name": "Torreby Golfklubb",
+   "osm": "relation/11033070"
+  },
+  "se-0489": {
+   "keys": {},
+   "lat": 60.140529,
+   "lng": 13.031159,
+   "name": "Torsby GK",
+   "osm": "way/340668496"
+  },
+  "se-0490": {
+   "keys": {},
+   "lat": 59.410371,
+   "lng": 16.449326,
+   "name": "Torshälla golfklubb",
+   "osm": "way/218748533"
+  },
+  "se-0491": {
+   "keys": {},
+   "lat": 57.703764,
+   "lng": 11.779122,
+   "name": "Torslanda Golfklubb",
+   "osm": "relation/10429701"
+  },
+  "se-0492": {
+   "keys": {},
+   "lat": 59.660731,
+   "lng": 16.729323,
+   "name": "Tortuna Golfklubb",
+   "osm": "relation/5448804"
+  },
+  "se-0493": {
+   "keys": {},
+   "lat": 58.050006,
+   "lng": 15.000726,
+   "name": "Tranås Golfklubb",
+   "osm": "way/35284922"
+  },
+  "se-0494": {
+   "keys": {},
+   "lat": 55.372568,
+   "lng": 13.08674,
+   "name": "Trelleborgs GK",
+   "osm": "way/23890839"
+  },
+  "se-0495": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.873874,
+   "lng": 17.547052,
+   "name": "Trosa Golfklubb",
+   "osm": "way/175344496"
+  },
+  "se-0496": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.886769,
+   "lng": 17.532303,
+   "name": "Trosa Golfklubb",
+   "osm": "way/823955358"
+  },
+  "se-0497": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.315599,
+   "lng": 17.761967,
+   "name": "Troxhammar Golfklubb",
+   "osm": "way/315677445"
+  },
+  "se-0498": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.160356,
+   "lng": 15.737479,
+   "name": "Trummenäs Golfklubb",
+   "osm": "way/533350670"
+  },
+  "se-0499": {
+   "keys": {},
+   "lat": 59.251074,
+   "lng": 18.232788,
+   "name": "Tyresö Golf",
+   "osm": "way/308114817"
+  },
+  "se-0500": {
+   "keys": {},
+   "lat": 59.992094,
+   "lng": 13.607613,
+   "name": "Uddeholms GK",
+   "osm": "way/32950677"
+  },
+  "se-0501": {
+   "keys": {},
+   "lat": 58.364542,
+   "lng": 11.778351,
+   "name": "Uddevalla Golfklubb",
+   "osm": "relation/11649590"
+  },
+  "se-0502": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.492695,
+   "lng": 18.15313,
+   "name": "Ullna Golf Club",
+   "osm": "way/23401492"
+  },
+  "se-0503": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.792518,
+   "lng": 13.446797,
+   "name": "Ulricehamns Golfklubb",
+   "osm": "relation/10256785"
+  },
+  "se-0504": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.385869,
+   "lng": 17.998342,
+   "name": "Ulriksdals Golf",
+   "osm": "relation/17895552"
+  },
+  "se-0505": {
+   "keys": {},
+   "lat": 63.714675,
+   "lng": 20.408198,
+   "name": "Umeå golfklubb",
+   "osm": "way/26715183"
+  },
+  "se-0506": {
+   "keys": {},
+   "lat": 59.840381,
+   "lng": 17.500932,
+   "name": "Upsala golfklubb",
+   "osm": "relation/152116"
+  },
+  "se-0507": {
+   "keys": {},
+   "lat": 59.959616,
+   "lng": 18.83421,
+   "name": "Väddö Golfklubb",
+   "osm": "way/122157110"
+  },
+  "se-0508": {
+   "keys": {},
+   "lat": 58.420598,
+   "lng": 14.896034,
+   "name": "Vadstena Golfklubb",
+   "osm": "way/170220627"
+  },
+  "se-0509": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.474137,
+   "lng": 12.011608,
+   "name": "Vallda Golf & Country Club",
+   "osm": "relation/11593118"
+  },
+  "se-0510": {
+   "keys": {},
+   "lat": 59.56219,
+   "lng": 18.112175,
+   "name": "Vallentuna Golfklubb",
+   "osm": "relation/4425300"
+  },
+  "se-0511": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.649014,
+   "lng": 13.12651,
+   "name": "Vallgårdens Golfklubb",
+   "osm": "way/42052245"
+  },
+  "se-0512": {
+   "keys": {},
+   "lat": 58.259829,
+   "lng": 13.11724,
+   "name": "Vara-Bjertorp Golfklubb",
+   "osm": "relation/4219199"
+  },
+  "se-0513": {
+   "keys": {},
+   "lat": 57.056627,
+   "lng": 12.351873,
+   "name": "Varbergs Golfklubb Västra",
+   "osm": "way/414760129"
+  },
+  "se-0514": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.412241,
+   "lng": 15.7481,
+   "name": "Vårdsbergs Golfklubb",
+   "osm": "way/160437644"
+  },
+  "se-0515": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.031021,
+   "lng": 12.861721,
+   "name": "Vårgårda Golfbana",
+   "osm": "relation/4612112"
+  },
+  "se-0516": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.708759,
+   "lng": 13.15238,
+   "name": "Värpinge Golfbana",
+   "osm": "relation/1985060"
+  },
+  "se-0517": {
+   "keys": {
+    "": "main",
+    "TC": "tc"
+   },
+   "lat": 56.055973,
+   "lng": 12.796281,
+   "name": "Vasatorps Golfklubb",
+   "osm": "relation/6003428"
+  },
+  "se-0518": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.689159,
+   "lng": 17.695856,
+   "name": "Vassunda Golfklubb",
+   "osm": "relation/5368823"
+  },
+  "se-0519": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.627805,
+   "lng": 16.508626,
+   "name": "Västerås golfklubb",
+   "osm": "way/98773289"
+  },
+  "se-0520": {
+   "keys": {},
+   "lat": 57.771896,
+   "lng": 16.659035,
+   "name": "Västerviks Golfklubb",
+   "osm": "relation/4427132"
+  },
+  "se-0521": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.902102,
+   "lng": 14.773082,
+   "name": "Växjö Golfklubb",
+   "osm": "way/53224253"
+  },
+  "se-0522": {
+   "keys": {},
+   "lat": 63.288804,
+   "lng": 18.668874,
+   "name": "Veckefjärdens golfbana",
+   "osm": "way/59696110"
+  },
+  "se-0523": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.492259,
+   "lng": 13.098806,
+   "name": "Vellinge GK",
+   "osm": "way/28586572"
+  },
+  "se-0524": {
+   "keys": {},
+   "lat": 57.415617,
+   "lng": 15.046083,
+   "name": "Vetlanda Golfbana",
+   "osm": "way/236973081"
+  },
+  "se-0525": {
+   "keys": {},
+   "lat": 59.199477,
+   "lng": 17.46085,
+   "name": "Vidbynäs",
+   "osm": "relation/4440720"
+  },
+  "se-0526": {
+   "keys": {},
+   "lat": 59.246209,
+   "lng": 17.626421,
+   "name": "Viksbergs Golfklubb",
+   "osm": "relation/13029417"
+  },
+  "se-0527": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 59.399909,
+   "lng": 17.819906,
+   "name": "Viksjö GK",
+   "osm": "way/23766855"
+  },
+  "se-0528": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.693057,
+   "lng": 12.68578,
+   "name": "Vilshärads Golfbana",
+   "osm": "way/288203274"
+  },
+  "se-0529": {
+   "keys": {},
+   "lat": 57.675276,
+   "lng": 15.892596,
+   "name": "Vimmerby Golfakademi",
+   "osm": "way/209361379"
+  },
+  "se-0530": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.964455,
+   "lng": 12.556282,
+   "name": "Vinbergs Golfklubb",
+   "osm": "relation/11334596"
+  },
+  "se-0531": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.445138,
+   "lng": 18.128535,
+   "name": "Visby Golfklubb",
+   "osm": "way/199830330"
+  },
+  "se-0532": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 58.528691,
+   "lng": 15.514773,
+   "name": "Vreta Kloster golfklubb",
+   "osm": "way/545588575"
+  },
+  "se-0533": {
+   "keys": {},
+   "lat": 59.538043,
+   "lng": 17.960347,
+   "name": "Wäsby GK",
+   "osm": "way/28001728"
+  },
+  "se-0534": {
+   "keys": {},
+   "lat": 60.031115,
+   "lng": 17.741284,
+   "name": "Wattholma Golfklubb",
+   "osm": "way/28526241"
+  },
+  "se-0535": {
+   "keys": {},
+   "lat": 59.390733,
+   "lng": 18.255209,
+   "name": "Waxholms Golfklubb",
+   "osm": "relation/8551800"
+  },
+  "se-0536": {
+   "keys": {},
+   "lat": 59.30555,
+   "lng": 18.468159,
+   "name": "Wermdö Golf and Country Club",
+   "osm": "relation/4111464"
+  },
+  "se-0537": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.916071,
+   "lng": 14.646389,
+   "name": "Wiredaholms golfbana",
+   "osm": "way/717524022"
+  },
+  "se-0538": {
+   "keys": {},
+   "lat": 56.346997,
+   "lng": 13.706437,
+   "name": "Wittsjö Golfklubb",
+   "osm": "relation/8632283"
+  },
+  "se-0539": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 56.234392,
+   "lng": 13.182789,
+   "name": "Woodlands Country Club",
+   "osm": "relation/13456971"
+  },
+  "se-0540": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.640633,
+   "lng": 11.922923,
+   "name": "World of Golf Mini Cource",
+   "osm": "way/908246632"
+  },
+  "se-0541": {
+   "keys": {},
+   "lat": 57.643156,
+   "lng": 11.927771,
+   "name": "World of Golf Scandinavia",
+   "osm": "relation/3914073"
+  },
+  "se-0542": {
+   "keys": {
+    "": "main"
+   },
+   "lat": 55.440388,
+   "lng": 13.92614,
+   "name": "Ystads golfklubb",
+   "osm": "way/14039900"
+  }
+ },
+ "next": 543
+}
