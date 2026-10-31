@@ -1,5 +1,7 @@
 # Every Monday night, and by hand (Actions → Publish → Run workflow): test, fetch from Overpass, clean, check
 # against what is published, and publish with GitHub Pages only when something changed and nothing looks broken.
+# The register of stable club ids and course keys (registry/) is committed back when it changed, so next week starts
+# from it.
 name: Publish
 
 on:
@@ -8,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -33,6 +35,13 @@ jobs:
       - name: Compare with what is published
         id: check
         run: python check.py
+      - name: Keep the register of club ids and course keys
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry
+          git diff --cached --quiet || (git commit -m "Register: club ids and course keys of $(date -u +%Y-%m-%d)" && git push)
       - uses: actions/upload-pages-artifact@v3
         if: steps.check.outputs.changed == 'true'
         with:
