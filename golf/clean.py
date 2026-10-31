@@ -216,7 +216,7 @@ def courses_of(lines, club):
         if sorted(by_number) == list(range(1, 28)) and all(len(v) == 1 for v in by_number.values()):
             for first in (1, 10, 19):
                 loop = {n: by_number[n] for n in range(first, first + 9)}
-                label = "Holes %d–%d" % (first, first + 8)
+                label = "%d–%d" % (first, first + 8)   # as the club calls them: 1–9, 10–18, 19–27
                 courses.append(course("%s, %s" % (name, label) if name else label, loop, offset=first - 1))
             continue
         courses.append(course(name, by_number, unnumbered))
@@ -224,8 +224,26 @@ def courses_of(lines, club):
 
 
 def natural(text):
-    """Sorts "Holes 1–9" before "Holes 10–18", and "Course 2" before "Course 10"."""
+    """Sorts "1–9" before "10–18", and "Course 2" before "Course 10"."""
     return [int(part) if part.isdigit() else part.lower() for part in re.split(r"(\d+)", text)]
+
+
+NUMBERED = re.compile(r"^(?:(.*), )?(\d+)–(\d+)$")
+
+
+def combo_name(first, second, last):
+    """Two loops played one after the other. Numbered loops that follow on are named as the club calls the round:
+    1–9 then 10–18 is "1–18", 10–18 then 19–27 "10–27", and 19–27 then 1–9 (round the run of `last` holes) "19–09".
+    Anything else is the two names: "Blå + Gul", "1–9 + 19–27"."""
+    a, b = NUMBERED.match(first or ""), NUMBERED.match(second or "")
+    if a and b and a.group(1) == b.group(1):
+        start, end, next_start, next_end = int(a.group(2)), int(a.group(3)), int(b.group(2)), int(b.group(3))
+        prefix = "%s, " % a.group(1) if a.group(1) else ""
+        if next_start == end + 1:
+            return "%s%d–%d" % (prefix, start, next_end)
+        if next_start == 1 and end == last:
+            return "%s%d–%02d" % (prefix, start, next_end)
+    return "%s + %s" % (first, second)
 
 
 def combos(courses):
@@ -233,7 +251,8 @@ def combos(courses):
     courses (the second loop's holes become 10–18 in the app)."""
     loops = [i for i, c in enumerate(courses)
              if c["name"] and c["complete"] and len(c["holes"]) == 9]
-    return [{"name": "%s + %s" % (courses[a]["name"], courses[b]["name"]), "courses": [a, b]}
+    last = max((int(m.group(3)) for m in (NUMBERED.match(courses[i]["name"]) for i in loops) if m), default=0)
+    return [{"name": combo_name(courses[a]["name"], courses[b]["name"], last), "courses": [a, b]}
             for a in loops for b in loops if a != b]
 
 
