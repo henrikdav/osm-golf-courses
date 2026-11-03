@@ -89,6 +89,16 @@ A file with a problem (a ranking that isn't 1–9 once each, lengths that don't 
 correction without why) is left out and the run says why. To try a club file in an app before the weekly run:
 `python3 -m golf.clubfiles <a format-2 file> <out>` merges the club files into a file already made.
 
+## What the data has: the report
+
+Every week the run also writes, per country, what each club has and lacks, by what a player gets when starting a
+round there: name only, holes but no course whole, par (GPS and a score against par), index (net scoring), tees (the
+full scorecard, from a club file). It shows where mapping or a club file pays most.
+
+- **Page:** <https://henrikdav.github.io/osm-golf-courses/v2/report.html>, with the totals week by week
+- **Data:** `v2/report-<country file>`, one row per club with its level and what it lacks
+- **History:** `reports/<country>.json`, the totals of each week, committed back by the weekly run
+
 ## How it is cleaned
 
 `golf/clean.py`. A club's holes are the `golf=hole` lines inside its `leisure=golf_course` outline (the smallest one
