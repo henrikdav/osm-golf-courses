@@ -1,0 +1,97 @@
+"""Club files (#2): checked against the club's OSM data, and merged into format 2 as additions."""
+import copy
+import unittest
+
+from golf.clubfiles import apply, check, merge
+
+
+def loop(key, pars, index=None, notes=()):
+    return {"key": key, "name": key.replace("-", "–"), "complete": True, "holeCount": len(pars), "notes": list(notes),
+            "holes": [{"n": i + 1, "par": p, "index": index[i] if index else None, "path": []} for i, p in enumerate(pars)]}
+
+
+CLUB = {"id": "se-1", "osm": "way/1", "name": "Loops GK",
+        "courses": [loop("1-9", [4, 5, 4, 3, 4, 3, 4, 4, 4], index=[1, 17, 7, 3, 9, 11, 5, 15, 13]),
+                    loop("10-18", [4, 4, 4, 3, 5, 4, 4, 3, 5]),
+                    loop("19-27", [4, 5, 3, 4, 4, 4, 5, 3, 4], index=[1, 17, 7, 3, 9, 11, 5, 15, 13],
+                         notes=["Hole 2 is 309 m for par 5", "Hole 6 is 531 m for par 4", "Hole 9 has no green"])],
+        "combos": [{"key": "1-9+10-18", "name": "1–18", "loops": ["1-9", "10-18"]},
+                   {"key": "10-18+1-9", "name": "10–18 + 1–9", "loops": ["10-18", "1-9"]}]}
+
+FILE = {"id": "se-1", "name": "Loops GK", "source": {"what": "the club's scorecard", "by": "H", "date": "2026-11-03"},
+        "loops": {"1-9": {"ranking": [1, 9, 4, 2, 5, 6, 3, 8, 7], "tees": {"48": [300, 395, 290, 115, 245, 120, 295, 295, 295]}},
+                  "10-18": {"ranking": [5, 9, 1, 4, 8, 3, 7, 2, 6]},
+                  "19-27": {"ranking": [3, 7, 2, 8, 9, 6, 1, 5, 4], "par": {"2": 4, "6": 5}, "why": "swapped in OSM"}},
+        "combos": [{"loops": ["1-9", "10-18"], "odd": "1-9"}, {"loops": ["19-27", "1-9"], "odd": "19-27"}]}
+
+
+class Check(unittest.TestCase):
+    def test_a_good_file_has_no_problems(self):
+        self.assertEqual(check(FILE, CLUB), [])
+
+    def test_what_is_wrong_is_said(self):
+        bad = copy.deepcopy(FILE)
+        bad["loops"]["1-9"]["ranking"] = [1, 1, 4, 2, 5, 6, 3, 8, 7]
+        bad["loops"]["10-18"]["tees"] = {"48": [300, 395]}
+        bad["loops"]["19-27"].pop("why")
+        bad["loops"]["28-36"] = {"ranking": list(range(1, 10))}
+        bad["combos"].append({"loops": ["1-9", "10-18"], "odd": "19-27"})
+        del bad["source"]
+        problems = check(bad, CLUB)
+        for words in ("ranking must hold 1–9", "tee 48: 9 lengths", "says why", "28-36: no such course",
+                      "odd must be one of its loops", "no source"):
+            self.assertTrue(any(words in p for p in problems), (words, problems))
+
+    def test_a_correction_osm_has_caught_up_with_can_go(self):
+        fixed = copy.deepcopy(CLUB)
+        fixed["courses"][2]["holes"][1]["par"] = 4
+        self.assertTrue(any("OSM has par 4 now" in p for p in check(FILE, fixed)))
+
+
+class Merge(unittest.TestCase):
+    def setUp(self):
+        self.out = merge(CLUB, FILE)
+
+    def test_the_club_is_left_as_it_was(self):
+        self.assertEqual(CLUB["courses"][2]["holes"][1]["par"], 5)
+
+    def test_par_corrected_and_its_osm_notes_dropped(self):
+        holes = self.out["courses"][2]["holes"]
+        self.assertEqual((holes[1]["par"], holes[5]["par"]), (4, 5))
+        self.assertEqual(self.out["courses"][2]["notes"], ["Hole 9 has no green"])
+
+    def test_a_loop_s_index_is_its_ranking(self):
+        self.assertEqual([h["index"] for h in self.out["courses"][2]["holes"]], [3, 7, 2, 8, 9, 6, 1, 5, 4])
+
+    def test_tees_with_their_lengths(self):
+        self.assertEqual(self.out["courses"][0]["tees"], [{"name": "48", "lengths": [300, 395, 290, 115, 245, 120, 295, 295, 295]}])
+        self.assertNotIn("tees", self.out["courses"][1])
+
+    def test_only_the_club_s_combinations_with_their_index(self):
+        combos = self.out["combos"]
+        self.assertEqual([c["key"] for c in combos], ["1-9+10-18", "19-27+1-9"])
+        self.assertEqual(combos[0]["name"], "1–18")
+        self.assertEqual(combos[0]["index"], [1, 17, 7, 3, 9, 11, 5, 15, 13, 10, 18, 2, 8, 16, 6, 14, 4, 12])
+        self.assertEqual(combos[1]["index"][9:], [2, 18, 8, 4, 10, 12, 6, 16, 14], "the odd loop first, 1–9 even")
+        self.assertEqual(combos[1]["name"], "19–27 + 1–9", "named from its loops when OSM had no such pair")
+
+    def test_the_source_goes_with_it(self):
+        self.assertEqual(self.out["clubFile"]["what"], "the club's scorecard")
+
+
+class Apply(unittest.TestCase):
+    def test_merged_where_there_is_a_file_and_it_is_good(self):
+        clubs, flags = apply([copy.deepcopy(CLUB)], {"se-1": FILE})
+        self.assertEqual(flags, [])
+        self.assertIn("clubFile", clubs[0])
+
+    def test_a_file_with_problems_is_left_out_and_said(self):
+        bad = dict(FILE, source=None)
+        clubs, flags = apply([copy.deepcopy(CLUB)], {"se-1": bad, "se-9": FILE})
+        self.assertNotIn("clubFile", clubs[0])
+        self.assertTrue(any("se-1: no source" in f for f in flags))
+        self.assertTrue(any("se-9: no such club" in f for f in flags))
+
+
+if __name__ == "__main__":
+    unittest.main()
