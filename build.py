@@ -10,7 +10,7 @@ import datetime
 import json
 import os
 
-from golf import clubfiles
+from golf import clubfiles, report
 from golf.clean import ATTRIBUTION, FORMAT, clean, country_file
 from golf.countries import COUNTRIES
 from golf.fetch import fetch
@@ -24,11 +24,12 @@ def load(path):
         return json.load(f)["elements"]
 
 
-def build(raw_root, out, do_fetch, registry_root="registry", clubs_root="clubs"):
+def build(raw_root, out, do_fetch, registry_root="registry", clubs_root="clubs", reports_root="reports"):
     os.makedirs(out, exist_ok=True)
     os.makedirs(os.path.join(out, "v2"), exist_ok=True)
     os.makedirs(registry_root, exist_ok=True)
     listed_2 = []
+    reports, histories = [], {}
     made = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     listed = []
     for code, name, filename in COUNTRIES:
@@ -65,6 +66,16 @@ def build(raw_root, out, do_fetch, registry_root="registry", clubs_root="clubs")
         with open(path_2, "w") as f:
             json.dump(data_2, f, ensure_ascii=False, separators=(",", ":"))
         listed_2.append(dict(listed[-1], bytes=os.path.getsize(path_2)))
+
+        # What the data has and lacks, club by club, and the week's totals added to the country's history.
+        rep = report.report(code, merged, made)
+        with open(os.path.join(out, "v2", "report-" + filename), "w") as f:
+            json.dump(rep, f, ensure_ascii=False, separators=(",", ":"))
+        histories[code] = report.add_to_history(os.path.join(reports_root, code + ".json"), rep)
+        reports.append(rep)
+        print("%s report: %s" % (code, json.dumps(rep["totals"])), flush=True)
+    with open(os.path.join(out, "v2", "report.html"), "w") as f:
+        f.write(report.page(reports, histories))
     with open(os.path.join(out, "countries.json"), "w") as f:
         json.dump({"format": FORMAT, "attribution": ATTRIBUTION, "countries": listed}, f, ensure_ascii=False, indent=1)
     with open(os.path.join(out, "v2", "countries.json"), "w") as f:
@@ -74,7 +85,8 @@ def build(raw_root, out, do_fetch, registry_root="registry", clubs_root="clubs")
                        % (c["file"], c["name"], c["clubs"], c["clubsWithCompleteCourse"]) for c in listed)
         f.write('<!doctype html><meta charset="utf-8"><title>OSM golf courses</title>'
                 '<h1>Golf courses from OpenStreetMap</h1><p>Clubs, courses and holes, cleaned every week. '
-                'Made %s. <a href="countries.json">countries.json</a> lists the files.</p><ul>%s</ul>'
+                'Made %s. <a href="countries.json">countries.json</a> lists the files. '
+                '<a href="v2/report.html">What the data has</a>, club by club.</p><ul>%s</ul>'
                 '<p>Data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, '
                 'available under the Open Database License (ODbL 1.0). '
                 '<a href="https://github.com/henrikdav/osm-golf-courses">How it is made</a>.</p>' % (made, rows))
@@ -95,5 +107,6 @@ if __name__ == "__main__":
     parser.add_argument("--out", default="site", help="where the published files are written")
     parser.add_argument("--registry", default="registry", help="where the club ids and course keys are kept")
     parser.add_argument("--clubs", default="clubs", help="the club files")
+    parser.add_argument("--reports", default="reports", help="where each country's weekly totals are kept")
     args = parser.parse_args()
-    build(args.raw, args.out, args.fetch, args.registry, args.clubs)
+    build(args.raw, args.out, args.fetch, args.registry, args.clubs, args.reports)
