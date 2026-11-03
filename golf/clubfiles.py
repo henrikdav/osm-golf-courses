@@ -140,6 +140,9 @@ if __name__ == "__main__":
     with open(source) as f:
         data = json.load(f)
     data["clubs"], problems = apply(data["clubs"], load())
+    # Stamped now, so an app that already has the file takes this one as newer.
+    import datetime
+    data["made"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     for problem in problems:
         print(problem)
     with open(target, "w") as f:
