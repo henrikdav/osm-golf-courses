@@ -22,7 +22,8 @@ FILE = {"id": "se-1", "name": "Loops GK", "source": {"what": "the club's scoreca
         "loops": {"1-9": {"ranking": [1, 9, 4, 2, 5, 6, 3, 8, 7], "tees": {"48": [300, 395, 290, 115, 245, 120, 295, 295, 295]}},
                   "10-18": {"ranking": [5, 9, 1, 4, 8, 3, 7, 2, 6]},
                   "19-27": {"ranking": [3, 7, 2, 8, 9, 6, 1, 5, 4], "par": {"2": 4, "6": 5}, "why": "swapped in OSM"}},
-        "combos": [{"loops": ["1-9", "10-18"], "odd": "1-9"}, {"loops": ["19-27", "1-9"], "odd": "19-27"}]}
+        "combos": [{"loops": ["1-9", "10-18"], "odd": "1-9"}, {"loops": ["19-27", "1-9"], "odd": "19-27"}],
+        "onlyTheseCombos": True}
 
 
 class Check(unittest.TestCase):
@@ -74,6 +75,32 @@ class Merge(unittest.TestCase):
         self.assertEqual(combos[0]["index"], [1, 17, 7, 3, 9, 11, 5, 15, 13, 10, 18, 2, 8, 16, 6, 14, 4, 12])
         self.assertEqual(combos[1]["index"][9:], [2, 18, 8, 4, 10, 12, 6, 16, 14], "the odd loop first, 1–9 even")
         self.assertEqual(combos[1]["name"], "19–27 + 1–9", "named from its loops when OSM had no such pair")
+
+    def test_without_only_these_the_other_combinations_are_kept(self):
+        some = dict(FILE, onlyTheseCombos=False, combos=[{"loops": ["1-9", "10-18"], "odd": "1-9"}])
+        combos = merge(CLUB, some)["combos"]
+        self.assertEqual(sorted(c["key"] for c in combos), ["1-9+10-18", "10-18+1-9"])
+        self.assertIn("index", next(c for c in combos if c["key"] == "1-9+10-18"))
+        self.assertNotIn("index", next(c for c in combos if c["key"] == "10-18+1-9"))
+
+    def test_the_scorecard_s_own_index_wins_over_the_ranking(self):
+        printed = copy.deepcopy(FILE)
+        printed["loops"]["1-9"]["index"] = [2, 18, 8, 4, 10, 12, 6, 16, 14]
+        self.assertEqual(check(printed, CLUB), [])
+        self.assertEqual([h["index"] for h in merge(CLUB, printed)["courses"][0]["holes"]], [2, 18, 8, 4, 10, 12, 6, 16, 14])
+
+    def test_a_course_not_on_the_map_is_added_without_positions(self):
+        new = {"id": "se-2", "name": "New GK", "source": {"what": "card"},
+               "loops": {"main": {"new": {"name": "Main", "par": [4, 3, 5]}, "index": [3, 1, 2],
+                                  "tees": {"58": [300, 150, 450]}}}}
+        club = {"id": "se-2", "osm": "way/2", "name": "New GK", "courses": []}
+        self.assertEqual(check(new, club), [])
+        course = merge(club, new)["courses"][0]
+        self.assertEqual((course["key"], course["mapped"], [h["par"] for h in course["holes"]], [h["index"] for h in course["holes"]]),
+                         ("main", False, [4, 3, 5], [3, 1, 2]))
+        self.assertEqual(course["tees"][0]["lengths"], [300, 150, 450])
+        mapped = dict(club, courses=[{"key": "main", "holes": [{"n": 1}]}])
+        self.assertTrue(any("no longer new" in p for p in check(new, mapped)))
 
     def test_the_source_goes_with_it(self):
         self.assertEqual(self.out["clubFile"]["what"], "the club's scorecard")
