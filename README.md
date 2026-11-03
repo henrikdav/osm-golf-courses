@@ -67,6 +67,28 @@ OpenStreetMap's id or a place in a list. OpenStreetMap ids change, most often wh
 
 Every pair of loops is offered as a combination until a club's own data says which are played.
 
+### Club files: what OpenStreetMap can't say
+
+`clubs/<club id>.json`, written by hand from the club's own scorecard or slope tables (never copied from other apps'
+or sites' databases), adds what OpenStreetMap has no way to hold (#2). The weekly run checks each file against the
+club's OSM data and merges it as additions, which an older reader skips:
+
+```jsonc
+"courses": [{ "key": "19-27", …,
+  "holes": [{ "n": 2, "par": 4, "index": 7, … }],      // par corrected; a loop's index is its ranking 1–9
+  "tees": [{ "name": "48", "lengths": [290, 250, …] }] // metres per hole
+}],
+"combos": [{ "key": "19-27+1-9", "name": "19–09", "loops": ["19-27", "1-9"],
+             "index": [5, 13, 3, …, 16, 14] }],          // only the combinations the club plays, with their index
+"clubFile": { "what": "…", "by": "…", "date": "2026-11-03" }   // where the club file's data came from
+```
+
+A combination's index comes from its loops' rankings: one loop takes the odd indexes (2 × rank − 1), the other the
+even ones. Which loop is odd is in the file (the first nine at Malmö Burlöv; the harder loop at some clubs).
+A file with a problem (a ranking that isn't 1–9 once each, lengths that don't fit, a loop OSM doesn't have, a par
+correction without why) is left out and the run says why. To try a club file in an app before the weekly run:
+`python3 -m golf.clubfiles <a format-2 file> <out>` merges the club files into a file already made.
+
 ## How it is cleaned
 
 `golf/clean.py`. A club's holes are the `golf=hole` lines inside its `leisure=golf_course` outline (the smallest one

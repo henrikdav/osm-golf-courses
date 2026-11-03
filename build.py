@@ -10,6 +10,7 @@ import datetime
 import json
 import os
 
+from golf import clubfiles
 from golf.clean import ATTRIBUTION, FORMAT, clean, country_file
 from golf.countries import COUNTRIES
 from golf.fetch import fetch
@@ -23,7 +24,7 @@ def load(path):
         return json.load(f)["elements"]
 
 
-def build(raw_root, out, do_fetch, registry_root="registry"):
+def build(raw_root, out, do_fetch, registry_root="registry", clubs_root="clubs"):
     os.makedirs(out, exist_ok=True)
     os.makedirs(os.path.join(out, "v2"), exist_ok=True)
     os.makedirs(registry_root, exist_ok=True)
@@ -55,7 +56,11 @@ def build(raw_root, out, do_fetch, registry_root="registry"):
             f.write("\n")
         for flag in flags:
             print("%s: %s" % (code, flag), flush=True)
-        data_2 = dict(country_file(code, name, [format2(c) for c in clubs_2], counts, made), format=FORMAT_2)
+        # The club files (clubs/, #2): what OSM can't say, merged in as additions.
+        merged, club_flags = clubfiles.apply([format2(c) for c in clubs_2], clubfiles.load(clubs_root))
+        for flag in club_flags:
+            print("%s: %s" % (code, flag), flush=True)
+        data_2 = dict(country_file(code, name, merged, counts, made), format=FORMAT_2)
         path_2 = os.path.join(out, "v2", filename)
         with open(path_2, "w") as f:
             json.dump(data_2, f, ensure_ascii=False, separators=(",", ":"))
@@ -89,5 +94,6 @@ if __name__ == "__main__":
     parser.add_argument("--raw", default="raw", help="where the raw answers are kept")
     parser.add_argument("--out", default="site", help="where the published files are written")
     parser.add_argument("--registry", default="registry", help="where the club ids and course keys are kept")
+    parser.add_argument("--clubs", default="clubs", help="the club files")
     args = parser.parse_args()
-    build(args.raw, args.out, args.fetch, args.registry)
+    build(args.raw, args.out, args.fetch, args.registry, args.clubs)
