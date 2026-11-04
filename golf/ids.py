@@ -13,7 +13,9 @@ week:
 
 A course's key comes from its name (lower case, no accents, words joined by "-": "Pay & Play" → "pay-play",
 "1–9" → "1-9"); a club's only course, with no name, is "main". A key once given to a course stays with that name,
-so the register also keeps the keys; a course renamed so that its key stays the same ("Holes 1–9" → "1–9") keeps it. Pure: no files or network here; build.py reads and writes the register.
+so the register also keeps the keys; a course renamed so that its key stays the same ("Holes 1–9" → "1–9") keeps it,
+and so does a club's only course, unnamed until now, when it is the one course that gets a name (The National's,
+"Lakes Course", stays "main"). Pure: no files or network here; build.py reads and writes the register.
 """
 import re
 import unicodedata
@@ -78,6 +80,12 @@ def assign(country, clubs, register):
         keys = entry["keys"]
         used = set(keys.values())
         names_now = {c["name"] or "" for c in club["courses"]}
+        # The club's unnamed course has been given a name: if exactly one course is new this week, it is that one.
+        new = [c for c in club["courses"] if (c["name"] or "") not in keys]
+        if "" in keys and "" not in names_now and len(new) == 1 and new[0]["name"]:
+            keys[new[0]["name"]] = keys.pop("")
+            flags.append("%s: %s's course is now named %s; its key %s is kept"
+                         % (cid, club["name"], new[0]["name"], keys[new[0]["name"]]))
         for course in club["courses"]:
             name = course["name"] or ""
             if name not in keys:
