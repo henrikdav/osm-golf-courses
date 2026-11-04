@@ -63,7 +63,9 @@ OpenStreetMap's id or a place in a list. OpenStreetMap ids change, most often wh
   within 500 m; when two could be meant (a club split or merged) it gets a new id and the run says so for a person to
   look at;
 - a club gone keeps its id in the register, so it is the same club if it comes back;
-- a course's key comes from its name (`gamla-banan`, `bla`, `pay-play`, `1-9`) and stays with it.
+- a course's key comes from its name (`gamla-banan`, `bla`, `pay-play`, `1-9`) and stays with it;
+- a club's only course, unnamed until then (`main`), keeps its key when it is the one course that gets a name
+  (The National's 18 holes named Lakes Course stay `main`); a course mapped later gets a key of its own.
 
 Every pair of loops is offered as a combination until a club's own data says which are played.
 
