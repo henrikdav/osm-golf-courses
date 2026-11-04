@@ -6,7 +6,8 @@ One file per club, clubs/<club id>.json, keyed by the club's stable id (format 2
   par (each with why). A course OSM doesn't have yet ("new": its name and par) is added without positions;
 - combos: combinations of loops, in order, and which loop takes the odd indexes. With onlyTheseCombos the club
   plays these only and the others OSM gives are dropped; else they are kept;
-- source: where it came from (the club's scorecard or slope tables, who wrote it down, when);
+- source: where it came from (the club's scorecard or slope tables, who wrote it down, when, and what was checked
+  against the printed card since);
 - slope: room for course and slope rating per tee and combination, filled in later.
 
 The weekly run merges the files into format 2, as additions an older reader skips:
