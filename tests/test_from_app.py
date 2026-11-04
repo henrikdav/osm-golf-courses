@@ -25,6 +25,11 @@ class LoopFrom(unittest.TestCase):
         self.assertNotIn("48", loop.get("tees", {}))
         self.assertTrue(any("tee 48" in n for n in notes))
 
+    def test_lengths_only_leaves_par_and_index_alone(self):
+        loop, _ = loop_from(holes([4, 4, 4], [1, 2, 3], [300, 150, 450]), {"holes": [{"par": 5}, {"par": 3}, {"par": 4}]},
+                            "main", lengths_only=True)
+        self.assertEqual(set(loop), {"tees"})
+
     def test_a_new_course_carries_its_name_and_par(self):
         loop, _ = loop_from(holes([4, 3], [2, 1], [300, 150]), None, "main", new_name="Knistad")
         self.assertEqual(loop["new"], {"name": "Knistad", "par": [4, 3]})

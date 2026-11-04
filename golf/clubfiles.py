@@ -68,8 +68,11 @@ def check(file, club):
         index = loop.get("index")
         if index is not None and (len(index) != n or len(set(index)) != n or not all(isinstance(i, int) and 1 <= i <= 2 * n for i in index)):
             problems.append("loop %s: the index must be %d different hole indexes" % (key, n))
-        if ranking_missing(loop):
-            problems.append("loop %s: a ranking or an index" % key)
+        in_combo = any(key in c.get("loops", []) for c in file.get("combos", []))
+        if in_combo and ranking_missing(loop):
+            problems.append("loop %s: a ranking or an index, for its combinations" % key)
+        if ranking_missing(loop) and not loop.get("tees") and not loop.get("par") and not new:
+            problems.append("loop %s: nothing to add" % key)
         ranking = loop.get("ranking")
         if ranking is not None and sorted(ranking) != list(range(1, n + 1)):
             problems.append("loop %s: the ranking must hold 1–%d once each" % (key, n))
