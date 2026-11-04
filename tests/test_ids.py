@@ -42,6 +42,26 @@ class Ids(unittest.TestCase):
         self.assertEqual(clubs[0]["osm"], "way/1")
         self.assertEqual(flags, [])
 
+    def test_an_only_course_given_a_name_keeps_its_key(self):
+        named = copy.deepcopy(self.week1)
+        named[1]["courses"][0]["name"] = "Lakes Course"   # The National, 2026-11-04
+        _, register, flags = self.ids(named)
+        self.assertEqual(named[1]["courses"][0]["key"], "main")
+        self.assertEqual(register["clubs"]["se-0002"]["keys"], {"Lakes Course": "main"})
+        self.assertTrue(any("now named Lakes Course; its key main is kept" in f for f in flags), flags)
+        # A second course mapped a later week gets a key of its own, and the first keeps main.
+        self.register = register
+        later = copy.deepcopy(named)
+        later[1]["courses"].append({"name": "Parkland Course", "holes": [], "complete": True})
+        self.ids(later)
+        self.assertEqual([c["key"] for c in later[1]["courses"]], ["main", "parkland-course"])
+
+    def test_two_new_names_at_once_are_new_courses(self):
+        split = copy.deepcopy(self.week1)
+        split[1]["courses"] = [{"name": "Lakes", "holes": [], "complete": True}, {"name": "Parkland", "holes": [], "complete": True}]
+        self.ids(split)
+        self.assertEqual([c["key"] for c in split[1]["courses"]], ["lakes", "parkland"])
+
     def test_a_new_osm_id_with_the_same_name_keeps_the_id(self):
         moved = copy.deepcopy(self.week1)
         moved[1]["id"] = "relation/9"   # the outline redrawn as a relation
