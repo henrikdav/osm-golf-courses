@@ -4,7 +4,8 @@
  "source": {
   "what": "the club's scorecard, scanned in the Fairly app",
   "by": "Henrik Davidsson",
-  "date": "2026-11-04"
+  "date": "2026-11-04",
+  "checked": "2026-11-04: tees Vit and Röd of Gul and Blå checked hole by hole against the club's printed scorecard by Henrik Davidsson; Gul and Blå tees not yet. Other sources (GolfPass) differ by 10–40 m per hole, likely from an older or newer layout."
  },
  "loops": {
   "pay-play": {
