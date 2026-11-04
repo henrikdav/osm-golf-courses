@@ -2,12 +2,52 @@
  "id": "se-0480",
  "name": "The National",
  "source": {
-  "what": "the club's scorecard, scanned in the Fairly app (lengths only: the scan's par and index were another course's)",
+  "what": "the club's scorecard, scanned in the Fairly app; par and index equal OSM's on every hole, and each tee totals to its name",
   "by": "Henrik Davidsson",
   "date": "2026-11-04"
  },
  "loops": {
   "main": {
+   "index": [
+    11,
+    7,
+    13,
+    5,
+    15,
+    17,
+    3,
+    9,
+    1,
+    12,
+    4,
+    16,
+    6,
+    18,
+    10,
+    2,
+    8,
+    14
+   ],
+   "ranking": [
+    11,
+    7,
+    13,
+    5,
+    15,
+    17,
+    3,
+    9,
+    1,
+    12,
+    4,
+    16,
+    6,
+    18,
+    10,
+    2,
+    8,
+    14
+   ],
    "tees": {
     "48": [
      420,
