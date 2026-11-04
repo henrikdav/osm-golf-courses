@@ -50,12 +50,14 @@ def app_course(data, course_id):
     return holes
 
 
-def loop_from(holes, osm_course, key, new_name=None, alone=True):
+def loop_from(holes, osm_course, key, new_name=None, alone=True, lengths_only=False):
     """A club file's loop from the app's holes for one OSM course (or a new one), and what to tell about it."""
     notes = []
     loop = {}
     pars = [h["par"] for h in holes]
-    if new_name:
+    if lengths_only:
+        pass
+    elif new_name:
         loop["new"] = {"name": new_name, "par": pars}
     else:
         osm_pars = [h.get("par") for h in osm_course["holes"]]
@@ -67,7 +69,7 @@ def loop_from(holes, osm_course, key, new_name=None, alone=True):
                            "OSM has other par on holes %s than the scorecard" % ", ".join(diff))
             notes.append("%s: par from the scorecard on holes %s (OSM had %s)" % (key, ", ".join(diff), ", ".join(had)))
     index = [h["index"] for h in holes]
-    if alone and all(isinstance(i, int) for i in index):
+    if alone and not lengths_only and all(isinstance(i, int) for i in index):
         loop["index"] = index
         if sorted(index) == list(range(1, len(index) + 1)):
             loop["ranking"] = index
@@ -95,6 +97,9 @@ def main():
     parser.add_argument("--club", required=True, help="the club's id in the course data")
     parser.add_argument("--keys", required=True, help="the OSM course keys it is, in order, comma-separated")
     parser.add_argument("--new", help="the name of a course OSM doesn't have yet")
+    parser.add_argument("--lengths-only", action="store_true",
+                        help="only the tees' lengths (when the scan's par or index can't be trusted)")
+    parser.add_argument("--holes", type=int, help="only the first this many holes (a 12-hole course entered as 18)")
     parser.add_argument("--by", default="", help="who scanned or wrote it down")
     parser.add_argument("--source", default="the club's scorecard, scanned in the Fairly app")
     parser.add_argument("--clubs", default="clubs")
@@ -107,6 +112,8 @@ def main():
     if not osm:
         sys.exit("no club %s in %s" % (args.club, args.osm))
     holes = app_course(data, args.course)
+    if args.holes:
+        holes = holes[:args.holes]
     keys = args.keys.split(",")
     courses = {c["key"]: c for c in osm.get("courses", [])}
     path = os.path.join(args.clubs, args.club + ".json")
@@ -116,7 +123,7 @@ def main():
             file = json.load(f)
     notes = []
     if len(keys) == 1:
-        loop, said = loop_from(holes, courses.get(keys[0]), keys[0], new_name=args.new)
+        loop, said = loop_from(holes, courses.get(keys[0]), keys[0], new_name=args.new, lengths_only=args.lengths_only)
         file["loops"][keys[0]] = dict(file["loops"].get(keys[0], {}), **loop)
         notes += said
     elif len(keys) == 2 and len(holes) % 2 == 0:

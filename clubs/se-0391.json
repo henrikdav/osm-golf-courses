@@ -1,0 +1,43 @@
+{
+ "id": "se-0391",
+ "name": "Oxie GK",
+ "source": {
+  "what": "the club's scorecard, scanned in the Fairly app (the 12 holes' lengths; its index is for 12 + 6 holes played as 18)",
+  "by": "Henrik Davidsson",
+  "date": "2026-11-04"
+ },
+ "loops": {
+  "main": {
+   "tees": {
+    "Röd": [
+     226,
+     215,
+     115,
+     241,
+     114,
+     285,
+     275,
+     85,
+     272,
+     270,
+     295,
+     368
+    ],
+    "Gul": [
+     257,
+     252,
+     126,
+     301,
+     120,
+     333,
+     314,
+     92,
+     307,
+     330,
+     340,
+     430
+    ]
+   }
+  }
+ }
+}
