@@ -60,7 +60,14 @@ class Overlay(unittest.TestCase):
     def test_joining_the_overlay_gives_what_merging_the_file_gives(self):
         for file in (FILE, dict(FILE, onlyTheseCombos=False),
                      dict(FILE, slope={"1-9+10-18": {"men": {"par": 70, "rated": None, "tees": {"58": {"cr": 70.2, "slope": 130}}}}})):
-            self.assertEqual(apply_overlay(CLUB, overlay(file)), merge(CLUB, file))
+            self.assertEqual(apply_overlay(CLUB, overlay(file), osm_scoring=True), merge(CLUB, file))
+
+    def test_the_join_never_uses_osm_s_par_or_index(self):
+        only_tees = {"id": "se-1", "name": "x", "source": FILE["source"], "loops": {"1-9": {"par": FILE["loops"]["1-9"]["par"]}}}
+        out = apply_overlay(CLUB, overlay(only_tees))
+        self.assertEqual([h["par"] for h in out["courses"][0]["holes"]], [4, 4, 3, 5, 4, 3, 4, 5, 4])   # the club's
+        self.assertEqual([h["index"] for h in out["courses"][0]["holes"]], [None] * 9)                  # not OSM's [5, 17, 9 …]
+        self.assertTrue(all(h["par"] is None and h["index"] is None for c in out["courses"][1:] for h in c["holes"]))
 
     def test_the_overlay_holds_only_what_the_file_adds(self):
         extra = overlay(FILE)

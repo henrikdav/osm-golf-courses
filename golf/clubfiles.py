@@ -225,10 +225,17 @@ def overlay(file):
     return out
 
 
-def apply_overlay(club, extra):
-    """The club's format-2 data with an overlay joined to it (a new dict). The same join the app makes when it opens."""
+def apply_overlay(club, extra, osm_scoring=False):
+    """The club's format-2 data with an overlay joined to it (a new dict). The same join the app makes when it opens.
+    The app never uses OSM's par or hole index: a hole has them only from the overlay, else None (osm_scoring=True keeps
+    OSM's, for comparing with merge())."""
     out = json.loads(json.dumps(club))
     out.setdefault("courses", [])
+    if not osm_scoring:
+        for course in out["courses"]:
+            for hole in course.get("holes", []):
+                hole["par"] = None
+                hole["index"] = None
     for key, loop in extra.get("loops", {}).items():
         new = loop.get("new")
         if new:
