@@ -76,7 +76,8 @@ the index, lengths per tee, par corrections, and slope and course rating. **The 
 and not in the published files.** They are separate data, kept privately by the app that uses them, apart from the OSM
 database (OpenStreetMap's licence, ODbL, covers the OSM data and what is derived from it, not data that sits beside it).
 This repository holds the OSM data, the code, the format and the checks; the files are joined to the OSM data by club id
-and course key where they are used.
+and course key where they are used. **Club data is never put into the files published here**: no `clubFile`, index, tees or
+slope in `v2/sweden.json`, and `build.py` merges club files only when given `--clubs`, which the weekly run does not.
 
 Where a club file's data comes from: the best source is the club itself (its scorecard, slope tables or slope
 calculator), and openly published data is fine too. Keep to what is lawful: nothing is taken from a source whose terms
