@@ -2,7 +2,7 @@
 import copy
 import unittest
 
-from golf.clubfiles import apply, check, merge
+from golf.clubfiles import apply, apply_overlay, build_overlay, check, merge, overlay
 
 
 def loop(key, pars, index=None, notes=()):
@@ -47,6 +47,28 @@ class Check(unittest.TestCase):
         fixed = copy.deepcopy(CLUB)
         fixed["courses"][2]["holes"][1]["par"] = 4
         self.assertTrue(any("OSM has par 4 now" in p for p in check(FILE, fixed)))
+
+
+class Overlay(unittest.TestCase):
+    def test_joining_the_overlay_gives_what_merging_the_file_gives(self):
+        for file in (FILE, dict(FILE, onlyTheseCombos=False),
+                     dict(FILE, slope={"1-9+10-18": {"men": {"par": 70, "rated": None, "tees": {"61": {"cr": 70.2, "slope": 130}}}}})):
+            self.assertEqual(apply_overlay(CLUB, overlay(file)), merge(CLUB, file))
+
+    def test_the_overlay_holds_only_what_the_file_adds(self):
+        extra = overlay(FILE)
+        self.assertNotIn("holes", str(extra))
+        self.assertEqual(extra["loops"]["19-27"]["par"], {"2": 4, "6": 5})
+        self.assertEqual(extra["combos"][0]["key"], "1-9+10-18")
+        self.assertEqual(extra["clubFile"], FILE["source"])
+
+    def test_a_file_that_does_not_check_out_is_left_out_and_said(self):
+        bad = dict(FILE, source=None)
+        data, flags = build_overlay({"se-1": bad, "se-2": FILE}, [CLUB], "2026-11-06T00:00:00Z")
+        self.assertEqual(data["clubs"], {})
+        self.assertEqual(len(flags), 2)
+        data, flags = build_overlay({"se-1": FILE}, [CLUB], "2026-11-06T00:00:00Z")
+        self.assertEqual((list(data["clubs"]), flags, data["format"]), (["se-1"], [], 1))
 
 
 class Merge(unittest.TestCase):
@@ -104,6 +126,28 @@ class Merge(unittest.TestCase):
 
     def test_the_source_goes_with_it(self):
         self.assertEqual(self.out["clubFile"]["what"], "the club's scorecard")
+
+
+class Slope(unittest.TestCase):
+    TABLE = {"par": 71, "rated": "2017-09-19", "tees": {"61": {"cr": 71.8, "slope": 136}, "48": {"cr": 66.1, "slope": 124}}}
+
+    def file(self, slope):
+        return dict(FILE, slope=slope, source=dict(FILE["source"], slope={"tables": ["x.pdf"], "read": "2026-11-05"}))
+
+    def test_on_a_combination_and_a_loop(self):
+        out = merge(CLUB, self.file({"1-9+10-18": {"men": self.TABLE}, "1-9": {"women": dict(self.TABLE, par=70)}}))
+        combo = next(c for c in out["combos"] if c["key"] == "1-9+10-18")
+        self.assertEqual(combo["slope"]["men"]["tees"][0], {"name": "61", "cr": 71.8, "slope": 136})
+        self.assertEqual(out["courses"][0]["slope"]["women"]["par"], 70)
+
+    def test_checked(self):
+        self.assertEqual(check(self.file({"1-9+10-18": {"men": self.TABLE}}), CLUB), [])
+        bad = {"10-18+1-9": {"men": self.TABLE},   # not among onlyTheseCombos
+               "1-9": {"juniors": self.TABLE, "men": dict(self.TABLE, tees={"61": {"cr": 7.18, "slope": 136}})}}
+        problems = check(self.file(bad), CLUB)
+        for words in ("10-18+1-9: no such course", "1-9 juniors: men or women", "tee 61: course rating"):
+            self.assertTrue(any(words in p for p in problems), (words, problems))
+        self.assertTrue(any("under source" in p for p in check(dict(FILE, slope={"1-9": {"men": self.TABLE}}), CLUB)))
 
 
 class Apply(unittest.TestCase):
