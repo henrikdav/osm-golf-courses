@@ -1,3 +1,6 @@
 raw/
 site/
 __pycache__/
+
+# Club files are private data, kept in the app repository (see README): never commit them here.
+/clubs/
