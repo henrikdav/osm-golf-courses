@@ -24,7 +24,10 @@ def load(path):
         return json.load(f)["elements"]
 
 
-def build(raw_root, out, do_fetch, registry_root="registry", clubs_root="clubs", reports_root="reports"):
+def build(raw_root, out, do_fetch, registry_root="registry", clubs_root=None, reports_root="reports"):
+    """clubs_root: a folder of club files to merge in. Left out, the published files hold only what OpenStreetMap has
+    (with the stable ids): the club files are separate data, kept apart from the OSM database and joined to it by club id
+    and course key where they are used, never mixed into the published files."""
     os.makedirs(out, exist_ok=True)
     os.makedirs(os.path.join(out, "v2"), exist_ok=True)
     os.makedirs(registry_root, exist_ok=True)
@@ -57,8 +60,10 @@ def build(raw_root, out, do_fetch, registry_root="registry", clubs_root="clubs",
             f.write("\n")
         for flag in flags:
             print("%s: %s" % (code, flag), flush=True)
-        # The club files (clubs/, #2): what OSM can't say, merged in as additions.
-        merged, club_flags = clubfiles.apply([format2(c) for c in clubs_2], clubfiles.load(clubs_root))
+        # The club files (#2) are merged in only when a folder is given; the weekly publishing gives none.
+        merged, club_flags = [format2(c) for c in clubs_2], []
+        if clubs_root:
+            merged, club_flags = clubfiles.apply(merged, clubfiles.load(clubs_root))
         for flag in club_flags:
             print("%s: %s" % (code, flag), flush=True)
         data_2 = dict(country_file(code, name, merged, counts, made), format=FORMAT_2)
@@ -106,7 +111,7 @@ if __name__ == "__main__":
     parser.add_argument("--raw", default="raw", help="where the raw answers are kept")
     parser.add_argument("--out", default="site", help="where the published files are written")
     parser.add_argument("--registry", default="registry", help="where the club ids and course keys are kept")
-    parser.add_argument("--clubs", default="clubs", help="the club files")
+    parser.add_argument("--clubs", help="a folder of club files to merge in (the published files are made without)")
     parser.add_argument("--reports", default="reports", help="where each country's weekly totals are kept")
     args = parser.parse_args()
     build(args.raw, args.out, args.fetch, args.registry, args.clubs, args.reports)

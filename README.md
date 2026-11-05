@@ -72,8 +72,11 @@ Every pair of loops is offered as a combination until a club's own data says whi
 ### Club files: what OpenStreetMap can't say
 
 `clubs/<club id>.json`, written by hand from the club's own scorecard or slope tables (never copied from other apps'
-or sites' databases), adds what OpenStreetMap has no way to hold (#2). The weekly run checks each file against the
-club's OSM data and merges it as additions, which an older reader skips:
+or sites' databases), adds what OpenStreetMap has no way to hold (#2). `build.py --clubs <folder>` checks each file against the
+club's OSM data and merges it as additions, which an older reader skips.
+The weekly publishing gives no folder: the published files hold only what OpenStreetMap has (with stable ids). Club
+files are separate data, kept apart from the OSM database and joined to it by club id and course key where they are
+used:
 
 ```jsonc
 "courses": [{ "key": "19-27", …,
