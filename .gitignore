@@ -4,3 +4,6 @@ __pycache__/
 
 # Club files are private data, kept in the app repository (see README): never commit them here.
 /clubs/
+
+# Local audit reports are kept outside git (~/Documents/StrokeCounter-audits), never committed.
+docs/*audit*.md
