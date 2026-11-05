@@ -1,20 +1,21 @@
 """Club files: what OpenStreetMap can't say about a club, written by hand from the club's own scorecard (#2).
 
 One file per club, clubs/<club id>.json, keyed by the club's stable id (format 2). It holds:
-- loops: per course key, its ranking 1–9 (the order of its holes by difficulty), the index as the scorecard prints
-  it when the course is played alone (e.g. 2, 4 … 18 on a 9-hole course), lengths per tee, and corrections to OSM's
-  par (each with why). A course OSM doesn't have yet ("new": its name and par) is added without positions;
+- loops: per course key, its par on every hole (the club's own, from its scorecard: never taken from OSM, never a
+  correction of OSM's), its ranking 1–9 (the order of its holes by difficulty), the index as the scorecard prints it
+  when the course is played alone (e.g. 2, 4 … 18 on a 9-hole course), and lengths per tee. A course OSM doesn't have
+  yet ("new": its name and par) is added without positions;
 - combos: combinations of loops, in order, and which loop takes the odd indexes. With onlyTheseCombos the club
   plays these only and the others OSM gives are dropped; else they are kept;
 - source: where it came from (the club's scorecard or slope tables, who wrote it down, when, and what was checked
-  against the printed card since);
+  against the printed card since), and source.par, where the par comes from;
 - slope: course and slope rating per course or combination key, for men and women, from the club's slope tables
   (golf/slope.py): { key: { "men" | "women": { par, rated, tees: { name: { cr, slope } } } } }. A table is always
   for an 18-hole round, also on a shorter course (played to 18 holes).
 
 The weekly run merges the files into format 2, as additions an older reader skips:
-- a loop's holes get their par corrected and, as their index, the scorecard's index, else the loop's ranking (OSM's
-  own index on a loop is often the first loop's, copied);
+- a loop's holes get the club's par and, as their index, the scorecard's index, else the loop's ranking (OSM's own
+  index on a loop is often the first loop's, copied); OSM's notes about par and index no longer apply and are dropped;
 - a new course is added with its par, index and tees, "mapped": false and no positions;
 - a loop gets "tees": [{"name", "lengths": [m per hole]}];
 - each combination of the file gets "index": the 18 indexes (the odd loop's holes 2 × rank − 1, the other's
@@ -28,6 +29,7 @@ Sources: the club's own data where there is any, or openly published data; nothi
 Each file says where its data came from and how it was checked (source).
 """
 import json
+import re
 import os
 
 FIELDS = {"id", "name", "source", "loops", "combos", "onlyTheseCombos", "slope"}
@@ -44,6 +46,15 @@ def load(folder="clubs"):
                 data = json.load(f)
             files[data.get("id")] = data
     return files
+
+
+PAR_NOTE = re.compile(r"^(No par\b.*|Hole \d+ is \d+ m for par \d+)$")
+INDEX_NOTE = "The same index on more than one hole"
+
+
+def drop_notes(notes, par=False, index=False):
+    """OSM's notes about the par or the index of a course, which no longer hold once the club's own values are used."""
+    return [n for n in notes if not (par and PAR_NOTE.match(n)) and not (index and n == INDEX_NOTE)]
 
 
 def check(file, club):
@@ -84,14 +95,9 @@ def check(file, club):
         for tee, lengths in loop.get("tees", {}).items():
             if len(lengths) != n or not all(isinstance(m, int) and m > 0 for m in lengths):
                 problems.append("loop %s, tee %s: %d lengths in metres" % (key, tee, n))
-        par = loop.get("par", {})
-        if par and not loop.get("why"):
-            problems.append("loop %s: a par correction says why" % key)
-        for hole, value in par.items():
-            if not hole.isdigit() or not 1 <= int(hole) <= n:
-                problems.append("loop %s: no hole %s" % (key, hole))
-            elif course["holes"][int(hole) - 1].get("par") == value:
-                problems.append("loop %s, hole %s: OSM has par %d now, the correction can go" % (key, hole, value))
+        par = loop.get("par")
+        if not new and not (isinstance(par, list) and len(par) == n and all(isinstance(p, int) and 3 <= p <= 6 for p in par)):
+            problems.append("loop %s: par on all %d holes, each 3–6, the club's own (not corrections to OSM's, nothing from OSM)" % (key, n))
     known = set(courses) | {k for k, l in file.get("loops", {}).items() if l.get("new")}
     for combo in file.get("combos", []):
         loops = combo.get("loops", [])
@@ -119,6 +125,8 @@ def check(file, club):
                 for tee, value in table["tees"].items():
                     if not 50 <= value.get("cr", 0) <= 90 or not 55 <= value.get("slope", 0) <= 155:
                         problems.append("%s, tee %s: course rating 50–90 and slope 55–155" % (what, tee))
+    if file.get("loops") and not (file.get("source") or {}).get("par"):
+        problems.append("source.par: where the par comes from")
     if file.get("slope") and not (file.get("source") or {}).get("slope"):
         problems.append("slope: the tables it was read from, under source")
     return problems
@@ -141,16 +149,14 @@ def merge(club, file):
     courses = {c["key"]: c for c in out["courses"]}
     for key, loop in file.get("loops", {}).items():
         course = courses[key]
-        corrected = set()
-        for hole, value in loop.get("par", {}).items():
-            course["holes"][int(hole) - 1]["par"] = value
-            corrected.add(int(hole))
-        if corrected:
-            # The notes OSM's data gave on those holes (e.g. a length that doesn't fit the par) no longer hold.
-            course["notes"] = [n for n in course.get("notes", []) if not any(n.startswith("Hole %d " % h) for h in corrected)]
+        if isinstance(loop.get("par"), list):
+            for hole, value in zip(course["holes"], loop["par"]):
+                hole["par"] = value
+            course["notes"] = drop_notes(course.get("notes", []), par=True)
         if loop.get("index") or loop.get("ranking"):
             for hole, value in zip(course["holes"], loop.get("index") or loop["ranking"]):
                 hole["index"] = value
+            course["notes"] = drop_notes(course.get("notes", []), index=True)
         if loop.get("tees"):
             course["tees"] = [{"name": name, "lengths": lengths} for name, lengths in loop["tees"].items()]
     if file.get("combos"):
@@ -182,7 +188,7 @@ def overlay(file):
     """What a club file adds, as a separate piece of data to be joined to the club's OSM data by club id and course key
     where it is used, instead of being mixed into the OSM data (the OSM database stays apart from ours, ODbL).
 
-    { "loops": { key: { new?: { name, par }, par?: { hole: par }, index?: [..], tees?: [{ name, lengths }] } },
+    { "loops": { key: { new?: { name, par }, par?: [par on every hole], index?: [..], tees?: [{ name, lengths }] } },
       "combos": [{ key, loops: [a, b], index: [18] }], "onlyTheseCombos"?: true,
       "slope": { key: { men|women: { par, rated, tees: [{ name, cr, slope }] } } }, "clubFile": source }
     apply_overlay(club, overlay(file)) gives what merge(club, file) gives."""
@@ -232,14 +238,14 @@ def apply_overlay(club, extra):
     courses = {c["key"]: c for c in out["courses"]}
     for key, loop in extra.get("loops", {}).items():
         course = courses[key]
-        corrected = {int(h) for h in loop.get("par", {})}
-        for hole, value in loop.get("par", {}).items():
-            course["holes"][int(hole) - 1]["par"] = value
-        if corrected:
-            course["notes"] = [n for n in course.get("notes", []) if not any(n.startswith("Hole %d " % h) for h in corrected)]
+        if isinstance(loop.get("par"), list):
+            for hole, value in zip(course["holes"], loop["par"]):
+                hole["par"] = value
+            course["notes"] = drop_notes(course.get("notes", []), par=True)
         if loop.get("index"):
             for hole, value in zip(course["holes"], loop["index"]):
                 hole["index"] = value
+            course["notes"] = drop_notes(course.get("notes", []), index=True)
         if loop.get("tees"):
             course["tees"] = [dict(t) for t in loop["tees"]]
     if extra.get("combos"):

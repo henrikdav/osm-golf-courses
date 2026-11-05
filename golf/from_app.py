@@ -9,8 +9,9 @@ index is kept as the scorecard prints it), two for 9 + 9 holes played as 18 (eac
 index: the nine with the odd indexes ranks by (index + 1) / 2, the other by index / 2, and the pair is written as a
 combination). --new adds a course OSM doesn't have yet, by that name, with the one key given.
 
-The file is written to clubs/<club>.json, added to what is there (other loops and combinations kept). Par that
-differs from OSM is written as a correction saying what OSM had. What it did and what looks odd (a tee whose
+The file is written to clubs/<club>.json, added to what is there (other loops and combinations kept). The par is
+the card's own, on every hole, from the app course; it is never taken from OSM, so a hole with no par in the app
+course stops the file. What it did and what looks odd (a tee whose
 lengths are missing on some holes, an index that doesn't follow the odd/even rule) is printed, and nothing is
 written when something is wrong: check it, then run golf.clubfiles' check through the weekly build or the tests.
 """
@@ -40,11 +41,7 @@ def app_course(data, course_id):
     holes = []
     for i, key in enumerate(keys):
         record = club.get("holes", {}).get(key, {})
-        par = record.get("par")
-        if par is None and shared and ":" in key:
-            loop, n = key.split(":")
-            osm = next((c for c in shared["courses"] if c["key"] == loop), None)
-            par = osm["holes"][int(n) - 1].get("par") if osm else None
+        par = record.get("par")   # the player's own par from the card; never OSM's (None when there is none)
         lengths = {t["name"]: (record.get("tees", {}).get(t["name"]) or {}).get("length") for t in course["tees"]}
         holes.append({"par": par, "index": index[i] if i < len(index) else None, "lengths": lengths})
     return holes
@@ -60,14 +57,10 @@ def loop_from(holes, osm_course, key, new_name=None, alone=True, lengths_only=Fa
     elif new_name:
         loop["new"] = {"name": new_name, "par": pars}
     else:
-        osm_pars = [h.get("par") for h in osm_course["holes"]]
-        diff = {str(i + 1): p for i, (p, o) in enumerate(zip(pars, osm_pars)) if p is not None and p != o}
-        if diff:
-            loop["par"] = diff
-            had = sorted({str(osm_pars[int(h) - 1]) for h in diff})
-            loop["why"] = ("OSM has no par on these holes" if had == ["None"] else
-                           "OSM has other par on holes %s than the scorecard" % ", ".join(diff))
-            notes.append("%s: par from the scorecard on holes %s (OSM had %s)" % (key, ", ".join(diff), ", ".join(had)))
+        loop["par"] = pars   # a full list, the card's own; None where the app course has none (check() refuses the file)
+        missing = [str(i + 1) for i, p in enumerate(pars) if p is None]
+        if missing:
+            notes.append("%s: no par on hole %s in the app course; the club file needs the card's par on every hole" % (key, ", ".join(missing)))
     index = [h["index"] for h in holes]
     if alone and not lengths_only and all(isinstance(i, int) for i in index):
         loop["index"] = index
@@ -102,6 +95,8 @@ def main():
     parser.add_argument("--holes", type=int, help="only the first this many holes (a 12-hole course entered as 18)")
     parser.add_argument("--by", default="", help="who scanned or wrote it down")
     parser.add_argument("--source", default="the club's scorecard, scanned in the Fairly app")
+    parser.add_argument("--par-source", default="the club's printed scorecard, par on every hole, entered or scanned in the Fairly app",
+                        help="where the par comes from (written as source.par)")
     parser.add_argument("--clubs", default="clubs")
     args = parser.parse_args()
 
@@ -144,6 +139,7 @@ def main():
         sys.exit("--keys: one course, or two loops for a course of 9 + 9 holes")
     file["source"] = {"what": args.source, "by": args.by,
                       "date": datetime.date.today().isoformat()} if not file.get("source") else file["source"]
+    file["source"].setdefault("par", args.par_source)
     problems = check(file, osm)
     for note in notes:
         print("note:", note)

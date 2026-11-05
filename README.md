@@ -72,7 +72,9 @@ Every pair of loops is offered as a combination until a club's own data says whi
 ### Club files: what OpenStreetMap can't say
 
 A club file (`<club id>.json`) adds what OpenStreetMap has no way to hold (#2): how a club's 9-hole loops are combined,
-the index, lengths per tee, par corrections, and slope and course rating. **The club files are not in this repository
+the par on every hole, the index, lengths per tee, and slope and course rating. The par in a club file is the club's
+own, from its printed scorecard, on every hole of every loop; it is never taken from OSM and is not a correction of
+OSM's (a file without it is refused). **The club files are not in this repository
 and not in the published files.** They are separate data, kept privately by the app that uses them, apart from the OSM
 database (OpenStreetMap's licence, ODbL, covers the OSM data and what is derived from it, not data that sits beside it).
 This repository holds the OSM data, the code, the format and the checks; the files are joined to the OSM data by club id
@@ -96,8 +98,7 @@ The code (all in `golf/`):
 
 A combination's index comes from its loops' rankings: one loop takes the odd indexes (2 × rank − 1), the other the
 even ones. Which loop is odd is in the file (the first nine at Malmö Burlöv; the harder loop at some clubs). A file with
-a problem (a ranking that isn't 1–9 once each, lengths that don't fit, a loop OSM doesn't have, a par correction
-without why) is left out of the overlay and the tool says why.
+a problem (a ranking that isn't 1–9 once each, lengths that don't fit, a loop OSM doesn't have, a loop without the club's par on every hole) is left out of the overlay and the tool says why.
 
 ## What the data has: the report
 
