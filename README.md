@@ -71,28 +71,33 @@ Every pair of loops is offered as a combination until a club's own data says whi
 
 ### Club files: what OpenStreetMap can't say
 
-`clubs/<club id>.json`, written by hand from the club's own scorecard or slope tables (never copied from other apps'
-or sites' databases), adds what OpenStreetMap has no way to hold (#2). `build.py --clubs <folder>` checks each file against the
-club's OSM data and merges it as additions, which an older reader skips.
-The weekly publishing gives no folder: the published files hold only what OpenStreetMap has (with stable ids). Club
-files are separate data, kept apart from the OSM database and joined to it by club id and course key where they are
-used:
+A club file (`<club id>.json`) adds what OpenStreetMap has no way to hold (#2): how a club's 9-hole loops are combined,
+the index, lengths per tee, par corrections, and slope and course rating. **The club files are not in this repository
+and not in the published files.** They are separate data, kept privately by the app that uses them, apart from the OSM
+database (OpenStreetMap's licence, ODbL, covers the OSM data and what is derived from it, not data that sits beside it).
+This repository holds the OSM data, the code, the format and the checks; the files are joined to the OSM data by club id
+and course key where they are used. **Club data is never put into the files published here**: no `clubFile`, index, tees or
+slope in `v2/sweden.json`, and `build.py` merges club files only when given `--clubs`, which the weekly run does not.
 
-```jsonc
-"courses": [{ "key": "19-27", …,
-  "holes": [{ "n": 2, "par": 4, "index": 7, … }],      // par corrected; a loop's index is its ranking 1–9
-  "tees": [{ "name": "48", "lengths": [290, 250, …] }] // metres per hole
-}],
-"combos": [{ "key": "19-27+1-9", "name": "19–09", "loops": ["19-27", "1-9"],
-             "index": [5, 13, 3, …, 16, 14] }],          // only the combinations the club plays, with their index
-"clubFile": { "what": "…", "by": "…", "date": "2026-11-03" }   // where the club file's data came from
-```
+Where a club file's data comes from: the best source is the club itself (its scorecard, slope tables or slope
+calculator), and openly published data is fine too. Keep to what is lawful: nothing is taken from a source whose terms
+forbid it, and requests follow the site's `robots.txt`. Each file says where its data came from and how it was checked
+(`source`), and later players' corrections can come in the same way, after review.
+
+The code (all in `golf/`):
+
+- `golf.clubfiles` checks a file against a club's OSM data and makes an **overlay**, only what the file adds:
+  `python3 -m golf.clubfiles --overlay <folder of club files> <a format-2 file> <out>`. The app joins an overlay to a
+  club's data when it opens (`apply_overlay` is the same join). `build.py --clubs <folder>` merges the files into a
+  format-2 file the old way, for trying one locally; the published files are made without.
+- `golf.slope` reads a club's slope tables from its own site (`--club`), and finds out which clubs' sites have tables or
+  the Swedish Golf Federation's calculator (`--all`, nothing read or written).
+- `golf.from_app` makes a club file from a course scanned in the app.
 
 A combination's index comes from its loops' rankings: one loop takes the odd indexes (2 × rank − 1), the other the
-even ones. Which loop is odd is in the file (the first nine at Malmö Burlöv; the harder loop at some clubs).
-A file with a problem (a ranking that isn't 1–9 once each, lengths that don't fit, a loop OSM doesn't have, a par
-correction without why) is left out and the run says why. To try a club file in an app before the weekly run:
-`python3 -m golf.clubfiles <a format-2 file> <out>` merges the club files into a file already made.
+even ones. Which loop is odd is in the file (the first nine at Malmö Burlöv; the harder loop at some clubs). A file with
+a problem (a ranking that isn't 1–9 once each, lengths that don't fit, a loop OSM doesn't have, a par correction
+without why) is left out of the overlay and the tool says why.
 
 ## What the data has: the report
 
