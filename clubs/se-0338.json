@@ -4,7 +4,16 @@
  "source": {
   "what": "Hole index and lengths of tees 48 and 43 from the club's scorecards (1–18, 10–27, 19–09); the rankings follow from them, the same in every combination a loop is in. Combinations as the club's slope tables list them.",
   "by": "Henrik Davidsson",
-  "date": "2026-11-03"
+  "date": "2026-11-03",
+  "slope": {
+   "tables": [
+    "https://www.malmoburlovgk.com/media/4bzc4jny/slopetabeller-18-haalsbanan-damer-3.pdf",
+    "https://www.malmoburlovgk.com/media/hscprguk/slopetabeller-18-haalsbanan-herrar.pdf",
+    "https://www.malmoburlovgk.com/media/nhtlxna4/slopetabeller-18-haalsbanan-damer-1.pdf",
+    "https://www.malmoburlovgk.com/media/rxcp1zy4/slopetabeller-9-haalsbanan-damer.pdf"
+   ],
+   "read": "2026-11-05"
+  }
  },
  "loops": {
   "1-9": {
@@ -147,5 +156,283 @@
    "odd": "19-27"
   }
  ],
- "onlyTheseCombos": true
+ "onlyTheseCombos": true,
+ "slope": {
+  "1-9+10-18": {
+   "men": {
+    "par": 71,
+    "rated": "2017-09-19",
+    "tees": {
+     "61": {
+      "cr": 71.8,
+      "slope": 136
+     },
+     "57": {
+      "cr": 70.3,
+      "slope": 133
+     },
+     "53": {
+      "cr": 67.8,
+      "slope": 130
+     },
+     "48": {
+      "cr": 66.1,
+      "slope": 124
+     }
+    }
+   },
+   "women": {
+    "par": 71,
+    "rated": "2017-09-19",
+    "tees": {
+     "57": {
+      "cr": 76.3,
+      "slope": 141
+     },
+     "53": {
+      "cr": 73.5,
+      "slope": 135
+     },
+     "48": {
+      "cr": 71.1,
+      "slope": 130
+     },
+     "43": {
+      "cr": 67.6,
+      "slope": 123
+     }
+    }
+   }
+  },
+  "10-18+19-27": {
+   "men": {
+    "par": 72,
+    "rated": "2019-04-12",
+    "tees": {
+     "61": {
+      "cr": 72.9,
+      "slope": 137
+     },
+     "57": {
+      "cr": 70.4,
+      "slope": 132
+     },
+     "53": {
+      "cr": 68.6,
+      "slope": 129
+     },
+     "48": {
+      "cr": 65.9,
+      "slope": 123
+     }
+    }
+   },
+   "women": {
+    "par": 72,
+    "rated": "2019-04-12",
+    "tees": {
+     "57": {
+      "cr": 76.8,
+      "slope": 140
+     },
+     "53": {
+      "cr": 74.6,
+      "slope": 136
+     },
+     "48": {
+      "cr": 71.2,
+      "slope": 128
+     },
+     "43": {
+      "cr": 67.4,
+      "slope": 121
+     }
+    }
+   }
+  },
+  "19-27+1-9": {
+   "men": {
+    "par": 71,
+    "rated": "2019-04-12",
+    "tees": {
+     "61": {
+      "cr": 72.1,
+      "slope": 132
+     },
+     "57": {
+      "cr": 69.7,
+      "slope": 127
+     },
+     "53": {
+      "cr": 68.6,
+      "slope": 124
+     },
+     "48": {
+      "cr": 65.4,
+      "slope": 118
+     }
+    }
+   },
+   "women": {
+    "par": 71,
+    "rated": "2019-04-12",
+    "tees": {
+     "57": {
+      "cr": 75.7,
+      "slope": 135
+     },
+     "53": {
+      "cr": 74.2,
+      "slope": 130
+     },
+     "48": {
+      "cr": 70.5,
+      "slope": 122
+     },
+     "43": {
+      "cr": 67.1,
+      "slope": 114
+     }
+    }
+   }
+  },
+  "1-9": {
+   "men": {
+    "par": 70,
+    "rated": "2015-05-06",
+    "tees": {
+     "61": {
+      "cr": 70.9,
+      "slope": 129
+     },
+     "57": {
+      "cr": 69.4,
+      "slope": 126
+     },
+     "53": {
+      "cr": 67.8,
+      "slope": 123
+     },
+     "48": {
+      "cr": 65.5,
+      "slope": 118
+     }
+    }
+   },
+   "women": {
+    "par": 70,
+    "rated": "2015-05-06",
+    "tees": {
+     "57": {
+      "cr": 75.2,
+      "slope": 133
+     },
+     "53": {
+      "cr": 73.2,
+      "slope": 128
+     },
+     "48": {
+      "cr": 70.4,
+      "slope": 123
+     },
+     "43": {
+      "cr": 67.2,
+      "slope": 117
+     }
+    }
+   }
+  },
+  "10-18": {
+   "men": {
+    "par": 72,
+    "rated": "2017-09-19",
+    "tees": {
+     "61": {
+      "cr": 72.4,
+      "slope": 142
+     },
+     "57": {
+      "cr": 70.9,
+      "slope": 138
+     },
+     "53": {
+      "cr": 68.0,
+      "slope": 132
+     },
+     "48": {
+      "cr": 66.4,
+      "slope": 128
+     }
+    }
+   },
+   "women": {
+    "par": 72,
+    "rated": "2017-09-19",
+    "tees": {
+     "57": {
+      "cr": 77.3,
+      "slope": 149
+     },
+     "53": {
+      "cr": 73.8,
+      "slope": 142
+     },
+     "48": {
+      "cr": 71.8,
+      "slope": 137
+     },
+     "43": {
+      "cr": 67.9,
+      "slope": 128
+     }
+    }
+   }
+  },
+  "19-27": {
+   "men": {
+    "par": 72,
+    "rated": "2019-04-12",
+    "tees": {
+     "61": {
+      "cr": 73.3,
+      "slope": 133
+     },
+     "57": {
+      "cr": 69.9,
+      "slope": 127
+     },
+     "53": {
+      "cr": 69.2,
+      "slope": 125
+     },
+     "48": {
+      "cr": 65.3,
+      "slope": 118
+     }
+    }
+   },
+   "women": {
+    "par": 72,
+    "rated": "2019-04-12",
+    "tees": {
+     "57": {
+      "cr": 76.2,
+      "slope": 133
+     },
+     "53": {
+      "cr": 75.3,
+      "slope": 131
+     },
+     "48": {
+      "cr": 70.6,
+      "slope": 120
+     },
+     "43": {
+      "cr": 66.9,
+      "slope": 113
+     }
+    }
+   }
+  }
+ }
 }

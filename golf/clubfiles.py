@@ -8,7 +8,9 @@ One file per club, clubs/<club id>.json, keyed by the club's stable id (format 2
   plays these only and the others OSM gives are dropped; else they are kept;
 - source: where it came from (the club's scorecard or slope tables, who wrote it down, when, and what was checked
   against the printed card since);
-- slope: room for course and slope rating per tee and combination, filled in later.
+- slope: course and slope rating per course or combination key, for men and women, from the club's slope tables
+  (golf/slope.py): { key: { "men" | "women": { par, rated, tees: { name: { cr, slope } } } } }. A table is always
+  for an 18-hole round, also on a shorter course (played to 18 holes).
 
 The weekly run merges the files into format 2, as additions an older reader skips:
 - a loop's holes get their par corrected and, as their index, the scorecard's index, else the loop's ranking (OSM's
@@ -17,6 +19,7 @@ The weekly run merges the files into format 2, as additions an older reader skip
 - a loop gets "tees": [{"name", "lengths": [m per hole]}];
 - each combination of the file gets "index": the 18 indexes (the odd loop's holes 2 × rank − 1, the other's
   2 × rank), and is added if OSM didn't pair those loops;
+- a course or combination gets "slope": { "men" | "women": { par, rated, tees: [{name, cr, slope}] } };
 - the club gets "clubFile": the file's source.
 
 check() says what is wrong with a file against the club's OSM data; a file with problems is not merged.
@@ -97,6 +100,26 @@ def check(file, club):
             problems.append("combination %s: odd must be one of its loops" % "+".join(loops))
         elif any(file["loops"][k].get("ranking") is None for k in loops):
             problems.append("combination %s: both loops need a ranking" % "+".join(loops))
+    if file.get("onlyTheseCombos"):
+        combos = {"+".join(c.get("loops", [])) for c in file.get("combos", [])}
+    else:
+        combos = {c["key"] for c in club.get("combos", [])} | {"+".join(c.get("loops", [])) for c in file.get("combos", [])}
+    for key, genders in file.get("slope", {}).items():
+        if key not in known and key not in combos:
+            problems.append("slope %s: no such course or combination" % key)
+            continue
+        for gender, table in genders.items():
+            what = "slope %s %s" % (key, gender)
+            if gender not in ("men", "women"):
+                problems.append("%s: men or women" % what)
+            elif not isinstance(table.get("par"), int) or not table.get("tees"):
+                problems.append("%s: its par and tees" % what)
+            else:
+                for tee, value in table["tees"].items():
+                    if not 50 <= value.get("cr", 0) <= 80 or not 55 <= value.get("slope", 0) <= 155:
+                        problems.append("%s, tee %s: course rating 50–80 and slope 55–155" % (what, tee))
+    if file.get("slope") and not (file.get("source") or {}).get("slope"):
+        problems.append("slope: the tables it was read from, under source")
     return problems
 
 
@@ -144,6 +167,12 @@ def merge(club, file):
                                                                            courses[second].get("name") or second),
                            "loops": [first, second], "index": index})
         out["combos"] = combos
+    combos = {c["key"]: c for c in out.get("combos", [])}
+    for key, genders in file.get("slope", {}).items():
+        target = courses.get(key) or combos[key]
+        target["slope"] = {gender: {"par": t["par"], "rated": t.get("rated"),
+                                    "tees": [{"name": name, "cr": v["cr"], "slope": v["slope"]} for name, v in t["tees"].items()]}
+                           for gender, t in genders.items()}
     out["clubFile"] = file["source"]
     return out
 

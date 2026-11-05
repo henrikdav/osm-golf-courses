@@ -106,6 +106,28 @@ class Merge(unittest.TestCase):
         self.assertEqual(self.out["clubFile"]["what"], "the club's scorecard")
 
 
+class Slope(unittest.TestCase):
+    TABLE = {"par": 71, "rated": "2017-09-19", "tees": {"61": {"cr": 71.8, "slope": 136}, "48": {"cr": 66.1, "slope": 124}}}
+
+    def file(self, slope):
+        return dict(FILE, slope=slope, source=dict(FILE["source"], slope={"tables": ["x.pdf"], "read": "2026-11-05"}))
+
+    def test_on_a_combination_and_a_loop(self):
+        out = merge(CLUB, self.file({"1-9+10-18": {"men": self.TABLE}, "1-9": {"women": dict(self.TABLE, par=70)}}))
+        combo = next(c for c in out["combos"] if c["key"] == "1-9+10-18")
+        self.assertEqual(combo["slope"]["men"]["tees"][0], {"name": "61", "cr": 71.8, "slope": 136})
+        self.assertEqual(out["courses"][0]["slope"]["women"]["par"], 70)
+
+    def test_checked(self):
+        self.assertEqual(check(self.file({"1-9+10-18": {"men": self.TABLE}}), CLUB), [])
+        bad = {"10-18+1-9": {"men": self.TABLE},   # not among onlyTheseCombos
+               "1-9": {"juniors": self.TABLE, "men": dict(self.TABLE, tees={"61": {"cr": 7.18, "slope": 136}})}}
+        problems = check(self.file(bad), CLUB)
+        for words in ("10-18+1-9: no such course", "1-9 juniors: men or women", "tee 61: course rating"):
+            self.assertTrue(any(words in p for p in problems), (words, problems))
+        self.assertTrue(any("under source" in p for p in check(dict(FILE, slope={"1-9": {"men": self.TABLE}}), CLUB)))
+
+
 class Apply(unittest.TestCase):
     def test_merged_where_there_is_a_file_and_it_is_good(self):
         clubs, flags = apply([copy.deepcopy(CLUB)], {"se-1": FILE})
