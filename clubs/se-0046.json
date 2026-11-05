@@ -5,7 +5,14 @@
   "what": "the club's scorecard, scanned in the Fairly app",
   "by": "Henrik Davidsson",
   "date": "2026-11-04",
-  "checked": "Gamla Banan's lengths checked against the club's printed scorecard by Henrik Davidsson (tees 50 and 61 total 4 757 and 5 950 m, though named otherwise). Both courses' index equals OSM's."
+  "checked": "Gamla Banan's lengths checked against the club's printed scorecard by Henrik Davidsson (tees 50 and 61 total 4 757 and 5 950 m, though named otherwise). Both courses' index equals OSM's.",
+  "slope": {
+   "tables": [
+    "https://media.bokskogen.com/2020/04/BOKSKOGENS_GK_Gamla_Banan_Men.pdf",
+    "https://media.bokskogen.com/2020/04/BOKSKOGENS_GK_Gamla_Banan_Women.pdf"
+   ],
+   "read": "2026-11-05"
+  }
  },
  "loops": {
   "gamla-banan": {
@@ -298,6 +305,62 @@
      253,
      436
     ]
+   }
+  }
+ },
+ "slope": {
+  "gamla-banan": {
+   "men": {
+    "par": 71,
+    "rated": "2013-10-10",
+    "tees": {
+     "65": {
+      "cr": 74.8,
+      "slope": 139
+     },
+     "61": {
+      "cr": 72.4,
+      "slope": 135
+     },
+     "58": {
+      "cr": 71.5,
+      "slope": 131
+     },
+     "55": {
+      "cr": 70.2,
+      "slope": 129
+     },
+     "52": {
+      "cr": 68.4,
+      "slope": 125
+     }
+    }
+   },
+   "women": {
+    "par": 71,
+    "rated": "2013-10-10",
+    "tees": {
+     "61": {
+      "cr": 78.7,
+      "slope": 142
+     },
+     "58": {
+      "cr": 77.4,
+      "slope": 139
+     },
+     "55": {
+      "cr": 75.8,
+      "slope": 136
+     },
+     "52": {
+      "cr": 73.7,
+      "slope": 131
+     },
+     "50": {
+      "cr": 72.2,
+      "slope": 128
+     }
+    }
    }
   }
  }

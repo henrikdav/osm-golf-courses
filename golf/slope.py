@@ -29,6 +29,8 @@ import tempfile
 import unicodedata
 from urllib.parse import urljoin, urlparse
 
+from golf import clubfiles
+
 AGENT = "osm-golf-courses slope reader (+https://github.com/henrikdav/osm-golf-courses)"
 PAGE_WORDS = ("bana", "banan", "spela", "slope", "course", "scorekort", "banguide", "golfbana", "banor", "tee")
 HEADER = re.compile(r"^(?:(?P<course>.+?)\s*·\s*)?(?P<gender>Herrar|Damer|Men|Women|Herr|Dam)\s*·\s*Par\s*(?P<par>\d+)\s*$", re.I)
@@ -235,6 +237,12 @@ def main():
     club = next((c for c in json.load(open(args.osm))["clubs"] if c["id"] == args.club), None)
     if not club:
         sys.exit("no club %s in %s" % (args.club, args.osm))
+    own = os.path.join(args.clubs, args.club + ".json")
+    if os.path.exists(own):   # its par corrections and combinations count, as they will once merged
+        with open(own) as f:
+            own_file = json.load(f)
+        if not clubfiles.check(dict(own_file, slope={}), club):
+            club = clubfiles.merge(club, own_file)
     pdfs, problem = args.pdf or [], None
     if not pdfs:
         site = args.site
