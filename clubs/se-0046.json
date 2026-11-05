@@ -9,7 +9,9 @@
   "slope": {
    "tables": [
     "https://media.bokskogen.com/2020/04/BOKSKOGENS_GK_Gamla_Banan_Men.pdf",
-    "https://media.bokskogen.com/2020/04/BOKSKOGENS_GK_Gamla_Banan_Women.pdf"
+    "https://media.bokskogen.com/2020/04/BOKSKOGENS_GK_Gamla_Banan_Women.pdf",
+    "https://media.bokskogen.com/2020/04/BOKSKOGENS_GK_Kungsbanan_Men_40-55.pdf",
+    "https://media.bokskogen.com/2020/04/BOKSKOGENS_GK_Kungsbanan_Women2020.pdf"
    ],
    "read": "2026-11-05"
   }
@@ -359,6 +361,44 @@
      "50": {
       "cr": 72.2,
       "slope": 128
+     }
+    }
+   }
+  },
+  "kungsbanan": {
+   "men": {
+    "par": 71,
+    "rated": "2013-05-16",
+    "tees": {
+     "55": {
+      "cr": 70.1,
+      "slope": 131
+     },
+     "46": {
+      "cr": 66.0,
+      "slope": 123
+     },
+     "40": {
+      "cr": 62.3,
+      "slope": 117
+     }
+    }
+   },
+   "women": {
+    "par": 71,
+    "rated": "2013-05-16",
+    "tees": {
+     "55": {
+      "cr": 75.6,
+      "slope": 137
+     },
+     "46": {
+      "cr": 70.6,
+      "slope": 126
+     },
+     "40": {
+      "cr": 67.1,
+      "slope": 119
      }
     }
    }

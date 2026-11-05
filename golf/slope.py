@@ -293,9 +293,11 @@ def main():
     if args.write and result and not problems:
         path = os.path.join(args.clubs, args.club + ".json")
         file = json.load(open(path)) if os.path.exists(path) else {"id": args.club, "name": club["name"], "loops": {}}
-        file["slope"] = result
-        file.setdefault("source", {})["slope"] = {"tables": sorted({t["pdf"] for t in tables if match(t, club)}),
-                                                  "read": datetime.date.today().isoformat()}
+        for key, genders in result.items():   # added to what the file has: one run may read one course's tables
+            file.setdefault("slope", {}).setdefault(key, {}).update(genders)
+        known = file.setdefault("source", {}).get("slope", {}).get("tables", [])
+        file["source"]["slope"] = {"tables": sorted(set(known) | {t["pdf"] for t in tables if match(t, club)}),
+                                   "read": datetime.date.today().isoformat()}
         with open(path, "w") as f:
             json.dump(file, f, ensure_ascii=False, indent=1)
             f.write("\n")
