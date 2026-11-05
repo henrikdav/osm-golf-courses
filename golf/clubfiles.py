@@ -182,7 +182,7 @@ def overlay(file):
     """What a club file adds, as a separate piece of data to be joined to the club's OSM data by club id and course key
     where it is used, instead of being mixed into the OSM data (the OSM database stays apart from ours, ODbL).
 
-    { "loops": { key: { new?: { name, par }, par?: { hole: par }, index?: [..], tees?: { name: [lengths] } } },
+    { "loops": { key: { new?: { name, par }, par?: { hole: par }, index?: [..], tees?: [{ name, lengths }] } },
       "combos": [{ key, loops: [a, b], index: [18] }], "onlyTheseCombos"?: true,
       "slope": { key: { men|women: { par, rated, tees: [{ name, cr, slope }] } } }, "clubFile": source }
     apply_overlay(club, overlay(file)) gives what merge(club, file) gives."""
@@ -196,7 +196,7 @@ def overlay(file):
         if loop.get("index") or loop.get("ranking"):
             item["index"] = loop.get("index") or loop["ranking"]
         if loop.get("tees"):
-            item["tees"] = loop["tees"]
+            item["tees"] = [{"name": name, "lengths": lengths} for name, lengths in loop["tees"].items()]   # in order
         if item:
             out["loops"][key] = item
     if file.get("combos"):
@@ -215,7 +215,7 @@ def overlay(file):
             gender: {"par": t["par"], "rated": t.get("rated"),
                      "tees": [{"name": name, "cr": v["cr"], "slope": v["slope"]} for name, v in t["tees"].items()]}
             for gender, t in genders.items()}
-    out["clubFile"] = file["source"]
+    out["clubFile"] = {k: v for k, v in file["source"].items() if isinstance(v, str)}   # where it came from, as text
     return out
 
 
@@ -241,7 +241,7 @@ def apply_overlay(club, extra):
             for hole, value in zip(course["holes"], loop["index"]):
                 hole["index"] = value
         if loop.get("tees"):
-            course["tees"] = [{"name": name, "lengths": lengths} for name, lengths in loop["tees"].items()]
+            course["tees"] = [dict(t) for t in loop["tees"]]
     if extra.get("combos"):
         names = {c["key"]: c["name"] for c in out.get("combos", [])}
         made = {c["key"] for c in extra["combos"]}

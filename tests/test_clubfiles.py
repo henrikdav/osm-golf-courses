@@ -61,6 +61,7 @@ class Overlay(unittest.TestCase):
         self.assertEqual(extra["loops"]["19-27"]["par"], {"2": 4, "6": 5})
         self.assertEqual(extra["combos"][0]["key"], "1-9+10-18")
         self.assertEqual(extra["clubFile"], FILE["source"])
+        self.assertEqual(extra["loops"]["1-9"]["tees"], [{"name": "48", "lengths": [300, 395, 290, 115, 245, 120, 295, 295, 295]}])
 
     def test_a_file_that_does_not_check_out_is_left_out_and_said(self):
         bad = dict(FILE, source=None)
