@@ -21,7 +21,12 @@ import math
 import re
 
 FORMAT = 1
-ATTRIBUTION = "© OpenStreetMap contributors, ODbL 1.0 (https://www.openstreetmap.org/copyright)"
+ATTRIBUTION = ("© OpenStreetMap contributors. Available under the Open Database Licence 1.0 "
+               "(https://opendatacommons.org/licenses/odbl/1-0/); see https://www.openstreetmap.org/copyright")
+# What the data is, so a copy of a file says where it comes from and under what licence (ODbL 4.2 and 4.6).
+SOURCE = {"data": "OpenStreetMap, through the Overpass API", "licence": "ODbL 1.0",
+          "licenceUrl": "https://opendatacommons.org/licenses/odbl/1-0/", "copyrightUrl": "https://www.openstreetmap.org/copyright",
+          "method": "https://github.com/henrikdav/osm-golf-courses"}
 
 # Lengths along the line, back tee to pin, that are plausible for each par. Outside them the hole is likely
 # mapped wrong (e.g. Malmö Burlöv's Black Course: a par 5 of 309 m).
@@ -322,6 +327,8 @@ def clean(outlines, holes, greens):
     return result, counts
 
 
-def country_file(code, name, clubs, counts, made):
+def country_file(code, name, clubs, counts, made, osm_base=None):
+    """osm_base: when OpenStreetMap's data the answers were made from was current (Overpass's timestamp_osm_base), if known."""
+    source = dict(SOURCE, **({"osmBase": osm_base} if osm_base else {}))
     return {"format": FORMAT, "country": code, "name": name, "made": made, "attribution": ATTRIBUTION,
-            "counts": counts, "clubs": clubs}
+            "source": source, "counts": counts, "clubs": clubs}

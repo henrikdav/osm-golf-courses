@@ -62,7 +62,10 @@ def compare(site, base):
             if before and now < DROP * before:
                 print("%s: %s fell from %d to %d; not publishing" % (c["code"], key, before, now))
                 ok = False
-        same = old.get("format") == new.get("format") and old["clubs"] == new["clubs"]
+        # The notice counts as a change too (what the file says about its licence and source), though not when the data was
+        # current (osmBase), which changes every week.
+        notice = lambda f: (f.get("attribution"), {k: v for k, v in (f.get("source") or {}).items() if k != "osmBase"})
+        same = old.get("format") == new.get("format") and old["clubs"] == new["clubs"] and notice(old) == notice(new)
         print("%s%s: %s" % (c["code"], " (format %s)" % new.get("format"), "unchanged" if same else "changed"))
         changed = changed or not same
     return changed, ok
