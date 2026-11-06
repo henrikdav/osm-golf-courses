@@ -1,22 +1,20 @@
-"""Builds the published files: one per country, plus countries.json listing them, plus a small index page; and the
-same in format 2 under v2/ (stable club ids and course keys, golf/ids.py), carried week to week in registry/.
+"""Builds the published files, under site/v3/: one per country (clubs, courses, holes with their number and line, greens;
+stable club ids and course keys from golf/ids.py, carried week to week in registry/), countries.json listing them and the
+report of what is mapped; and a small index page. Geography only: no par, hole index or other golf data.
 
     python3 build.py --fetch          # fetch every country from Overpass, then clean and write site/
     python3 build.py                  # clean what is already in raw/ (no network)
 """
 import argparse
-import copy
 import datetime
 import json
 import os
 
-from golf import clubfiles, report
-from golf.clean import ATTRIBUTION, FORMAT, clean, country_file
+from golf import report
+from golf.clean import ATTRIBUTION, FORMAT, SOURCE, clean, country_file
 from golf.countries import COUNTRIES
 from golf.fetch import fetch
-from golf.ids import assign, format2
-
-FORMAT_2 = 2
+from golf.ids import assign, with_ids
 
 
 def load(path):
@@ -38,25 +36,32 @@ def osm_base(raw_dir):
     return min(stamps) if len(stamps) == 4 else None
 
 
-def build(raw_root, out, do_fetch, registry_root="registry", clubs_root=None, reports_root="reports"):
-    """clubs_root: a folder of club files to merge in. Left out, the published files hold only what OpenStreetMap has
-    (with the stable ids): the club files are separate data, kept apart from the OSM database and joined to it by club id
-    and course key where they are used, never mixed into the published files."""
-    os.makedirs(out, exist_ok=True)
-    os.makedirs(os.path.join(out, "v2"), exist_ok=True)
+def build(raw_root, out, do_fetch, registry_root="registry", reports_root="reports"):
+    """The published files, under out/v3/: per country one file of geography (clubs, courses, holes with their number and
+    line, greens, with the stable ids from the register, which is kept for next week), the list of them, and the report of
+    what is mapped. Golf data (par, hole index, tees, slope) is not in them, and nothing of any club's own is merged in."""
+    folder = os.path.join(out, "v3")
+    os.makedirs(folder, exist_ok=True)
     os.makedirs(registry_root, exist_ok=True)
-    listed_2 = []
-    reports, histories = [], {}
+    reports, histories, listed = [], {}, []
     made = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    listed = []
     for code, name, filename in COUNTRIES:
         raw = os.path.join(raw_root, code)
         if do_fetch:
             fetch(code, raw)
         outlines = load(os.path.join(raw, "outlines.json")) + load(os.path.join(raw, "relations.json"))
         clubs, counts = clean(outlines, load(os.path.join(raw, "holes.json")), load(os.path.join(raw, "greens.json")))
-        data = country_file(code, name, clubs, counts, made, osm_base(raw))
-        path = os.path.join(out, filename)
+        register_path = os.path.join(registry_root, code + ".json")
+        register = load_register(register_path)
+        register, flags = assign(code, clubs, register)
+        with open(register_path, "w") as f:
+            json.dump(register, f, ensure_ascii=False, indent=1, sort_keys=True)
+            f.write("\n")
+        for flag in flags:
+            print("%s: %s" % (code, flag), flush=True)
+        stable = [with_ids(c) for c in clubs]
+        data = country_file(code, name, stable, counts, made, osm_base(raw))
+        path = os.path.join(folder, filename)
         with open(path, "w") as f:
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
         size = os.path.getsize(path)
@@ -64,50 +69,28 @@ def build(raw_root, out, do_fetch, registry_root="registry", clubs_root=None, re
                        "clubs": counts["clubs"], "clubsWithCompleteCourse": counts["clubsWithCompleteCourse"]})
         print("%s: %s, %d kB" % (code, json.dumps(counts), round(size / 1000)), flush=True)
 
-        # Format 2: the same clubs with stable ids and keys from the register, which is kept for next week.
-        register_path = os.path.join(registry_root, code + ".json")
-        register = load_register(register_path)
-        clubs_2 = copy.deepcopy(clubs)
-        register, flags = assign(code, clubs_2, register)
-        with open(register_path, "w") as f:
-            json.dump(register, f, ensure_ascii=False, indent=1, sort_keys=True)
-            f.write("\n")
-        for flag in flags:
-            print("%s: %s" % (code, flag), flush=True)
-        # The club files (#2) are merged in only when a folder is given; the weekly publishing gives none.
-        merged, club_flags = [format2(c) for c in clubs_2], []
-        if clubs_root:
-            merged, club_flags = clubfiles.apply(merged, clubfiles.load(clubs_root))
-        for flag in club_flags:
-            print("%s: %s" % (code, flag), flush=True)
-        data_2 = dict(country_file(code, name, merged, counts, made, osm_base(raw)), format=FORMAT_2)
-        path_2 = os.path.join(out, "v2", filename)
-        with open(path_2, "w") as f:
-            json.dump(data_2, f, ensure_ascii=False, separators=(",", ":"))
-        listed_2.append(dict(listed[-1], bytes=os.path.getsize(path_2)))
-
-        # What the data has and lacks, club by club, and the week's totals added to the country's history.
-        rep = report.report(code, merged, made)
-        with open(os.path.join(out, "v2", "report-" + filename), "w") as f:
+        # What is mapped and what is not, club by club, and the week's totals added to the country's history.
+        rep = report.report(code, stable, made)
+        with open(os.path.join(folder, "report-" + filename), "w") as f:
             json.dump(rep, f, ensure_ascii=False, separators=(",", ":"))
         histories[code] = report.add_to_history(os.path.join(reports_root, code + ".json"), rep)
         reports.append(rep)
         print("%s report: %s" % (code, json.dumps(rep["totals"])), flush=True)
-    with open(os.path.join(out, "v2", "report.html"), "w") as f:
+    with open(os.path.join(folder, "report.html"), "w") as f:
         f.write(report.page(reports, histories))
-    with open(os.path.join(out, "countries.json"), "w") as f:
-        json.dump({"format": FORMAT, "attribution": ATTRIBUTION, "countries": listed}, f, ensure_ascii=False, indent=1)
-    with open(os.path.join(out, "v2", "countries.json"), "w") as f:
-        json.dump({"format": FORMAT_2, "attribution": ATTRIBUTION, "countries": listed_2}, f, ensure_ascii=False, indent=1)
+    with open(os.path.join(folder, "countries.json"), "w") as f:
+        json.dump({"format": FORMAT, "attribution": ATTRIBUTION, "source": SOURCE, "countries": listed}, f, ensure_ascii=False, indent=1)
     with open(os.path.join(out, "index.html"), "w") as f:
-        rows = "".join('<li><a href="%s">%s</a>: %d clubs, %d with a complete course</li>'
+        rows = "".join('<li><a href="v3/%s">%s</a>: %d clubs, %d with a complete course</li>'
                        % (c["file"], c["name"], c["clubs"], c["clubsWithCompleteCourse"]) for c in listed)
         f.write('<!doctype html><meta charset="utf-8"><title>OSM golf courses</title>'
-                '<h1>Golf courses from OpenStreetMap</h1><p>Clubs, courses and holes, cleaned every week. '
-                'Made %s. <a href="countries.json">countries.json</a> lists the files. '
-                '<a href="v2/report.html">What the data has</a>, club by club.</p><ul>%s</ul>'
+                '<h1>Golf courses from OpenStreetMap</h1><p>Where golf courses are: clubs, courses and holes (their numbers and lines), '
+                'cleaned every week. Geography only; par, hole index and other golf data are not part of it. Made %s. '
+                '<a href="v3/countries.json">countries.json</a> lists the files. '
+                '<a href="v3/report.html">What is mapped</a>, club by club.</p><ul>%s</ul>'
                 '<p>Data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, '
-                'available under the Open Database License (ODbL 1.0). '
+                'available under the Open Database License (ODbL 1.0): <a href="https://opendatacommons.org/licenses/odbl/1-0/">'
+                'opendatacommons.org/licenses/odbl/1-0</a>. '
                 '<a href="https://github.com/henrikdav/osm-golf-courses">How it is made</a>.</p>' % (made, rows))
 
 
@@ -125,7 +108,6 @@ if __name__ == "__main__":
     parser.add_argument("--raw", default="raw", help="where the raw answers are kept")
     parser.add_argument("--out", default="site", help="where the published files are written")
     parser.add_argument("--registry", default="registry", help="where the club ids and course keys are kept")
-    parser.add_argument("--clubs", help="a folder of club files to merge in (the published files are made without)")
     parser.add_argument("--reports", default="reports", help="where each country's weekly totals are kept")
     args = parser.parse_args()
-    build(args.raw, args.out, args.fetch, args.registry, args.clubs, args.reports)
+    build(args.raw, args.out, args.fetch, args.registry, args.reports)

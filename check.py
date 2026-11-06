@@ -34,10 +34,7 @@ def published(url):
 def main(site, base):
     changed = False
     ok = True
-    # Format 1 and format 2 (v2/) are checked alike; either changing publishes both.
-    for folder in ("", "v2"):
-        part_changed, part_ok = compare(os.path.join(site, folder), base.rstrip("/") + ("/" + folder if folder else ""))
-        changed, ok = changed or part_changed, ok and part_ok
+    changed, ok = compare(os.path.join(site, "v3"), base.rstrip("/") + "/v3")
     if "GITHUB_OUTPUT" in os.environ:
         with open(os.environ["GITHUB_OUTPUT"], "a") as f:
             f.write("changed=%s\n" % ("true" if changed and ok else "false"))

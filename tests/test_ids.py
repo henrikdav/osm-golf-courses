@@ -2,7 +2,7 @@
 import copy
 import unittest
 
-from golf.ids import assign, course_key, format2
+from golf.ids import assign, course_key, with_ids
 
 
 def club(osm, name, lat=55.6, lng=13.0, courses=(None,)):
@@ -121,7 +121,7 @@ class Format2(unittest.TestCase):
         c = club("way/1", "Burlöv", courses=("Holes 1–9", "Holes 10–18"))
         c["combos"] = [{"name": "Holes 1–9 + Holes 10–18", "courses": [0, 1]}, {"name": "Holes 10–18 + Holes 1–9", "courses": [1, 0]}]
         assign("SE", [c], {"next": 1, "clubs": {}})
-        out = format2(c)
+        out = with_ids(c)
         self.assertEqual((out["id"], out["osm"]), ("se-0001", "way/1"))
         self.assertEqual(out["combos"], [{"key": "1-9+10-18", "name": "Holes 1–9 + Holes 10–18", "loops": ["1-9", "10-18"]},
                                          {"key": "10-18+1-9", "name": "Holes 10–18 + Holes 1–9", "loops": ["10-18", "1-9"]}])
