@@ -18,10 +18,10 @@ CLUB = {"id": "se-1", "osm": "way/1", "name": "Loops GK",
         "combos": [{"key": "1-9+10-18", "name": "1–18", "loops": ["1-9", "10-18"]},
                    {"key": "10-18+1-9", "name": "10–18 + 1–9", "loops": ["10-18", "1-9"]}]}
 
-FILE = {"id": "se-1", "name": "Loops GK", "source": {"what": "the club's scorecard", "by": "H", "date": "2026-11-03"},
-        "loops": {"1-9": {"ranking": [2, 8, 5, 1, 9, 3, 7, 4, 6], "tees": {"50": [312, 148, 385, 420, 160, 305, 352, 127, 293]}},
-                  "10-18": {"ranking": [6, 1, 8, 3, 5, 9, 2, 7, 4]},
-                  "19-27": {"ranking": [4, 9, 1, 6, 2, 8, 5, 3, 7], "par": {"3": 5, "7": 4}, "why": "swapped in OSM"}},
+FILE = {"id": "se-1", "name": "Loops GK", "source": {"what": "the club's scorecard", "by": "H", "date": "2026-11-03", "par": "the club's printed scorecard"},
+        "loops": {"1-9": {"par": [4, 4, 3, 5, 4, 3, 4, 5, 4], "ranking": [2, 8, 5, 1, 9, 3, 7, 4, 6], "tees": {"50": [312, 148, 385, 420, 160, 305, 352, 127, 293]}},
+                  "10-18": {"par": [3, 4, 5, 4, 4, 3, 5, 4, 4], "ranking": [6, 1, 8, 3, 5, 9, 2, 7, 4]},
+                  "19-27": {"par": [4, 4, 5, 3, 4, 4, 4, 3, 5], "ranking": [4, 9, 1, 6, 2, 8, 5, 3, 7]}},
         "combos": [{"loops": ["1-9", "10-18"], "odd": "1-9"}, {"loops": ["19-27", "1-9"], "odd": "19-27"}],
         "onlyTheseCombos": True}
 
@@ -34,31 +34,45 @@ class Check(unittest.TestCase):
         bad = copy.deepcopy(FILE)
         bad["loops"]["1-9"]["ranking"] = [2, 2, 5, 1, 9, 3, 7, 4, 6]
         bad["loops"]["10-18"]["tees"] = {"50": [300, 395]}
-        bad["loops"]["19-27"].pop("why")
-        bad["loops"]["28-36"] = {"ranking": list(range(1, 10))}
+        bad["loops"]["19-27"]["par"] = {"3": 5, "7": 4}   # corrections to OSM's par are not a par
+        bad["loops"]["10-18"]["par"] = [3, 4, 5]
+        bad["loops"]["28-36"] = {"par": [4] * 9, "ranking": list(range(1, 10))}
         bad["combos"].append({"loops": ["1-9", "10-18"], "odd": "19-27"})
         del bad["source"]
         problems = check(bad, CLUB)
-        for words in ("ranking must hold 1–9", "tee 50: 9 lengths", "says why", "28-36: no such course",
-                      "odd must be one of its loops", "no source"):
+        for words in ("ranking must hold 1–9", "tee 50: 9 lengths", "loop 19-27: par on all 9 holes", "loop 10-18: par on all 9 holes",
+                      "28-36: no such course", "odd must be one of its loops", "no source"):
             self.assertTrue(any(words in p for p in problems), (words, problems))
 
-    def test_a_correction_osm_has_caught_up_with_can_go(self):
-        fixed = copy.deepcopy(CLUB)
-        fixed["courses"][2]["holes"][2]["par"] = 5
-        self.assertTrue(any("OSM has par 5 now" in p for p in check(FILE, fixed)))
+    def test_the_par_is_the_club_s_own_on_every_hole_and_says_where_it_is_from(self):
+        none = copy.deepcopy(FILE)
+        del none["loops"]["1-9"]["par"]
+        self.assertTrue(any("loop 1-9: par on all 9 holes" in p for p in check(none, CLUB)))
+        holes = copy.deepcopy(FILE)
+        holes["loops"]["1-9"]["par"] = [4, 4, None, 5, 4, 3, 4, 5, 4]
+        self.assertTrue(any("loop 1-9: par on all 9 holes" in p for p in check(holes, CLUB)))
+        unsourced = copy.deepcopy(FILE)
+        del unsourced["source"]["par"]
+        self.assertTrue(any("source.par" in p for p in check(unsourced, CLUB)))
 
 
 class Overlay(unittest.TestCase):
     def test_joining_the_overlay_gives_what_merging_the_file_gives(self):
         for file in (FILE, dict(FILE, onlyTheseCombos=False),
                      dict(FILE, slope={"1-9+10-18": {"men": {"par": 70, "rated": None, "tees": {"58": {"cr": 70.2, "slope": 130}}}}})):
-            self.assertEqual(apply_overlay(CLUB, overlay(file)), merge(CLUB, file))
+            self.assertEqual(apply_overlay(CLUB, overlay(file), osm_scoring=True), merge(CLUB, file))
+
+    def test_the_join_never_uses_osm_s_par_or_index(self):
+        only_tees = {"id": "se-1", "name": "x", "source": FILE["source"], "loops": {"1-9": {"par": FILE["loops"]["1-9"]["par"]}}}
+        out = apply_overlay(CLUB, overlay(only_tees))
+        self.assertEqual([h["par"] for h in out["courses"][0]["holes"]], [4, 4, 3, 5, 4, 3, 4, 5, 4])   # the club's
+        self.assertEqual([h["index"] for h in out["courses"][0]["holes"]], [None] * 9)                  # not OSM's [5, 17, 9 …]
+        self.assertTrue(all(h["par"] is None and h["index"] is None for c in out["courses"][1:] for h in c["holes"]))
 
     def test_the_overlay_holds_only_what_the_file_adds(self):
         extra = overlay(FILE)
         self.assertNotIn("holes", str(extra))
-        self.assertEqual(extra["loops"]["19-27"]["par"], {"3": 5, "7": 4})
+        self.assertEqual(extra["loops"]["19-27"]["par"], [4, 4, 5, 3, 4, 4, 4, 3, 5])
         self.assertEqual(extra["combos"][0]["key"], "1-9+10-18")
         self.assertEqual(extra["clubFile"], FILE["source"])
         self.assertEqual(extra["loops"]["1-9"]["tees"], [{"name": "50", "lengths": [312, 148, 385, 420, 160, 305, 352, 127, 293]}])
@@ -67,7 +81,7 @@ class Overlay(unittest.TestCase):
         bad = dict(FILE, source=None)
         data, flags = build_overlay({"se-1": bad, "se-2": FILE}, [CLUB], "2026-11-06T00:00:00Z")
         self.assertEqual(data["clubs"], {})
-        self.assertEqual(len(flags), 2)
+        self.assertTrue(any("no source" in f for f in flags) and any("se-2: no such club" in f for f in flags))
         data, flags = build_overlay({"se-1": FILE}, [CLUB], "2026-11-06T00:00:00Z")
         self.assertEqual((list(data["clubs"]), flags, data["format"]), (["se-1"], [], 1))
 
@@ -79,10 +93,15 @@ class Merge(unittest.TestCase):
     def test_the_club_is_left_as_it_was(self):
         self.assertEqual(CLUB["courses"][2]["holes"][2]["par"], 4)
 
-    def test_par_corrected_and_its_osm_notes_dropped(self):
+    def test_the_club_s_par_on_every_hole_and_osm_s_par_notes_dropped(self):
         holes = self.out["courses"][2]["holes"]
-        self.assertEqual((holes[2]["par"], holes[6]["par"]), (5, 4))
+        self.assertEqual([h["par"] for h in holes], [4, 4, 5, 3, 4, 4, 4, 3, 5])
         self.assertEqual(self.out["courses"][2]["notes"], ["Hole 9 has no green"])
+
+    def test_nothing_of_osm_s_par_is_left(self):
+        own = copy.deepcopy(FILE)
+        own["loops"]["1-9"]["par"] = [5, 4, 3, 5, 4, 3, 4, 5, 3]   # differs from OSM on holes 1 and 9
+        self.assertEqual([h["par"] for h in merge(CLUB, own)["courses"][0]["holes"]], [5, 4, 3, 5, 4, 3, 4, 5, 3])
 
     def test_a_loop_s_index_is_its_ranking(self):
         self.assertEqual([h["index"] for h in self.out["courses"][2]["holes"]], [4, 9, 1, 6, 2, 8, 5, 3, 7])
@@ -113,7 +132,7 @@ class Merge(unittest.TestCase):
         self.assertEqual([h["index"] for h in merge(CLUB, printed)["courses"][0]["holes"]], [4, 16, 10, 2, 18, 6, 14, 8, 12])
 
     def test_a_course_not_on_the_map_is_added_without_positions(self):
-        new = {"id": "se-2", "name": "New GK", "source": {"what": "card"},
+        new = {"id": "se-2", "name": "New GK", "source": {"what": "card", "par": "the card"},
                "loops": {"main": {"new": {"name": "Main", "par": [4, 3, 5]}, "index": [3, 1, 2],
                                   "tees": {"58": [300, 150, 450]}}}}
         club = {"id": "se-2", "osm": "way/2", "name": "New GK", "courses": []}

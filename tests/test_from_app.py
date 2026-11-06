@@ -13,12 +13,18 @@ class LoopFrom(unittest.TestCase):
         loop, notes = loop_from(holes([4, 3, 5], [4, 2, 6], [300, 150, 450]), {"holes": [{"par": 4}, {"par": 3}, {"par": 5}]}, "main")
         self.assertEqual((loop["index"], loop["ranking"]), ([4, 2, 6], [2, 1, 3]))
         self.assertEqual(loop["tees"], {"48": [300, 150, 450], "43": [280, 130, 430]})
-        self.assertNotIn("par", loop)
+        self.assertEqual(loop["par"], [4, 3, 5])
 
-    def test_par_that_differs_from_osm_is_a_correction_saying_so(self):
-        loop, notes = loop_from(holes([4, 3, 5], [1, 2, 3], [300, 150, 450]), {"holes": [{"par": 4}, {"par": None}, {"par": 4}]}, "main")
-        self.assertEqual(loop["par"], {"2": 3, "3": 5})
-        self.assertIn("other par", loop["why"])
+    def test_the_par_is_the_app_course_s_own_never_osm_s(self):
+        loop, notes = loop_from(holes([4, 3, 5], [1, 2, 3], [300, 150, 450]), {"holes": [{"par": 4}, {"par": 4}, {"par": 4}]}, "main")
+        self.assertEqual(loop["par"], [4, 3, 5])
+        self.assertNotIn("why", loop)
+        self.assertEqual(notes, [])
+
+    def test_a_hole_with_no_par_in_the_app_course_is_said_and_not_filled_from_osm(self):
+        loop, notes = loop_from(holes([4, None, 5], [1, 2, 3], [300, 150, 450]), {"holes": [{"par": 4}, {"par": 3}, {"par": 5}]}, "main")
+        self.assertEqual(loop["par"], [4, None, 5])
+        self.assertTrue(any("no par on hole 2" in n for n in notes))
 
     def test_a_tee_with_missing_lengths_is_left_out_and_said(self):
         loop, notes = loop_from(holes([4, 3, 5], [1, 2, 3], [300, None, 450]), {"holes": [{"par": 4}, {"par": 3}, {"par": 5}]}, "main")
