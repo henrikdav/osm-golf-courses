@@ -25,10 +25,9 @@ def summary(c):
 
 
 class OneCourse(unittest.TestCase):
-    def test_vellinge_is_one_course_without_par(self):
+    def test_vellinge_is_one_course(self):
         c = club("vellinge")
         self.assertEqual(summary(c), [(None, 18, True)])
-        self.assertIn("No par", c["courses"][0]["notes"])
         self.assertNotIn("combos", c)
 
     def test_a_hole_runs_from_the_back_tee_to_the_pin(self):
@@ -43,8 +42,7 @@ class ByCourseName(unittest.TestCase):
         c = club("bokskogen")
         self.assertEqual(summary(c), [("Gamla Banan", 18, True), ("Kungsbanan", 18, True)])
         for x in c["courses"]:
-            self.assertTrue(all(h["par"] and h["index"] for h in x["holes"]))
-            self.assertEqual(sorted(h["index"] for h in x["holes"]), list(range(1, 19)))
+            self.assertEqual([h["n"] for h in x["holes"]], list(range(1, 19)))
 
     def test_nine_hole_loops_by_course_name_are_offered_two_by_two(self):
         # Örestad's loops, with their names moved from the hole's name to golf:course:name.
@@ -122,9 +120,12 @@ class RunOf27(unittest.TestCase):
         self.assertEqual([x["name"] for x in c["combos"]],
                          ["1–18", "1–9 + 19–27", "10–18 + 1–9", "10–27", "19–09", "19–27 + 10–18"])
 
-    def test_a_hole_too_long_or_short_for_its_par_is_noted(self):
-        notes = club("malmo-burlov")["courses"][2]["notes"]
-        self.assertIn("Hole 2 is 309 m for par 5", notes)
+    def test_a_hole_has_a_number_and_a_line_and_nothing_of_golf_data(self):
+        # OSM's par and handicap tags are in the fixtures; they are not read, and no note speaks of them
+        for name in ("vellinge", "bokskogen", "malmo-burlov"):
+            c = club(name)
+            self.assertTrue(all(set(h) == {"n", "path"} for x in c["courses"] for h in x["holes"]), name)
+            self.assertFalse([n for x in c["courses"] for n in x["notes"] if "par" in n.lower() or "index" in n.lower()], name)
 
 
 class Twins(unittest.TestCase):

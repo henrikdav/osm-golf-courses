@@ -7,12 +7,8 @@ import unittest
 from golf.report import add_to_history, club_row, page, report
 
 
-def course(key, pars, index=None, complete=True, tees=None):
-    c = {"key": key, "name": key, "complete": complete, "notes": [],
-         "holes": [{"n": i + 1, "par": p, "index": index[i] if index else None} for i, p in enumerate(pars)]}
-    if tees:
-        c["tees"] = tees
-    return c
+def course(key, holes=9, complete=True):
+    return {"key": key, "name": key, "complete": complete, "notes": [], "holes": [{"n": i + 1, "path": []} for i in range(holes)]}
 
 
 def club(cid, courses=(), combos=None, **more):
@@ -23,35 +19,23 @@ def club(cid, courses=(), combos=None, **more):
     return out
 
 
-NINE = [4] * 9
-
-
 class Levels(unittest.TestCase):
     def test_each_level_and_what_it_lacks(self):
-        self.assertEqual(club_row(club("a"))["lacks"], "holes on the map")
-        self.assertEqual(club_row(club("b", [course("main", NINE, complete=False)]))["level"], 1)
-        self.assertEqual(club_row(club("c", [course("main", [4] * 8 + [None])]))["lacks"], "par on every hole")
-        self.assertEqual(club_row(club("d", [course("main", [4] * 18)]))["lacks"], "hole index")
-        row = club_row(club("e", [course("main", NINE, index=list(range(1, 10)))]))
-        self.assertEqual((row["level"], row["lacks"]), (3, "lengths per tee (club file)"))
-        tees = [{"name": "48", "lengths": [300] * 9}]
-        self.assertEqual(club_row(club("f", [course("main", NINE, index=list(range(1, 10)), tees=tees)]))["level"], 4)
+        self.assertEqual((club_row(club("a"))["level"], club_row(club("a"))["lacks"]), (0, "holes on the map"))
+        self.assertEqual(club_row(club("b", [course("main", 9, complete=False)]))["level"], 1)
+        row = club_row(club("c", [course("main", 18)]))
+        self.assertEqual((row["level"], row["lacks"]), (2, ""))
 
-    def test_a_combination_counts_with_its_own_index(self):
-        loops = [course("1-9", NINE), course("10-18", NINE)]
-        bare = club("g", loops, combos=[{"key": "1-9+10-18", "name": "1–18", "loops": ["1-9", "10-18"]}])
-        self.assertEqual(club_row(bare)["level"], 2)
-        indexed = club("h", loops, combos=[{"key": "1-9+10-18", "name": "1–18", "loops": ["1-9", "10-18"],
-                                            "index": list(range(1, 19))}], clubFile={"what": "x"})
-        row = club_row(indexed)
-        self.assertEqual((row["level"], row["indexed"], row["clubFile"]), (3, ["1–18"], True))
+    def test_a_row_says_nothing_of_golf_data(self):
+        row = club_row(club("d", [course("main", 18)], clubFile={"what": "x"}))
+        self.assertEqual(set(row), {"id", "name", "level", "lacks", "courses", "complete", "combos", "notes"})
 
 
 class Report(unittest.TestCase):
     def test_totals_and_the_best_clubs_first(self):
-        rep = report("SE", [club("a"), club("d", [course("main", [4] * 18)])], "2026-11-03T02:00:00Z")
+        rep = report("SE", [club("a"), club("d", [course("main", 18)])], "2026-11-03T02:00:00Z")
         self.assertEqual(rep["totals"]["name only"], 1)
-        self.assertEqual(rep["totals"]["par"], 1)
+        self.assertEqual(rep["totals"]["a whole course"], 1)
         self.assertEqual(rep["clubs"][0]["id"], "d")
 
     def test_the_history_keeps_one_entry_a_day(self):

@@ -112,9 +112,9 @@ def assign(country, clubs, register):
     return {"next": next_number, "clubs": dict(sorted(entries.items()))}, flags
 
 
-def format2(club):
-    """A club as format 2 has it: the stable id with the OSM id beside it, a key on every course, and combinations
-    naming the keys of their loops (every pair until the club's own data says which are played)."""
+def with_ids(club):
+    """A club as format 3 has it: the stable id with the OSM id beside it, a key on every course, and combinations
+    naming the keys of their loops (every pair of loops: which are played is not OSM's to say)."""
     out = {"id": club["id"], "osm": club["osm"]}
     out.update({k: v for k, v in club.items() if k not in ("id", "osm", "combos")})
     if club.get("combos"):

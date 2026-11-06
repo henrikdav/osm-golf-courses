@@ -20,18 +20,13 @@ what there is and say how far to trust it. Pure: no network, so it is tested on 
 import math
 import re
 
-FORMAT = 1
+FORMAT = 3   # geography only: clubs, courses, holes (number and line), greens; never a par or a hole index
 ATTRIBUTION = ("© OpenStreetMap contributors. Available under the Open Database Licence 1.0 "
                "(https://opendatacommons.org/licenses/odbl/1-0/); see https://www.openstreetmap.org/copyright")
 # What the data is, so a copy of a file says where it comes from and under what licence (ODbL 4.2 and 4.6).
 SOURCE = {"data": "OpenStreetMap, through the Overpass API", "licence": "ODbL 1.0",
           "licenceUrl": "https://opendatacommons.org/licenses/odbl/1-0/", "copyrightUrl": "https://www.openstreetmap.org/copyright",
           "method": "https://github.com/henrikdav/osm-golf-courses"}
-
-# Lengths along the line, back tee to pin, that are plausible for each par. Outside them the hole is likely
-# mapped wrong (e.g. Malmö Burlöv's Black Course: a par 5 of 309 m).
-PLAUSIBLE_LENGTH = {3: (60, 260), 4: (200, 500), 5: (350, 650), 6: (450, 800)}
-
 
 def meters(a, b):
     """Distance between two (lat, lng) points; equirectangular, plenty for one hole."""
@@ -164,12 +159,8 @@ def course(name, lines_by_number, unnumbered=0, offset=0):
             if len(lines) > 1:
                 repeated.add(n - offset)
             lines = lines[0]
-        tags = lines.get("tags", {})
-        par = number(tags.get("par"))
-        index = number(tags.get("handicap"))
-        holes[n - offset] = {"n": n - offset, "par": par if par in PLAUSIBLE_LENGTH else None,
-                             "index": index if index and 1 <= index <= 18 else None,
-                             "path": [list(point(p)) for p in lines["geometry"]]}
+        # Only where the hole is: its number and its line. OSM's par and handicap tags are not read (golf data is not served).
+        holes[n - offset] = {"n": n - offset, "path": [list(point(p)) for p in lines["geometry"]]}
     ordered = [holes[n] for n in sorted(holes)]
     last = max(holes) if holes else 0
     missing = [n for n in range(1, last + 1) if n not in holes]
@@ -184,20 +175,6 @@ def course(name, lines_by_number, unnumbered=0, offset=0):
         notes.append("Numbered twice (the first kept): " + ", ".join(map(str, sorted(repeated))))
     if unnumbered:
         notes.append("%d hole line%s without a number left out" % (unnumbered, "" if unnumbered == 1 else "s"))
-    no_par = [h["n"] for h in ordered if h["par"] is None]
-    if no_par and len(no_par) < len(ordered):
-        notes.append("No par on hole " + ", ".join(map(str, no_par)))
-    elif ordered and no_par:
-        notes.append("No par")
-    for h in ordered:
-        if h["par"]:
-            low, high = PLAUSIBLE_LENGTH[h["par"]]
-            meters_along = length(h["path"])
-            if not low <= meters_along <= high:
-                notes.append("Hole %d is %d m for par %d" % (h["n"], round(meters_along), h["par"]))
-    indexes = [h["index"] for h in ordered if h["index"]]
-    if len(set(indexes)) != len(indexes):
-        notes.append("The same index on more than one hole")
     return {"name": name or None, "complete": complete, "holeCount": len(ordered), "holes": ordered, "notes": notes}
 
 
