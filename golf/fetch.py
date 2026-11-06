@@ -65,7 +65,9 @@ def fetch(code, raw_dir, tries=6, pause=60):
         for attempt in range(1, tries + 1):
             status, payload = post(query)
             if status == 200:
-                elements = json.loads(payload)["elements"]
+                answer = json.loads(payload)
+                elements = answer["elements"]
+                osm3s = answer.get("osm3s") or {}   # when the data was current (timestamp_osm_base), and Overpass's own notice
                 break
             print("%s %s: %s, try %d of %d" % (code, name, status, attempt, tries), flush=True)
             if status not in BUSY or attempt == tries:
@@ -73,7 +75,7 @@ def fetch(code, raw_dir, tries=6, pause=60):
             time.sleep(pause)
         path = os.path.join(raw_dir, name + ".json")
         with open(path, "w") as f:
-            json.dump({"elements": elements}, f)
+            json.dump({"osm3s": {k: osm3s[k] for k in ("timestamp_osm_base", "timestamp_areas_base") if k in osm3s}, "elements": elements}, f)
         print("%s %s: %d elements" % (code, name, len(elements)), flush=True)
         paths[name] = path
     return paths

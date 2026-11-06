@@ -24,6 +24,20 @@ def load(path):
         return json.load(f)["elements"]
 
 
+def osm_base(raw_dir):
+    """The oldest timestamp_osm_base of the four Overpass answers in raw_dir (when the data was current), or None."""
+    stamps = []
+    for name in ("outlines", "relations", "holes", "greens"):
+        try:
+            with open(os.path.join(raw_dir, name + ".json")) as f:
+                stamp = (json.load(f).get("osm3s") or {}).get("timestamp_osm_base")
+        except (OSError, ValueError):
+            stamp = None
+        if stamp:
+            stamps.append(stamp)
+    return min(stamps) if len(stamps) == 4 else None
+
+
 def build(raw_root, out, do_fetch, registry_root="registry", clubs_root=None, reports_root="reports"):
     """clubs_root: a folder of club files to merge in. Left out, the published files hold only what OpenStreetMap has
     (with the stable ids): the club files are separate data, kept apart from the OSM database and joined to it by club id
@@ -41,7 +55,7 @@ def build(raw_root, out, do_fetch, registry_root="registry", clubs_root=None, re
             fetch(code, raw)
         outlines = load(os.path.join(raw, "outlines.json")) + load(os.path.join(raw, "relations.json"))
         clubs, counts = clean(outlines, load(os.path.join(raw, "holes.json")), load(os.path.join(raw, "greens.json")))
-        data = country_file(code, name, clubs, counts, made)
+        data = country_file(code, name, clubs, counts, made, osm_base(raw))
         path = os.path.join(out, filename)
         with open(path, "w") as f:
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
@@ -66,7 +80,7 @@ def build(raw_root, out, do_fetch, registry_root="registry", clubs_root=None, re
             merged, club_flags = clubfiles.apply(merged, clubfiles.load(clubs_root))
         for flag in club_flags:
             print("%s: %s" % (code, flag), flush=True)
-        data_2 = dict(country_file(code, name, merged, counts, made), format=FORMAT_2)
+        data_2 = dict(country_file(code, name, merged, counts, made, osm_base(raw)), format=FORMAT_2)
         path_2 = os.path.join(out, "v2", filename)
         with open(path_2, "w") as f:
             json.dump(data_2, f, ensure_ascii=False, separators=(",", ":"))
