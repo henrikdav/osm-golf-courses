@@ -183,6 +183,37 @@ class Apply(unittest.TestCase):
         self.assertTrue(any("se-1: no source" in f for f in flags))
         self.assertTrue(any("se-9: no such club" in f for f in flags))
 
+class As18(unittest.TestCase):
+    """A 12-hole course that is also played as 18 (its holes 1-6 again): the 18-hole index, from the card or the signs."""
+    PARS = [4, 5, 3, 5, 4, 3, 5, 4, 3, 5, 4, 3]
+    INDEX = [5, 9, 13, 3, 7, 17, 1, 11, 15, 4, 8, 18]
+    CLUB12 = {"id": "se-2", "osm": "way/2", "name": "Twelve GK", "courses": [loop("main", PARS)]}
+    PLAY = list(range(1, 13)) + list(range(1, 7))
+    INDEX18 = INDEX + [2, 12, 16, 6, 10, 14]
+
+    def file(self, **as18):
+        a = {"play": self.PLAY, "index": self.INDEX18}
+        a.update(as18)
+        return {"id": "se-2", "name": "Twelve GK", "source": {"what": "card", "by": "H", "date": "2026-11-07", "par": "the card"},
+                "loops": {"main": {"par": self.PARS, "index": self.INDEX, "as18": a}}}
+
+    def test_a_good_as18_has_no_problems(self):
+        self.assertEqual(check(self.file(), self.CLUB12), [])
+
+    def test_what_is_wrong_with_it_is_said(self):
+        for bad, words in ((dict(play=self.PLAY[:17]), "as18 play must be 18 holes"),
+                           (dict(play=[13] + self.PLAY[1:]), "as18 play must be 18 holes"),
+                           (dict(index=self.INDEX18[:17] + [1]), "as18 index must hold 1–18 once each"),
+                           (dict(index=[9, 5] + self.INDEX18[2:]), "is not the course's index")):
+            problems = check(self.file(**bad), self.CLUB12)
+            self.assertTrue(any(words in p for p in problems), (words, problems))
+
+    def test_the_overlay_carries_it_and_the_join_gives_what_merging_gives(self):
+        file = self.file()
+        self.assertEqual(overlay(file)["loops"]["main"]["as18"], {"play": self.PLAY, "index": self.INDEX18})
+        self.assertEqual(apply_overlay(self.CLUB12, overlay(file), osm_scoring=True), merge(self.CLUB12, file))
+        self.assertEqual(apply_overlay(self.CLUB12, overlay(file))["courses"][0]["as18"]["index"][12:], [2, 12, 16, 6, 10, 14])
+
 
 if __name__ == "__main__":
     unittest.main()

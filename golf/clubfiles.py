@@ -11,7 +11,10 @@ One file per club, clubs/<club id>.json, keyed by the club's stable id (format 2
   against the printed card since), and source.par, where the par comes from;
 - slope: course and slope rating per course or combination key, for men and women, from the club's slope tables
   (golf/slope.py): { key: { "men" | "women": { par, rated, tees: { name: { cr, slope } } } } }. A table is always
-  for an 18-hole round, also on a shorter course (played to 18 holes).
+  for an 18-hole round, also on a shorter course (played to 18 holes);
+- as18, on a loop of fewer than 18 holes that is also played as 18 (a 12-hole course, then its holes 1–6 again, Kvarnby
+  and Oxie): { "play": [the course's hole played as hole 1, 2 … 18], "index": [the 18 hole indexes of that round, as
+  printed on the card or the tee signs] }. Par and lengths of a hole played again are its own; only the index differs.
 
 The weekly run merges the files into format 2, as additions an older reader skips:
 - a loop's holes get the club's par and, as their index, the scorecard's index, else the loop's ranking (OSM's own
@@ -92,6 +95,22 @@ def check(file, club):
         ranking = loop.get("ranking")
         if ranking is not None and sorted(ranking) != list(range(1, n + 1)):
             problems.append("loop %s: the ranking must hold 1–%d once each" % (key, n))
+        as18 = loop.get("as18")
+        if as18 is not None:
+            play, idx = as18.get("play"), as18.get("index")
+            if not (isinstance(play, list) and len(play) == 18 and all(isinstance(h, int) and 1 <= h <= n for h in play)):
+                problems.append("loop %s: as18 play must be 18 holes of the course (1–%d)" % (key, n))
+            elif not (isinstance(idx, list) and len(idx) == 18 and sorted(idx) == list(range(1, 19))):
+                problems.append("loop %s: as18 index must hold 1–18 once each" % key)
+            elif n >= 18:
+                problems.append("loop %s: as18 is for a course of fewer than 18 holes" % key)
+            elif isinstance(loop.get("index"), list) and len(loop["index"]) == n:
+                # The holes played for the first time carry the course's own index; the two must agree.
+                seen = set()
+                for i, h in enumerate(play):
+                    if h not in seen and idx[i] != loop["index"][h - 1]:
+                        problems.append("loop %s: as18 index %d for hole %d is not the course's index %d" % (key, idx[i], h, loop["index"][h - 1]))
+                    seen.add(h)
         for tee, lengths in loop.get("tees", {}).items():
             if len(lengths) != n or not all(isinstance(m, int) and m > 0 for m in lengths):
                 problems.append("loop %s, tee %s: %d lengths in metres" % (key, tee, n))
@@ -159,6 +178,8 @@ def merge(club, file):
             course["notes"] = drop_notes(course.get("notes", []), index=True)
         if loop.get("tees"):
             course["tees"] = [{"name": name, "lengths": lengths} for name, lengths in loop["tees"].items()]
+        if loop.get("as18"):
+            course["as18"] = {"play": list(loop["as18"]["play"]), "index": list(loop["as18"]["index"])}
     if file.get("combos"):
         names = {c["key"]: c["name"] for c in out.get("combos", [])}
         combos = [] if file.get("onlyTheseCombos") else [c for c in out.get("combos", [])
@@ -188,7 +209,8 @@ def overlay(file):
     """What a club file adds, as a separate piece of data to be joined to the club's OSM data by club id and course key
     where it is used, instead of being mixed into the OSM data (the OSM database stays apart from ours, ODbL).
 
-    { "loops": { key: { new?: { name, par }, par?: [par on every hole], index?: [..], tees?: [{ name, lengths }] } },
+    { "loops": { key: { new?: { name, par }, par?: [par on every hole], index?: [..], tees?: [{ name, lengths }],
+                        as18?: { play: [18 holes], index: [18] } } },
       "combos": [{ key, loops: [a, b], index: [18] }], "onlyTheseCombos"?: true,
       "slope": { key: { men|women: { par, rated, tees: [{ name, cr, slope }] } } }, "clubFile": source }
     apply_overlay(club, overlay(file)) gives what merge(club, file) gives."""
@@ -203,6 +225,8 @@ def overlay(file):
             item["index"] = loop.get("index") or loop["ranking"]
         if loop.get("tees"):
             item["tees"] = [{"name": name, "lengths": lengths} for name, lengths in loop["tees"].items()]   # in order
+        if loop.get("as18"):
+            item["as18"] = {"play": list(loop["as18"]["play"]), "index": list(loop["as18"]["index"])}
         if item:
             out["loops"][key] = item
     if file.get("combos"):
@@ -255,6 +279,8 @@ def apply_overlay(club, extra, osm_scoring=False):
             course["notes"] = drop_notes(course.get("notes", []), index=True)
         if loop.get("tees"):
             course["tees"] = [dict(t) for t in loop["tees"]]
+        if loop.get("as18"):
+            course["as18"] = {"play": list(loop["as18"]["play"]), "index": list(loop["as18"]["index"])}
     if extra.get("combos"):
         names = {c["key"]: c["name"] for c in out.get("combos", [])}
         made = {c["key"] for c in extra["combos"]}
