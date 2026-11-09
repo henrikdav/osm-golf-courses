@@ -1417,7 +1417,7 @@
    },
    "lat": 59.489194,
    "lng": 14.182286,
-   "name": "Golf course",
+   "name": "Lundsbergs Golfklubb",
    "osm": "way/536454750"
   },
   "se-0186": {
@@ -1721,10 +1721,12 @@
    "osm": "way/234021472"
   },
   "se-0227": {
-   "keys": {},
-   "lat": 57.286749,
-   "lng": 18.471996,
-   "name": "Gumbalde",
+   "keys": {
+    "": "main"
+   },
+   "lat": 57.286799,
+   "lng": 18.472199,
+   "name": "Gumbalde Resort",
    "osm": "way/198948330"
   },
   "se-0228": {
@@ -2616,7 +2618,7 @@
    "keys": {},
    "lat": 55.583019,
    "lng": 13.106415,
-   "name": "Malmö City GK, Kvarnbybanan",
+   "name": "Golfstar Kvarnby",
    "osm": "relation/3049188"
   },
   "se-0340": {
