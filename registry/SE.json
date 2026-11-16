@@ -2146,7 +2146,9 @@
    "osm": "relation/10852837"
   },
   "se-0280": {
-   "keys": {},
+   "keys": {
+    "": "main"
+   },
    "lat": 56.209344,
    "lng": 14.764522,
    "name": "Karlshamns Golfklubb",
@@ -3285,7 +3287,9 @@
    "osm": "relation/8518195"
   },
   "se-0426": {
-   "keys": {},
+   "keys": {
+    "": "main"
+   },
    "lat": 56.696679,
    "lng": 16.487688,
    "name": "Saxnäs Golfklubb",
@@ -3556,7 +3560,9 @@
    "osm": "relation/3928713"
   },
   "se-0461": {
-   "keys": {},
+   "keys": {
+    "": "main"
+   },
    "lat": 57.832388,
    "lng": 12.250623,
    "name": "Stora Lundby Golfklubb",
@@ -3900,7 +3906,9 @@
    "osm": "relation/17895552"
   },
   "se-0505": {
-   "keys": {},
+   "keys": {
+    "": "main"
+   },
    "lat": 63.714675,
    "lng": 20.408198,
    "name": "Umeå golfklubb",
@@ -4038,7 +4046,9 @@
    "osm": "way/53224253"
   },
   "se-0522": {
-   "keys": {},
+   "keys": {
+    "": "main"
+   },
    "lat": 63.288804,
    "lng": 18.668874,
    "name": "Veckefjärdens golfbana",
