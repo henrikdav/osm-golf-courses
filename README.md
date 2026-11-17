@@ -23,7 +23,7 @@ and `handicap` tags are not read. Golf data is for whoever builds on the geograp
               "method": "https://github.com/henrikdav/osm-golf-courses", "osmBase": "2026-11-09T01:58:00Z" },   // osmBase: when the data was current
   "counts": { "clubs": 542, "clubsWithCompleteCourse": 107, "complete9or18": 125, … },
   "clubs": [{
-    "id": "se-0338",                 // our own, stable: kept when OpenStreetMap's id changes
+    "id": "osm-se-0338",             // our own, stable: kept when OpenStreetMap's id changes
     "osm": "way/73898411",           // the OpenStreetMap outline it is now
     "name": "Malmö Burlöv Golfklubb",
     "lat": 55.55, "lng": 13.24, "bbox": [south, west, north, east],
