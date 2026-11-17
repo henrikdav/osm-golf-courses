@@ -2,7 +2,7 @@
 
 OpenStreetMap ids change, most often when someone turns a club's outline from a simple line (`way`) into a combined
 area (`relation`). An app that keeps a player's tees, lengths and corrections per club and course must not lose them
-then, so every club gets an id of our own ("se-0042") and every course or loop a key within its club ("1-9",
+then, so every club gets an id of our own ("osm-se-0042") and every course or loop a key within its club ("1-9",
 "gamla-banan"). Both are kept in a register in this repo (registry/<country>.json, in git) and carried from week to
 week:
 
@@ -12,7 +12,11 @@ week:
 - anything else gets the next free id.
 
 A course's key comes from its name (lower case, no accents, words joined by "-": "Pay & Play" → "pay-play",
-"1–9" → "1-9"); a club's only course, with no name, is "main". A key once given to a course stays with that name,
+"1–9" → "1-9"); a club's only course, with no name, is "main".
+
+The ids start with "osm-" (2026-11-17). Until then they were "se-0042", the same shape as the facility ids of the
+Stroke Counter register, which first copied them; the two could be taken for each other. A register with ids of the old
+shape is renamed once, number kept ("se-0042" → "osm-se-0042"), by `migrate`, which `assign` calls first. A key once given to a course stays with that name,
 so the register also keeps the keys; a course renamed so that its key stays the same ("Holes 1–9" → "1–9") keeps it,
 and so does a club's only course, unnamed until now, when it is the one course that gets a name (The National's,
 "Lakes Course", stays "main"). Pure: no files or network here; build.py reads and writes the register.
@@ -23,6 +27,7 @@ import unicodedata
 from golf.clean import meters
 
 MOVED = 500   # meters: a club with a new OSM id within this of one that disappeared is taken to be the same club
+PREFIX = "osm-"   # every club id starts with it, so it is never taken for a facility id of an app that uses this data
 
 
 def fold(text):
@@ -41,9 +46,29 @@ def course_key(name):
     return "-".join(words) or "course"
 
 
+def club_id(country, number):
+    """A club's id: "osm-se-0042"."""
+    return "%s%s-%04d" % (PREFIX, country.lower(), number)
+
+
+def migrate(country, register):
+    """The register with every id of the old shape ("se-0042") renamed to the new one ("osm-se-0042"), number kept, and
+    the names that were changed. Ids already of the new shape are left as they are, so running it twice changes nothing."""
+    old = re.compile(r"%s-(\d{4,})" % re.escape(country.lower()))
+    clubs, renamed = {}, {}
+    for cid, entry in register.get("clubs", {}).items():
+        match = old.fullmatch(cid)
+        new = club_id(country, int(match.group(1))) if match else cid
+        if new != cid:
+            renamed[cid] = new
+        clubs[new] = entry
+    return dict(register, clubs=dict(sorted(clubs.items()))), renamed
+
+
 def assign(country, clubs, register):
     """Gives each club its id and each course its key, in place, and returns the updated register and what needs a
     look. `register` is {"next": n, "clubs": {id: {"osm", "name", "lat", "lng", "keys": {course name: key}}}}."""
+    register, _ = migrate(country, register)
     entries = {k: dict(v, keys=dict(v.get("keys", {}))) for k, v in register.get("clubs", {}).items()}
     next_number = register.get("next", 1)
     by_osm = {v["osm"]: k for k, v in entries.items()}
@@ -53,7 +78,7 @@ def assign(country, clubs, register):
 
     def new_id():
         nonlocal next_number
-        made = "%s-%04d" % (country.lower(), next_number)
+        made = club_id(country, next_number)
         next_number += 1
         return made
 
